@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'EmergenciAPPS',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'bootstrap.helpers.TbHtml'
 	),
 
 	'modules'=>array(
@@ -26,12 +27,16 @@ return array(
 			'password'=>'admin',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+                        'generatorPaths' => array('bootstrap.gii'),
 		),
 		
 	),
 
 	// application components
 	'components'=>array(
+                'bootstrap' => array(
+                    'class' => 'bootstrap.components.TbApi',   
+                ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -51,12 +56,12 @@ return array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
 		// uncomment the following to use a MySQL database
-		
+		// ip publica 146.83.196.166;port=3306
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=rhormaza',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'rhormaza',
+			'password' => 'czeSCfCQ',
 			'charset' => 'utf8',
 		),
 		
@@ -87,4 +92,8 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
+        'aliases' => array(
+            'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+        ),
+
 );

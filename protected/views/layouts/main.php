@@ -20,8 +20,10 @@
         </script>
         
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/funciones.js"></script>
-        
-        
+        <!--link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/YiiBootstrap-master/css/bootstrap.css" media="print" /-->
+        <?php Yii::app()->bootstrap->register(); ?>
+
+         
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
         
 </head>
