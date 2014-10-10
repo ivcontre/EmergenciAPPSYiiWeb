@@ -29,7 +29,26 @@
 </head>
 
 <body >
-
+<?PHP
+$this->widget('bootstrap.widgets.TbNavbar', array(
+                'brandLabel' => 'EmergenciAPPS',
+                'collapse' => true,
+                'items' => array(
+                                array(
+                                    'class' => 'bootstrap.widgets.TbNav',
+                                    'items' => array(
+                                        array('label'=>'Home', 'url'=>array('/site/index')),
+                                        array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index')),
+                                        array('label'=>'Bomberos', 'url'=>array('/bombero/index')),
+                                        array('label'=>'Carabineros', 'url'=>array('/carabinero/index')),
+                                        array('label'=>'PDI', 'url'=>array('/pdi/index')),
+                                        array('label'=>'Comunas', 'url'=>array('/comuna/index')),
+                                        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                                        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                                    ),
+                                ),
+                    )));
+?>
 <div  class="container" id="page">
 
 	<div id="header">
@@ -37,19 +56,23 @@
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-                                array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index')),
-                                array('label'=>'Bomberos', 'url'=>array('/bombero/index')),
-                                array('label'=>'Carabineros', 'url'=>array('/carabinero/index')),
-                                array('label'=>'PDI', 'url'=>array('/pdi/index')),
-                                array('label'=>'Comunas', 'url'=>array('/comuna/index')),
-				
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
+		<?php 
+//                $this->widget('zii.widgets.CMenu',array(
+//			'items'=>array(
+//				array('label'=>'Home', 'url'=>array('/site/index')),
+//                                array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index')),
+//                                array('label'=>'Bomberos', 'url'=>array('/bombero/index')),
+//                                array('label'=>'Carabineros', 'url'=>array('/carabinero/index')),
+//                                array('label'=>'PDI', 'url'=>array('/pdi/index')),
+//                                array('label'=>'Comunas', 'url'=>array('/comuna/index')),
+//				
+//				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+//				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+//			),
+//		)); 
+                
+                
+                ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(

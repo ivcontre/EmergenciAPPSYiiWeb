@@ -2,10 +2,14 @@
 /* @var $this CarabineroController */
 /* @var $model Carabinero */
 
-$this->breadcrumbs=array(
-	'Carabineros'=>array('index'),
-	'Manage',
-);
+//$this->breadcrumbs=array(
+//	'Carabineros'=>array('index'),
+//	'Manage',
+//);
+echo TbHtml::breadcrumbs(array(
+    'Carabineros' =>array('index'),
+    'Administración',
+));
 
 $this->menu=array(
 	array('label'=>'List Carabinero', 'url'=>array('index')),
@@ -40,11 +44,34 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'carabinero-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
+<?php // $this->widget('zii.widgets.grid.CGridView', array(
+//	'id'=>'carabinero-grid',
+//	'dataProvider'=>$model->search(),
+//	'filter'=>$model,
+//	'columns'=>array(
+//		'id',
+//		'nombre',
+//		'direccion',
+//		array(
+//                    'value' => '$data->idComuna->nombre',
+//                    'name' => 'id_comuna'
+//                ),
+//		
+//		'x',
+//		
+//		'y',
+//		'telefono',
+//		array(
+//			'class'=>'CButtonColumn',
+//		),
+//	),
+//)); 
+$this->widget('bootstrap.widgets.TbGridView', array(
+   'dataProvider' => $model->search(),
+   'filter' => $model,
+   'type' => TbHtml::GRID_TYPE_HOVER,
+   'template' => "{items}",
+   'columns'=>array(
 		'id',
 		'nombre',
 		'direccion',
@@ -61,4 +88,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'class'=>'CButtonColumn',
 		),
 	),
-)); ?>
+));
+
+?>

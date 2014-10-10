@@ -16,7 +16,10 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-                'bootstrap.helpers.TbHtml'
+                'bootstrap.helpers.TbHtml',
+                'bootstrap.helpers.TbArray',
+                'bootstrap.behaviors.TbWidget',
+                'bootstrap.widgets.*'
 	),
 
 	'modules'=>array(
