@@ -12,8 +12,8 @@ echo TbHtml::breadcrumbs(array(
 ));
 
 $this->menu=array(
-	array('label'=>'List Carabinero', 'url'=>array('index')),
-	array('label'=>'Create Carabinero', 'url'=>array('create')),
+	array('label'=>'Listar Carabineros', 'url'=>array('index')),
+	array('label'=>'Crear Carabinero', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

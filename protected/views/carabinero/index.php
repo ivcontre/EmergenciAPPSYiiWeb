@@ -6,14 +6,13 @@
 //	'Carabineros',
 //);
 echo TbHtml::breadcrumbs(array(
-    'Home' => 'http://parra.chillan.ubiobio.cl:8070/rhormaza/index.php',
+    'Home' => array('index'),
     'Carabineros',
 ));
 
 $this->menu=array(
-        array('label'=>'Operaciones'),
-	array('label'=>'Create Carabinero', 'url'=>array('create')),
-	array('label'=>'Manage Carabinero', 'url'=>array('admin')),
+	array('label'=>'Crear Carabinero', 'url'=>array('create')),
+	array('label'=>'Administrar Carabinero', 'url'=>array('admin')),
 );
 
 //$this->widget('bootstrap.widgets.TbNav', array(
@@ -37,5 +36,37 @@ $this->menu=array(
     $this->widget('bootstrap.widgets.TbGridView', array(
         'type' => TbHtml::GRID_TYPE_HOVER,
         'dataProvider'=>$dataProvider,
+        'columns'=>array(
+		'id',
+		'nombre',
+		'direccion',
+		array(
+                    'value' => '$data->idComuna->nombre',
+                    'name' => 'id_comuna'
+                ),
+		
+		'x',
+		
+		'y',
+		'telefono',
+		array(
+			'class'=>'CButtonColumn',
+                        'deleteButtonImageUrl'=>false,
+                        'deleteButtonLabel'=>false,
+                        'updateButtonImageUrl'=>false,
+                        'viewButtonImageUrl'=>false,
+                        'template'=>'{view}',
+                        'buttons' => array(
+                            'view'=>array(
+                                    
+                                    'url'=>'Yii::app()->createUrl("carabinero/view", array("id"=>$data->id))',
+                                    'options'=>array(
+                                        'class'=>TbHtml::ICON_SEARCH
+                                    ), // HTML options for the button tag
+                               
+                            ),
+                            ),
+		),
+	),
     ));
     ?>

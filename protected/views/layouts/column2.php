@@ -1,13 +1,14 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="span-19">
+<div class="span8">
 	<div id="content">
 		<?php echo $content; ?>
 	</div><!-- content -->
 </div>
-<div class="span-5 last">
+<div class="span3 last">
 	<div id="sidebar">
 	<?php
+        array_unshift($this->menu, array('label'=>'Operaciones'));
 		$this->widget('bootstrap.widgets.TbNav', array(
                         'type' => TbHtml::NAV_TYPE_LIST,
 			'items'=>$this->menu,
