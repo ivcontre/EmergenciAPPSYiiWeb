@@ -1,7 +1,9 @@
 <?php
 /* @var $this CarabineroController */
 /* @var $model Carabinero */
-
+$baseUrl = Yii::app()->baseUrl; 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/js/actionCarabinero.js');
 $this->breadcrumbs=array(
 	'Carabineros'=>array('index'),
 	$model->nombre,
@@ -33,5 +35,5 @@ $this->menu=array(
 ?>
 <div id="map_detalle" style="width: 100%; height:350px"></div>
 <?php
- echo "<script>initializeconcoordenadas(".$model->x.",".$model->y.");</script>";
+ echo "<script>actionCarabinero.initializeconcoordenadas(".$model->x.",".$model->y.");</script>";
 ?>

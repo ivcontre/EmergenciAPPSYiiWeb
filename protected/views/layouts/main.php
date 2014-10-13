@@ -50,7 +50,6 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                     )));
 ?>
 <div  class="container" id="page">
-
 	<div id="header">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
@@ -90,11 +89,9 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 	<div class="clear"></div>
 
 </div><!-- page -->
-
-</body>
-    <footer class="footer" id="footer">
-        <div class="container">
+<footer class="footer" id="footer">
             <p class="credit">Desarrollado por Iván Contreras y Renato Hormazabal</p>
-        </div>
-    </footer>
+</footer>
+</body>
+    
 </html>

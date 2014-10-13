@@ -100,6 +100,5 @@ function cargarMapaIngreso(id){
 
 function cargarMapaEdicion(x,y){
     google.maps.event.addDomListener(window, 'load', initializeMapEdicion(x,y));
-   
 }
         

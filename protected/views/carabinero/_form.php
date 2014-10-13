@@ -50,7 +50,10 @@
                         'options' => array(
                                     'minLength' => '2',
                                     'showAnim' => 'fold',
-                                    'select' => 'js:function(event, ui) {jQuery("#nombre").val(ui.item["id_comuna"]);}',
+                                    'select' => 'js:function(event, ui){
+                                                        jQuery("#nombre").val(ui.item["id_comuna"]);
+                                                        actionCarabinero.centrarMapaConDireccion(ui.item["value"]);
+                                                   }',
                                    
                         ),
                     ));
@@ -71,7 +74,7 @@
                         echo "<script>cargarMapaEdicion(".$model->x.",".$model->y.");</script>";
                     }else{
                         $centro = "Carabinero";
-                        echo "<script>cargarMapaIngreso('".$centro."');</script>";
+                        echo "<script>actionCarabinero.cargarMapaIngreso('".$centro."');</script>";
                         
                     }
                     
