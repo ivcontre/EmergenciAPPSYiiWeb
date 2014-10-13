@@ -92,7 +92,9 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+                <?php echo TbHtml::formActions(array(
+                        TbHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+                    )); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -37,7 +37,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                 array(
                                     'class' => 'bootstrap.widgets.TbNav',
                                     'items' => array(
-                                        array('label'=>'Home', 'url'=>array('/site/index')),
+                                        array('label'=>'Inicio', 'url'=>array('/site/index')),
                                         array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index')),
                                         array('label'=>'Bomberos', 'url'=>array('/bombero/index')),
                                         array('label'=>'Carabineros', 'url'=>array('/carabinero/index')),
@@ -75,20 +75,26 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                 ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+		<?php 
+//                $this->widget('zii.widgets.CBreadcrumbs', array(
+//			'links'=>$this->breadcrumbs,
+//		)); 
+                $this->widget('bootstrap.widgets.TbBreadcrumb', array(
 			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
+		)); 
+                ?><!-- breadcrumbs -->
 	<?php endif?>
 
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
 
-	<div id="footer">
-		
-	</div><!-- footer -->
-
 </div><!-- page -->
 
 </body>
+    <footer class="footer" id="footer">
+        <div class="container">
+            <p class="credit">Desarrollado por Iván Contreras y Renato Hormazabal</p>
+        </div>
+    </footer>
 </html>

@@ -2,14 +2,10 @@
 /* @var $this CarabineroController */
 /* @var $model Carabinero */
 
-//$this->breadcrumbs=array(
-//	'Carabineros'=>array('index'),
-//	'Manage',
-//);
-echo TbHtml::breadcrumbs(array(
-    'Carabineros' =>array('index'),
-    'Administración',
-));
+$this->breadcrumbs=array(
+	'Carabineros'=>array('index'),
+	'Administrar',
+);
 
 $this->menu=array(
 	array('label'=>'Listar Carabineros', 'url'=>array('index')),

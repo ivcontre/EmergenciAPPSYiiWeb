@@ -4,19 +4,19 @@
 
 $this->breadcrumbs=array(
 	'Carabineros'=>array('index'),
-	$model->id,
+	$model->nombre,
 );
 
 $this->menu=array(
-	array('label'=>'List Carabinero', 'url'=>array('index')),
-	array('label'=>'Create Carabinero', 'url'=>array('create')),
-	array('label'=>'Update Carabinero', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Carabinero', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Carabinero', 'url'=>array('admin')),
+	array('label'=>'Listar Carabineros', 'url'=>array('index')),
+	array('label'=>'Crear nuevo', 'url'=>array('create')),
+	array('label'=>'Actualizar Carabinero', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Eliminar Carabinero', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Administrar Carabineros', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Detalle Carabineros ID: <?php echo $model->id; ?></h1>
+<?php echo TbHtml::pageHeader('Detalle Carabinero', $model->nombre); ?>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

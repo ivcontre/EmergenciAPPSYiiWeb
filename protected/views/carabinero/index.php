@@ -2,13 +2,9 @@
 /* @var $this CarabineroController */
 /* @var $dataProvider CActiveDataProvider */
 
-//$this->breadcrumbs=array(
-//	'Carabineros',
-//);
-echo TbHtml::breadcrumbs(array(
-    'Home' => array('index'),
-    'Carabineros',
-));
+$this->breadcrumbs=array(
+	'Carabineros',
+);
 
 $this->menu=array(
 	array('label'=>'Crear Carabinero', 'url'=>array('create')),
@@ -52,7 +48,6 @@ $this->menu=array(
 		array(
 			'class'=>'CButtonColumn',
                         'deleteButtonImageUrl'=>false,
-                        'deleteButtonLabel'=>false,
                         'updateButtonImageUrl'=>false,
                         'viewButtonImageUrl'=>false,
                         'template'=>'{view}',
@@ -60,6 +55,7 @@ $this->menu=array(
                             'view'=>array(
                                     
                                     'url'=>'Yii::app()->createUrl("carabinero/view", array("id"=>$data->id))',
+                                    'label'=>' ',
                                     'options'=>array(
                                         'class'=>TbHtml::ICON_SEARCH
                                     ), // HTML options for the button tag
