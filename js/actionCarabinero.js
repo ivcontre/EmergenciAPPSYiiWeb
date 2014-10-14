@@ -30,6 +30,9 @@ console.log('iniciando eventos de cuenta');
         cargarMapaIngreso: function(nombreServicio){
             google.maps.event.addDomListener(window, 'load', actionCarabinero.initializeMapIngreso(nombreServicio));
         },
+        cargarMapaEdicion: function(x,y){
+            google.maps.event.addDomListener(window, 'load', actionCarabinero.initializeMapEdicion(x,y));
+        },
         initializeMapIngreso: function(nombreServicio){
             var centroEmergencia = nombreServicio;
      
@@ -122,6 +125,50 @@ console.log('iniciando eventos de cuenta');
             }
             // En caso de error retorna el estado
         });
+        },
+        /**
+         * 
+         * @param {type} x
+         * @param {type} y
+         * @returns {undefined}
+         */
+        initializeMapEdicion: function (x,y){
+                console.log("inicializa mapa edicion");
+                var x = x;
+                var y = y;
+                var xy = new google.maps.LatLng(x,y);
+                var mapOptions = {
+                          center: new google.maps.LatLng(x, y),
+                          zoom: 13,
+                          mapTypeId: google.maps.MapTypeId.ROADMAP  
+                };
+                var elementMap = document.getElementById('map');
+                var map = new google.maps.Map(elementMap,mapOptions);
+
+                var marker = new google.maps.Marker({
+                position: xy});
+
+                marker.setMap(map);
+
+                var markersArray = [];
+
+                markersArray.push(marker);
+                google.maps.event.addListener(map, "click", function(evento) {
+                    for (var i = 0; i < markersArray.length; i++ ) {
+                        markersArray[i].setMap(null);
+                    }
+
+                    document.getElementById("Carabinero_x").value = evento.latLng.lat();
+                    document.getElementById("Carabinero_y").value = evento.latLng.lng();
+
+                     marker = new google.maps.Marker({
+                        position: evento.latLng});
+                    marker.setMap(map);
+                    markersArray.push(marker);
+
+
+
+                 });
         }
-      };
+        };
     })();

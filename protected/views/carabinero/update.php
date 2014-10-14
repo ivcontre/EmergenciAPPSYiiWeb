@@ -1,6 +1,9 @@
 <?php
 /* @var $this CarabineroController */
 /* @var $model Carabinero */
+$baseUrl = Yii::app()->baseUrl; 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/js/actionCarabinero.js');
 
 $this->breadcrumbs=array(
 	'Carabineros'=>array('index'),
@@ -18,4 +21,6 @@ $this->menu=array(
 
 <?php echo TbHtml::pageHeader('Editar Carabinero', $model->nombre); ?>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model)); 
+    echo "<script>actionCarabinero.cargarMapaEdicion(".$model->x.",".$model->y.");</script>";
+?>

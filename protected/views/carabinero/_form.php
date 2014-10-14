@@ -71,10 +71,10 @@
         <div class="row">
             <div id="map" style="width:450px; height:300px"></div>
             <?php   if(isset($model->x) && isset($model->y)){
-                        echo "<script>cargarMapaEdicion(".$model->x.",".$model->y.");</script>";
+                        
                     }else{
                         $centro = "Carabinero";
-                        echo "<script>actionCarabinero.cargarMapaIngreso('".$centro."');</script>";
+                        
                         
                     }
                     
