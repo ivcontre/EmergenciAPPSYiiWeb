@@ -1,5 +1,5 @@
-console.log('iniciando eventos de carabineros');
-    var actionCarabinero = (function() {
+console.log('iniciando eventos de centros medicos');
+    var actionCentroMedico = (function() {
       var myOptions;
       var map;
       var marker;
@@ -29,10 +29,10 @@ console.log('iniciando eventos de carabineros');
          * @returns {undefined}
          */
         cargarMapaIngreso: function(nombreServicio){
-            google.maps.event.addDomListener(window, 'load', actionCarabinero.initializeMapIngreso(nombreServicio));
+            google.maps.event.addDomListener(window, 'load', actionCentroMedico.initializeMapIngreso(nombreServicio));
         },
         cargarMapaEdicion: function(x,y){
-            google.maps.event.addDomListener(window, 'load', actionCarabinero.initializeMapEdicion(x,y));
+            google.maps.event.addDomListener(window, 'load', actionCentroMedico.initializeMapEdicion(x,y));
         },
         initializeMapIngreso: function(nombreServicio){
             var centroEmergencia = nombreServicio;
@@ -95,15 +95,15 @@ console.log('iniciando eventos de carabineros');
                 for(i=0; i<geocodes.length; i++){
                     // Centra el mapa en la nueva ubicación
                     map.setCenter(geocodes[i].geometry.location);
+                   
                     // Valores iniciales del marcador
                     marker.setMap(map);
 
                     // Establece la ubicación del marcador
 
                     marker.setPosition(geocodes[i].geometry.location);
-                    
-                    document.getElementById("Carabinero_x").value = geocodes[i].geometry.location.lat();
-                    document.getElementById("Carabinero_y").value = geocodes[i].geometry.location.lng();
+                    document.getElementById("CentroMedico_x").value = geocodes[i].geometry.location.lat();
+                    document.getElementById("CentroMedico_y").value = geocodes[i].geometry.location.lng();
                     // Establece el contenido de la ventana de información
 
                     var infoWindow = new google.maps.InfoWindow();
@@ -158,8 +158,8 @@ console.log('iniciando eventos de carabineros');
                         markersArray[i].setMap(null);
                     }
 
-                    document.getElementById("Carabinero_x").value = evento.latLng.lat();
-                    document.getElementById("Carabinero_y").value = evento.latLng.lng();
+                    document.getElementById("CentroMedico_x").value = evento.latLng.lat();
+                    document.getElementById("CentroMedico_y").value = evento.latLng.lng();
 
                      marker = new google.maps.Marker({
                         position: evento.latLng});

@@ -1,6 +1,9 @@
 <?php
 /* @var $this PdiController */
 /* @var $model PDI */
+$baseUrl = Yii::app()->baseUrl; 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/js/actionPDI.js');
 
 $this->breadcrumbs=array(
 	'Pdis'=>array('index'),
@@ -18,4 +21,6 @@ $this->menu=array(
 
 <h1>Update PDI <?php echo $model->id; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model)); 
+echo "<script>actionPDI.cargarMapaEdicion(".$model->x.",".$model->y.");</script>";
+?>

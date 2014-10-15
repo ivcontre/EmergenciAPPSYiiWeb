@@ -67,8 +67,8 @@ class PDI extends CActiveRecord
 			'nombre' => 'Nombre',
 			'direccion' => 'Direccion',
 			'id_comuna' => 'Comuna',
-			'x' => 'X',
-			'y' => 'Y',
+			'x' => 'Latitud',
+			'y' => 'Longitud',
 			'telefono' => 'Telefono',
 		);
 	}

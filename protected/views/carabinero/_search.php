@@ -27,11 +27,35 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'id_comuna'); ?>
-                <?php $criteria = new CDbCriteria();
-                      $criteria->order = 'nombre';
+		<?php echo $form->labelEx($model,'id_comuna'); ?>
+                <?php
+                    
+                    if($model->idComuna!=''){
+                        $value = $model->idComuna->nombre;
+                    }else{
+                        $value = '';
+                    }
+                    
+                    echo $form->hiddenField($model, 'id_comuna');
+                    $this->widget('zii.widgets.jui.CJuiAutoComplete', array (
+                        'name' => 'nombre',
+                        'model' => $model,
+                        'value' => $value,
+                        'sourceUrl' => $this->createUrl('ListarComunas'),
+                        'options' => array(
+                                    'minLength' => '2',
+                                    'showAnim' => 'fold',
+                                    'select' => 'js:function(event, ui){
+                                                        jQuery("#nombre").val(ui.item["id_comuna"]);
+                                                        
+                                                   }',
+                                   
+                        ),
+                    ));
+                     
+                     
                 ?>
-		<?php echo $form->dropDownList($model,'id_comuna', CHtml::listData(Comuna::model()->findAll($criteria), 'id_comuna', 'nombre')); ?>
+		<?php echo $form->error($model,'id_comuna'); ?>
 	</div>
 
 	<div class="row">

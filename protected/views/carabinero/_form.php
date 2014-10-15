@@ -70,17 +70,6 @@
 	</div>
         <div class="row">
             <div id="map" style="width:450px; height:300px"></div>
-            <?php   if(isset($model->x) && isset($model->y)){
-                        
-                    }else{
-                        $centro = "Carabinero";
-                        
-                        
-                    }
-                    
-             ?>
-            
-            
         </div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'x'); ?>

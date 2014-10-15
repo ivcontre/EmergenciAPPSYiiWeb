@@ -1,6 +1,9 @@
 <?php
 /* @var $this CentroMedicoController */
 /* @var $model CentroMedico */
+$baseUrl = Yii::app()->baseUrl; 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/js/actionCentroMedico.js');
 
 $this->breadcrumbs=array(
 	'Centro Medicos'=>array('index'),
@@ -18,4 +21,6 @@ $this->menu=array(
 
 <h1>Update CentroMedico <?php echo $model->id; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model)); 
+echo "<script>actionCentroMedico.cargarMapaEdicion(".$model->x.",".$model->y.");</script>";
+?>

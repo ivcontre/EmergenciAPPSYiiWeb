@@ -1,6 +1,9 @@
 <?php
 /* @var $this BomberoController */
 /* @var $model Bombero */
+$baseUrl = Yii::app()->baseUrl; 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/js/actionBombero.js');
 
 $this->breadcrumbs=array(
 	'Bomberos'=>array('index'),

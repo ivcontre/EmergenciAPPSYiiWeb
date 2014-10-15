@@ -50,7 +50,8 @@
                         'options' => array(
                                     'minLength' => '2',
                                     'showAnim' => 'fold',
-                                    'select' => 'js:function(event, ui) {jQuery("#nombre").val(ui.item["id_comuna"]);}',
+                                    'select' => 'js:function(event, ui) {jQuery("#nombre").val(ui.item["id_comuna"]); '
+                            . 'actionPDI.centrarMapaConDireccion(ui.item["value"]);}',
                                    
                         ),
                     ));
@@ -62,17 +63,7 @@
         
         <div class="row">
             <div id="map" style="width:450px; height:300px"></div>
-            <?php   if(isset($model->x) && isset($model->y)){
-                        echo "<script>cargarMapaEdicion(".$model->x.",".$model->y.");</script>";
-                    }else{
-                        $centro = "PDI";
-                        echo "<script>cargarMapaIngreso('".$centro."');</script>";
-                        
-                    }
-                    
-             ?>
-            
-            
+           
         </div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'x'); ?>
