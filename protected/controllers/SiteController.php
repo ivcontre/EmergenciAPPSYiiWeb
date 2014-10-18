@@ -106,4 +106,13 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+        /***
+          @param string $argX  argumento declarado (importante)
+          @return string  (importante)
+          @soap
+     */
+        public function getObtenerMensajeRemoto($argX)
+    {
+        return "HOLA REMOTO, TU MENSAJE ES: ".$argX;
+    }
 }

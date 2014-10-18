@@ -1,32 +1,30 @@
 <?php
 
 /**
- * This is the model class for table "usuario".
+ * This is the model class for table "contacto".
  *
- * The followings are the available columns in table 'usuario':
+ * The followings are the available columns in table 'contacto':
+ * @property integer $id_contacto
  * @property string $numero_telefono
- * @property string $regid
- * @property integer $id_tipo_usuario
  * @property string $nombre
- * @property string $apellido
+ * @property string $numero
  * @property string $correo
- * @property string $password
- * @property integer $estado_alerta
- * @property double $latitud
- * @property double $longitud
+ * @property integer $estado
+ * @property integer $alerta_sms
+ * @property integer $alerta_gps
+ * @property integer $alerta_correo
  *
  * The followings are the available model relations:
- * @property Contacto[] $contactos
- * @property TipoUsuario $idTipoUsuario
+ * @property Usuario $numeroTelefono
  */
-class Usuario extends CActiveRecord
+class Contacto extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'usuario';
+		return 'contacto';
 	}
 
 	/**
@@ -37,16 +35,14 @@ class Usuario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('numero_telefono, regid, id_tipo_usuario, nombre, apellido, correo, password, estado_alerta, latitud, longitud', 'required'),
-			array('id_tipo_usuario, estado_alerta', 'numerical', 'integerOnly'=>true),
-			array('latitud, longitud', 'numerical'),
-			array('numero_telefono, correo', 'length', 'max'=>25),
-			array('regid', 'length', 'max'=>200),
-			array('nombre, apellido', 'length', 'max'=>50),
-			array('password', 'length', 'max'=>20),
+			array('numero_telefono, nombre, numero, correo, estado, alerta_sms, alerta_gps, alerta_correo', 'required'),
+			array('estado, alerta_sms, alerta_gps, alerta_correo', 'numerical', 'integerOnly'=>true),
+			array('numero_telefono, numero', 'length', 'max'=>15),
+			array('nombre', 'length', 'max'=>50),
+			array('correo', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('numero_telefono, regid, id_tipo_usuario, nombre, apellido, correo, password, estado_alerta, latitud, longitud', 'safe', 'on'=>'search'),
+			array('id_contacto, numero_telefono, nombre, numero, correo, estado, alerta_sms, alerta_gps, alerta_correo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,8 +54,7 @@ class Usuario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'contactos' => array(self::HAS_MANY, 'Contacto', 'numero_telefono'),
-			'idTipoUsuario' => array(self::BELONGS_TO, 'TipoUsuario', 'id_tipo_usuario'),
+			'numeroTelefono' => array(self::BELONGS_TO, 'Usuario', 'numero_telefono'),
 		);
 	}
 
@@ -69,16 +64,15 @@ class Usuario extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id_contacto' => 'Id Contacto',
 			'numero_telefono' => 'Numero Telefono',
-			'regid' => 'Regid',
-			'id_tipo_usuario' => 'Id Tipo Usuario',
 			'nombre' => 'Nombre',
-			'apellido' => 'Apellido',
+			'numero' => 'Numero',
 			'correo' => 'Correo',
-			'password' => 'Password',
-			'estado_alerta' => 'Estado Alerta',
-			'latitud' => 'Latitud',
-			'longitud' => 'Longitud',
+			'estado' => 'Estado',
+			'alerta_sms' => 'Alerta Sms',
+			'alerta_gps' => 'Alerta Gps',
+			'alerta_correo' => 'Alerta Correo',
 		);
 	}
 
@@ -100,16 +94,15 @@ class Usuario extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id_contacto',$this->id_contacto);
 		$criteria->compare('numero_telefono',$this->numero_telefono,true);
-		$criteria->compare('regid',$this->regid,true);
-		$criteria->compare('id_tipo_usuario',$this->id_tipo_usuario);
 		$criteria->compare('nombre',$this->nombre,true);
-		$criteria->compare('apellido',$this->apellido,true);
+		$criteria->compare('numero',$this->numero,true);
 		$criteria->compare('correo',$this->correo,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('estado_alerta',$this->estado_alerta);
-		$criteria->compare('latitud',$this->latitud);
-		$criteria->compare('longitud',$this->longitud);
+		$criteria->compare('estado',$this->estado);
+		$criteria->compare('alerta_sms',$this->alerta_sms);
+		$criteria->compare('alerta_gps',$this->alerta_gps);
+		$criteria->compare('alerta_correo',$this->alerta_correo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -120,7 +113,7 @@ class Usuario extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Usuario the static model class
+	 * @return Contacto the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

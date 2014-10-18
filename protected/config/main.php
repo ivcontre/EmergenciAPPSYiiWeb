@@ -29,7 +29,7 @@ return array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'admin',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
+			'ipFilters'=>array('127.0.0.1','::1','*.*.*.*'),
                         'generatorPaths' => array('bootstrap.gii'),
 		),
 		
@@ -55,6 +55,18 @@ return array(
 			),
 		),
 		*/
+                'urlManager'=>array(
+                    //'urlFormat'=>'path',
+                    'rules'=>array(
+                        // REST patterns
+                        array('api/registroGCM', 'pattern'=>'ws/registrogcm', 'verb'=>'POST'),
+                        array('api/realizaAccion', 'pattern'=>'apis/realiza', 'verb'=>'GET'),
+                        array('api/enviaAlertas', 'pattern'=>'ws/enviaAlertas'),
+                        array('api/delete', 'pattern'=>'api/<model:\w+>/<id:\d+>', 'verb'=>'DELETE'),
+                        array('api/create', 'pattern'=>'api/<model:\w+>', 'verb'=>'POST'),
+                        // Other controllers
+                    ),
+                    ),
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
