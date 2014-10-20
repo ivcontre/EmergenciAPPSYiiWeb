@@ -12,14 +12,14 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar Carabineros', 'url'=>array('index')),
-	array('label'=>'Crear nuevo', 'url'=>array('create')),
-	array('label'=>'Ver detalle', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Administrar carabinero', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ingresar nuevo', 'url'=>array('create')),
+	array('label'=>'Detalle', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 
-<?php echo TbHtml::pageHeader('Editar Carabinero', $model->nombre); ?>
+<?php echo TbHtml::pageHeader('Editar', $model->nombre); ?>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); 
     echo "<script>actionCarabinero.cargarMapaEdicion(".$model->x.",".$model->y.");</script>";

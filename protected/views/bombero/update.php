@@ -7,18 +7,18 @@ $cs->registerScriptFile($baseUrl.'/js/actionBombero.js');
 
 $this->breadcrumbs=array(
 	'Bomberos'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	$model->nombre=>array('view','id'=>$model->id),
+	'Editar',
 );
 
 $this->menu=array(
-	array('label'=>'List Bombero', 'url'=>array('index')),
-	array('label'=>'Create Bombero', 'url'=>array('create')),
-	array('label'=>'View Bombero', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Bombero', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ingresar nuevo', 'url'=>array('create')),
+	array('label'=>'Detalle', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Bombero <?php echo $model->id; ?></h1>
+<?php echo TbHtml::pageHeader('Editar ', $model->nombre); ?>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

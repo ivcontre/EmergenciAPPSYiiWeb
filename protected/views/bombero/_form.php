@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'comuna'); ?>
+		<?php echo $form->labelEx($model,'id_comuna'); ?>
                 <?php
                     
                     if($model->idComuna!=''){
@@ -82,7 +82,9 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+                <?php echo TbHtml::formActions(array(
+                        TbHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+                    )); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

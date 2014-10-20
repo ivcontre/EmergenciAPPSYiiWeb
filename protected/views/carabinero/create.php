@@ -10,12 +10,12 @@ $cs->registerScriptFile($baseUrl.'/js/actionCarabinero.js');
 
 $this->breadcrumbs=array(
 	'Carabineros'=>array('index'),
-	'Create',
+	'Nuevo',
 );
 
 $this->menu=array(
-	array('label'=>'List Carabinero', 'url'=>array('index')),
-	array('label'=>'Manage Carabinero', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 <h1>Crear Carabinero</h1>

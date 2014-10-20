@@ -4,18 +4,18 @@
 
 $this->breadcrumbs=array(
 	'Comunas'=>array('index'),
-	$model->id_comuna=>array('view','id'=>$model->id_comuna),
-	'Update',
+	$model->nombre=>array('view','id'=>$model->id_comuna),
+	'Editar',
 );
 
 $this->menu=array(
-	array('label'=>'List Comuna', 'url'=>array('index')),
-	array('label'=>'Create Comuna', 'url'=>array('create')),
-	array('label'=>'View Comuna', 'url'=>array('view', 'id'=>$model->id_comuna)),
-	array('label'=>'Manage Comuna', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ingresar nuevo', 'url'=>array('create')),
+	array('label'=>'Detalle', 'url'=>array('view', 'id'=>$model->id_comuna)),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Comuna <?php echo $model->id_comuna; ?></h1>
+<?php echo TbHtml::pageHeader('Editar ', $model->nombre); ?>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

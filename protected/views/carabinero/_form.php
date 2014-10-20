@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'comuna'); ?>
+		<?php echo $form->labelEx($model,'id_comuna'); ?>
                 <?php
                     
                     if($model->idComuna!=''){
@@ -63,11 +63,7 @@
 		<?php echo $form->error($model,'id_comuna'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'telefono'); ?>
-		<?php echo $form->textField($model,'telefono',array('size'=>15,'maxlength'=>15)); ?>
-		<?php echo $form->error($model,'telefono'); ?>
-	</div>
+	
         <div class="row">
             <div id="map" style="width:450px; height:300px"></div>
         </div>
@@ -82,10 +78,16 @@
 		<?php echo $form->textField($model,'y'); ?>
 		<?php echo $form->error($model,'y'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'telefono'); ?>
+		<?php echo $form->textField($model,'telefono',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->error($model,'telefono'); ?>
+	</div>
 
 	<div class="row buttons">
                 <?php echo TbHtml::formActions(array(
-                        TbHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+                        TbHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
                     )); ?>
 	</div>
 
