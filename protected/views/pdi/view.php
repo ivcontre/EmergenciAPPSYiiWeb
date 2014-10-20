@@ -3,16 +3,16 @@
 /* @var $model PDI */
 
 $this->breadcrumbs=array(
-	'Pdis'=>array('index'),
-	$model->id,
+	'PDI'=>array('index'),
+	$model->nombre,
 );
 
 $this->menu=array(
-	array('label'=>'List PDI', 'url'=>array('index')),
-	array('label'=>'Create PDI', 'url'=>array('create')),
-	array('label'=>'Update PDI', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete PDI', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage PDI', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ingresar Nuevo', 'url'=>array('create')),
+	array('label'=>'Editar', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Eliminar', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 

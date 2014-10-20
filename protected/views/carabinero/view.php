@@ -10,11 +10,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar Carabineros', 'url'=>array('index')),
-	array('label'=>'Crear nuevo', 'url'=>array('create')),
-	array('label'=>'Actualizar Carabinero', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Eliminar Carabinero', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Administrar Carabineros', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ingresar nuevo', 'url'=>array('create')),
+	array('label'=>'Editar', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Eliminar', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 

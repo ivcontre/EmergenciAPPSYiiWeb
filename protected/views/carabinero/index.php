@@ -7,19 +7,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Crear Carabinero', 'url'=>array('create')),
-	array('label'=>'Administrar Carabinero', 'url'=>array('admin')),
+	array('label'=>'Ingresar nuevo', 'url'=>array('create')),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
-
-//$this->widget('bootstrap.widgets.TbNav', array(
-//    'type' => TbHtml::NAV_TYPE_LIST,
-//    'items' => array(
-//        array('label' => 'Operaciones'),
-//        array('label' => 'Crear Carabinero', 'url' => array('create')),
-//        array('label' => 'Administrar Carabineros', 'url' => array('create')),
-//
-//    )
-//));
 ?>
 
 <h1>Carabineros</h1>
@@ -40,10 +30,6 @@ $this->menu=array(
                     'value' => '$data->idComuna->nombre',
                     'name' => 'id_comuna'
                 ),
-		
-		'x',
-		
-		'y',
 		'telefono',
 		array(
 			'class'=>'CButtonColumn',

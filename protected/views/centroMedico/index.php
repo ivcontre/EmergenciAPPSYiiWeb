@@ -2,22 +2,17 @@
 /* @var $this CentroMedicoController */
 /* @var $dataProvider CActiveDataProvider */
 
-//$this->breadcrumbs=array(
-//	'Centro Medicos',
-//);
-
-echo TbHtml::breadcrumbs(array(
-    'Home' => array('index'),
-    'Centros Médicos',
-));
+$this->breadcrumbs=array(
+	'Centro Medicos',
+);
 
 $this->menu=array(
-	array('label'=>'Crear Centro Médico', 'url'=>array('create')),
-	array('label'=>'Administrar Centro Médico', 'url'=>array('admin')),
+	array('label'=>'Ingresar Nuevo', 'url'=>array('create')),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Centros Medicos</h1>
+<h1>Centros Médicos</h1>
 
 <?php 
 //$this->widget('zii.widgets.CListView', array(
@@ -36,10 +31,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                     'value' => '$data->idComuna->nombre',
                     'name' => 'id_comuna'
                 ),
-		
-		'x',
-		
-		'y',
 		'telefono',
 		array(
 			'class'=>'CButtonColumn',
