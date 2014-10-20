@@ -96,8 +96,31 @@ class SiteController extends Controller
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
-	}
+	}/**
+         * Metodo encargado de mostrar la pagina de registro
+         */
+        public function actionRegister(){
+            $usuario = new Usuario();
+            $login=new LoginForm;
+            
+            // if it is ajax validation request
+		if(isset($_POST['Usuario']))
+		{
+			$usuario->attributes=$_POST['Usuario'];
+                        $usuario->id_tipo_usuario = 1;
+			if($usuario->save()){
+                            $login->username = $usuario->numero_telefono;
+                            $login->password = $usuario->password;
+                            $login->rememberme = "true";
+                            $login->login();
+                            $this->redirect(Yii::app()->user->returnUrl);
+                        }
+		}
 
+		$this->render('register',array(
+			'model'=>$usuario,
+		));
+        }
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
@@ -106,13 +129,4 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
-        /***
-          @param string $argX  argumento declarado (importante)
-          @return string  (importante)
-          @soap
-     */
-        public function getObtenerMensajeRemoto($argX)
-    {
-        return "HOLA REMOTO, TU MENSAJE ES: ".$argX;
-    }
 }

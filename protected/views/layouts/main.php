@@ -38,7 +38,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                     'class' => 'bootstrap.widgets.TbNav',
                                     'items' => array(
                                         array('label'=>'Inicio', 'url'=>array('/site/index')),
-                                        array('label'=>'Registrarse', 'url'=>array('/site/registrar'),'visible'=>Yii::app()->user->isGuest),
+                                        array('label'=>'Registrarse', 'url'=>array('/site/register'),'visible'=>Yii::app()->user->isGuest),
                                         array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index'), 'visible'=>!Yii::app()->user->isGuest),
                                         array('label'=>'Bomberos', 'url'=>array('/bombero/index'), 'visible'=>!Yii::app()->user->isGuest),
                                         array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>!Yii::app()->user->isGuest),
