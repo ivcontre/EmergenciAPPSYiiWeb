@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'id_comuna'); ?>
+		<?php echo $form->labelEx($model,'comuna'); ?>
                 <?php
                     
                     if($model->idComuna!=''){
@@ -43,7 +43,7 @@
                     
                     echo $form->hiddenField($model, 'id_comuna');
                     $this->widget('zii.widgets.jui.CJuiAutoComplete', array (
-                        'name' => 'nombre',
+                        'name' => 'Carabinero_comuna',
                         'model' => $model,
                         'value' => $value,
                         'sourceUrl' => $this->createUrl('ListarComunas'),
@@ -51,7 +51,7 @@
                                     'minLength' => '2',
                                     'showAnim' => 'fold',
                                     'select' => 'js:function(event, ui){
-                                                        jQuery("#nombre").val(ui.item["id_comuna"]);
+                                                        $("#Carabinero_id_comuna").val(ui.item["nombre"]);
                                                         actionCarabinero.centrarMapaConDireccion(ui.item["value"]);
                                                    }',
                                    
