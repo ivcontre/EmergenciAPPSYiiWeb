@@ -66,11 +66,11 @@ class CentroMedico extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nombre' => 'Nombre',
-			'direccion' => 'Direccion',
+			'direccion' => 'Dirección',
 			'id_comuna' => 'Comuna',
 			'x' => 'Latitud',
 			'y' => 'Longitud',
-			'telefono' => 'Telefono',
+			'telefono' => 'Teléfono',
 		);
 	}
 

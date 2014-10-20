@@ -38,11 +38,12 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                     'class' => 'bootstrap.widgets.TbNav',
                                     'items' => array(
                                         array('label'=>'Inicio', 'url'=>array('/site/index')),
-                                        array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index')),
-                                        array('label'=>'Bomberos', 'url'=>array('/bombero/index')),
-                                        array('label'=>'Carabineros', 'url'=>array('/carabinero/index')),
-                                        array('label'=>'PDI', 'url'=>array('/pdi/index')),
-                                        array('label'=>'Comunas', 'url'=>array('/comuna/index')),
+                                        array('label'=>'Registrarse', 'url'=>array('/site/registrar'),!'visible'=>Yii::app()->user->isGuest),
+                                        array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index'), 'visible'=>!Yii::app()->user->isGuest),
+                                        array('label'=>'Bomberos', 'url'=>array('/bombero/index'), 'visible'=>!Yii::app()->user->isGuest),
+                                        array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>!Yii::app()->user->isGuest),
+                                        array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>!Yii::app()->user->isGuest),
+                                        array('label'=>'Comunas', 'url'=>array('/comuna/index'),'visible'=>!Yii::app()->user->isGuest),
                                         array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                                         array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
                                     ),

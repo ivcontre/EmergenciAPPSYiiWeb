@@ -65,9 +65,9 @@ class Carabinero extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nombre' => 'Nombre',
-			'direccion' => 'Direccion',
+			'direccion' => 'Dirección',
 			'id_comuna' => 'Comuna',
-			'telefono' => 'Telefono',
+			'telefono' => 'Teléfono',
 			'x' => 'Latitud',
 			'y' => 'Longitud',
 		);

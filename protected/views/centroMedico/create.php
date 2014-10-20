@@ -8,16 +8,16 @@ $cs->registerScriptFile($baseUrl.'/js/actionCentroMedico.js');
 
 $this->breadcrumbs=array(
 	'Centro Medicos'=>array('index'),
-	'Create',
+	'Nuevo',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Centros Médicos', 'url'=>array('index')),
-	array('label'=>'Administrar Centros Médicos', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create CentroMedico</h1>
+<h1>Crear Centro Médico</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); 
 echo "<script>actionCentroMedico.cargarMapaIngreso('CentroMedico');</script>";?>

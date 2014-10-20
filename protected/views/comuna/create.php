@@ -4,15 +4,15 @@
 
 $this->breadcrumbs=array(
 	'Comunas'=>array('index'),
-	'Create',
+	'Nuevo',
 );
 
 $this->menu=array(
-	array('label'=>'List Comuna', 'url'=>array('index')),
-	array('label'=>'Manage Comuna', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Comuna</h1>
+<h1>Crear Comuna</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
