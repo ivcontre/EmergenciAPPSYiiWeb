@@ -85,7 +85,6 @@ class SiteController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-
 		// collect user input data
 		if(isset($_POST['LoginForm']))
 		{
@@ -111,7 +110,7 @@ class SiteController extends Controller
 			if($usuario->save()){
                             $login->username = $usuario->numero_telefono;
                             $login->password = $usuario->password;
-                            $login->rememberme = "true";
+                            $login->rememberMe = "1";
                             $login->login();
                             $this->redirect(Yii::app()->user->returnUrl);
                         }
