@@ -6,10 +6,6 @@ $this->breadcrumbs=array(
 	'Bomberos',
 );
 
-$this->menu=array(
-	array('label'=>'Ingresar Nuevo', 'url'=>array('create')),
-	array('label'=>'Administrar', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Bomberos</h1>

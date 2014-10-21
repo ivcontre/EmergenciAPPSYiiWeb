@@ -122,10 +122,12 @@ class BomberoController extends Controller
 	 */
 	public function actionIndex()
 	{
+            $this->layout=null;
 		$dataProvider=new CActiveDataProvider('Bombero');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**
