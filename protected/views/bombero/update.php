@@ -3,7 +3,7 @@
 /* @var $model Bombero */
 $baseUrl = Yii::app()->baseUrl; 
 $cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($baseUrl.'/js/actionBombero.js');
+$cs->registerScriptFile($baseUrl.'/js/admin/actionBombero.js');
 
 $this->breadcrumbs=array(
 	'Bomberos'=>array('index'),

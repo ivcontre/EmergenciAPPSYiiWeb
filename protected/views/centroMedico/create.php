@@ -4,7 +4,7 @@
 
 $baseUrl = Yii::app()->baseUrl; 
 $cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($baseUrl.'/js/actionCentroMedico.js');
+$cs->registerScriptFile($baseUrl.'/js/admin/actionCentroMedico.js');
 
 $this->breadcrumbs=array(
 	'Centro Medicos'=>array('index'),

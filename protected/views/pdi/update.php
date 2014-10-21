@@ -3,7 +3,7 @@
 /* @var $model PDI */
 $baseUrl = Yii::app()->baseUrl; 
 $cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($baseUrl.'/js/actionPDI.js');
+$cs->registerScriptFile($baseUrl.'/js/admin/actionPDI.js');
 
 $this->breadcrumbs=array(
 	'Pdis'=>array('index'),

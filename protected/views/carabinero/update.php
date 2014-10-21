@@ -3,7 +3,7 @@
 /* @var $model Carabinero */
 $baseUrl = Yii::app()->baseUrl; 
 $cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($baseUrl.'/js/actionCarabinero.js');
+$cs->registerScriptFile($baseUrl.'/js/admin/actionCarabinero.js');
 
 $this->breadcrumbs=array(
 	'Carabineros'=>array('index'),
