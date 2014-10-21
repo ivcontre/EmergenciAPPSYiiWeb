@@ -41,6 +41,7 @@ class Usuario extends CActiveRecord
 			array('id_tipo_usuario, estado_alerta', 'numerical', 'integerOnly'=>true),
 			array('latitud, longitud', 'numerical'),
 			array('numero_telefono, correo', 'length', 'max'=>25),
+                        array('numero_telefono','unique', 'className'=>'Usuario'),
 			array('regid', 'length', 'max'=>200),
 			array('nombre, apellido', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>20),
@@ -60,6 +61,7 @@ class Usuario extends CActiveRecord
 		return array(
 			'contactos' => array(self::HAS_MANY, 'Contacto', 'numero_telefono'),
 			'idTipoUsuario' => array(self::BELONGS_TO, 'TipoUsuario', 'id_tipo_usuario'),
+                        'configuracion' => array(self::HAS_MANY, 'Configuracion', 'numero_usuario'),
 		);
 	}
 
@@ -126,4 +128,12 @@ class Usuario extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function unique_update($att, $params){
+            $model = self::model()->findByAttributes(array('numero_telefono'=>$this->numero_telefono));
+            if($model != null){
+                $this->addError($att,"ya hay usuario registrado con este número telefónico");
+                return;
+            }
+        } 
 }
