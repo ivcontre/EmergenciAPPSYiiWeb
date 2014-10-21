@@ -18,6 +18,7 @@
  * The followings are the available model relations:
  * @property Contacto[] $contactos
  * @property TipoUsuario $idTipoUsuario
+ * @property Configuracion $configuracion
  */
 class Usuario extends CActiveRecord
 {
