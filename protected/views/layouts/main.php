@@ -37,13 +37,20 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                 array(
                                     'class' => 'bootstrap.widgets.TbNav',
                                     'items' => array(
-                                        array('label'=>'Inicio', 'url'=>array('/site/index')),
+                                        array('label'=>'Inicio', 'url'=>array('/site/index')),                                        
                                         array('label'=>'Registrarse', 'url'=>array('/site/register'),'visible'=>Yii::app()->user->isGuest),
-                                        array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index'), 'visible'=>!Yii::app()->user->isGuest),
-                                        array('label'=>'Bomberos', 'url'=>array('/bombero/index'), 'visible'=>!Yii::app()->user->isGuest),
-                                        array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>!Yii::app()->user->isGuest),
-                                        array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>!Yii::app()->user->isGuest),
-                                        array('label'=>'Comunas', 'url'=>array('/comuna/index'),'visible'=>!Yii::app()->user->isGuest),
+                                        //Menu administrador
+                                        array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/admin'), 'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'Bomberos', 'url'=>array('/bombero/admin'), 'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'Carabineros', 'url'=>array('/carabinero/admin'),'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'PDI', 'url'=>array('/pdi/admin'), 'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'Comunas', 'url'=>array('/comuna/admin'),'visible'=>Yii::app()->user->isAdmin()),
+                                        // Menu usuario
+                                        array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index'), 'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>'Bomberos', 'url'=>array('/bombero/index'), 'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>Yii::app()->user->isUser()),
+                                        
                                         array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                                         array('label'=>'Logout ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
                                     ),
