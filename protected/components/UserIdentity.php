@@ -28,10 +28,12 @@ class UserIdentity extends CUserIdentity
                         if($user->idTipoUsuario->nombre === "Usuario"){
                             $this->username = "user";
                             $this->errorCode = self::ERROR_NONE;
+                            $this->setState('nombre', $user->nombre);
                             $this->setState('numero_telefono', $user->numero_telefono);
                         }else{
                             $this->username = "admin";
                             $this->errorCode = self::ERROR_NONE;
+                            $this->setState('nombre', $user->nombre);
                             $this->setState('numero_telefono', $user->numero_telefono);
                         }
                     }
