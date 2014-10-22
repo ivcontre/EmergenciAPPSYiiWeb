@@ -7,13 +7,13 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'usuario-form',
+	'id'=>'register-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>true,
-        'enableClientValidation'=>true,
+        'enableClientValidation'=>false,
         'clientOptions'=>array(
             'validateOnSubmit'=>true,
         ),
@@ -52,7 +52,11 @@
 		<?php echo $form->passwordField($model,'password',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
-
+        <div class="row">
+		<?php echo $form->labelEx($model,'password_repeat'); ?>
+		<?php echo $form->passwordField($model,'password_repeat',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'password_repeat'); ?>
+	</div>
 
 
 
