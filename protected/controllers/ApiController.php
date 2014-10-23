@@ -159,6 +159,8 @@ class ApiController extends Controller {
         foreach ($usuario->configuracion as $conf) {
             $distance = $conf->radio_busqueda;
         }
+        if($distance == null)
+            $distance = 5;
        
         $box = $this->get_boundaries($lat, $lng, $distance);
 
