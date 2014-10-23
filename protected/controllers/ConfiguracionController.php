@@ -29,7 +29,7 @@ class ConfiguracionController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'users'=>array('user'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('update'),
@@ -86,6 +86,7 @@ class ConfiguracionController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+                $this->allowEdit($id);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -93,6 +94,8 @@ class ConfiguracionController extends Controller
 
 		if (isset($_POST['Configuracion'])) {
 			$model->attributes=$_POST['Configuracion'];
+                        date_default_timezone_set("America/Santiago");
+                        $model->fecha_modificacion = date("Y-m-d H:i:s");
 			if ($model->save()) {
 				$this->redirect(array('view','id'=>$model->id_configuracion));
 			}
@@ -176,5 +179,10 @@ class ConfiguracionController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+        public function allowEdit($idConfig)
+	{
+            if($idConfig != Yii::app()->user->idConfiguracion)
+                throw new CHttpException(404, 'El contenido solicitado no fue encontrado');
 	}
 }

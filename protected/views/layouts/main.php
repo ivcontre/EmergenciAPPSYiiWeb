@@ -52,7 +52,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                         array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'Perfil','items'=>array(
                                                         array('label'=>'Configuracion','url'=>array('configuracion/update&id='.Yii::app()->user->idConfiguracion)),
-                                                        array('label'=>'Cuenta','url'=>array('usuario/update')),
+                                                        array('label'=>'Cuenta','url'=>array('usuario/update&id='.Yii::app()->user->id)),
                                             )
                                            , 'visible'=>Yii::app()->user->isUser()),
                                         

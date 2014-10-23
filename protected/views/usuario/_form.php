@@ -1,82 +1,42 @@
 <?php
 /* @var $this UsuarioController */
 /* @var $model Usuario */
-/* @var $form CActiveForm */
+/* @var $form TbActiveForm */
 ?>
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+    <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'usuario-form',
+        'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+    <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'numero_telefono'); ?>
-		<?php echo $form->textField($model,'numero_telefono',array('size'=>25,'maxlength'=>25)); ?>
-		<?php echo $form->error($model,'numero_telefono'); ?>
-	</div>
+            <?php //echo $form->textFieldControlGroup($model,'numero_telefono',array('span'=>3,'maxlength'=>25)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_tipo_usuario'); ?>
-		<?php echo $form->textField($model,'id_tipo_usuario'); ?>
-		<?php echo $form->error($model,'id_tipo_usuario'); ?>
-	</div>
+            <?php echo $form->textFieldControlGroup($model,'nombre',array('span'=>4,'maxlength'=>50)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'nombre'); ?>
-		<?php echo $form->textField($model,'nombre',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'nombre'); ?>
-	</div>
+            <?php echo $form->textFieldControlGroup($model,'apellido',array('span'=>4,'maxlength'=>50)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'apellido'); ?>
-		<?php echo $form->textField($model,'apellido',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'apellido'); ?>
-	</div>
+            <?php echo $form->textFieldControlGroup($model,'correo',array('span'=>5,'maxlength'=>25)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'correo'); ?>
-		<?php echo $form->textField($model,'correo',array('size'=>25,'maxlength'=>25)); ?>
-		<?php echo $form->error($model,'correo'); ?>
-	</div>
+            <?php echo $form->passwordFieldControlGroup($model,'password',array('span'=>5,'maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'password'); ?>
-	</div>
+        <div class="form-actions">
+        <?php echo TbHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar',array(
+		    'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
+		    'size'=>TbHtml::BUTTON_SIZE_LARGE,
+		)); ?>
+    </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'estado_alerta'); ?>
-		<?php echo $form->textField($model,'estado_alerta'); ?>
-		<?php echo $form->error($model,'estado_alerta'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'latitud'); ?>
-		<?php echo $form->textField($model,'latitud'); ?>
-		<?php echo $form->error($model,'latitud'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'longitud'); ?>
-		<?php echo $form->textField($model,'longitud'); ?>
-		<?php echo $form->error($model,'longitud'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->

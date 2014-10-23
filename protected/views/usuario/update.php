@@ -3,9 +3,8 @@
 /* @var $model Usuario */
 
 $this->breadcrumbs=array(
-	'Usuarios'=>array('index'),
-	$model->numero_telefono=>array('view','id'=>$model->numero_telefono),
-	'Update',
+	'Perfil'=>array('usuario/view&id='.$model->numero_telefono),
+	'Editar',
 );
 
 $this->menu=array(
@@ -16,6 +15,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Usuario <?php echo $model->numero_telefono; ?></h1>
+<h1>Editar Cuenta<?php echo $model->numero_telefono; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
