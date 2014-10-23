@@ -35,10 +35,10 @@ class Configuracion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_configuracion, numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico, radio_busqueda, mensaje_alerta, fecha_modificacion', 'required'),
-			array('id_configuracion, radio_busqueda', 'numerical', 'integerOnly'=>true),
-			array('numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico', 'length', 'max'=>15),
-			array('mensaje_alerta', 'length', 'max'=>50),
+//			array('id_configuracion, numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico, radio_busqueda, mensaje_alerta, fecha_modificacion', 'required'),
+//			array('id_configuracion, radio_busqueda', 'numerical', 'integerOnly'=>true),
+//			array('numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico', 'length', 'max'=>15),
+//			array('mensaje_alerta', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_configuracion, numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico, radio_busqueda, mensaje_alerta, fecha_modificacion', 'safe', 'on'=>'search'),

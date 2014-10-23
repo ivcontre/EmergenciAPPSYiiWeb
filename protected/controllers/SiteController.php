@@ -29,6 +29,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+                
 		$this->render('index');
 	}
 
@@ -115,7 +116,6 @@ class SiteController extends Controller
                         date_default_timezone_set("America/Santiago");
 			$usuario->attributes=$_POST['Usuario'];
                         $usuario->id_tipo_usuario = 1;
-                        $conf->fecha_modificacion = date('j-m-y') ;
                         $conf->numero_usuario = $usuario->numero_telefono;
 			if($usuario->save()){
                             $conf->save();
