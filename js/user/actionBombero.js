@@ -112,7 +112,6 @@ console.log('iniciando eventos de bomberos, usuario');
                         markersArray[i].setMap(null);
                 }
                 
-                
                 var tabla = "bombero";
                 var datos ="&id_comuna="+id_comuna
                             +"&tabla="+tabla;
@@ -126,10 +125,9 @@ console.log('iniciando eventos de bomberos, usuario');
                    console.log("ajax ejecutado correctamente");
                    if(response.bombero == null ){
                        alert("No existen resultados para la comuna consultada");
-                       
                        actionBombero.cargarMapa();
                    }else{
-                       var bombero = response.bombero;
+                    var bombero = response.bombero;
                     $.each(bombero, function(i, item){
                         var latlng = new google.maps.LatLng(item.lat,item.lng);
                         var marker = new google.maps.Marker({

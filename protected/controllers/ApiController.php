@@ -272,7 +272,7 @@ class ApiController extends Controller {
             echo json_encode($total);
         }else{
             
-            $filas = 0;
+            $filas = null;
             $total[$tabla] = $filas;
             $total['comuna'] = $filas[0]['comuna']; 
             echo json_encode($total);

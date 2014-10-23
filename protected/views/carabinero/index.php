@@ -24,8 +24,6 @@ Yii::app()->clientScript->registerScript('helpers', '
 <div id="container">
     
 
-<div class="row">
-		
                 <?php
                     
                    
@@ -49,10 +47,9 @@ Yii::app()->clientScript->registerScript('helpers', '
                      
                 ?>
 		
-</div>
-<div class="row">
+
        <div id="map" style="width:100%; height:600px"></div>
-</div>
+
     
     </div>
 
