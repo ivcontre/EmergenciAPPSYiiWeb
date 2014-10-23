@@ -29,6 +29,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+                
 		$this->render('index');
 	}
 
@@ -100,14 +101,24 @@ class SiteController extends Controller
          */
         public function actionRegister(){
             $usuario = new Usuario();
+            $conf = new Configuracion();
+            $usuario->setScenario('register');
             $login=new LoginForm;
             
             // if it is ajax validation request
+                if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
+		{
+			echo CActiveForm::validate($usuario);
+			Yii::app()->end();
+		}
 		if(isset($_POST['Usuario']))
 		{
+                        date_default_timezone_set("America/Santiago");
 			$usuario->attributes=$_POST['Usuario'];
                         $usuario->id_tipo_usuario = 1;
+                        $conf->numero_usuario = $usuario->numero_telefono;
 			if($usuario->save()){
+                            $conf->save();
                             $login->username = $usuario->numero_telefono;
                             $login->password = $usuario->password;
                             $login->rememberMe = "1";

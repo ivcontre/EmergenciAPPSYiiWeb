@@ -22,6 +22,7 @@
  */
 class Usuario extends CActiveRecord
 {
+        public $password_repeat;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,14 +39,16 @@ class Usuario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('numero_telefono, id_tipo_usuario, nombre, apellido, correo, password', 'required'),
+			array('numero_telefono, id_tipo_usuario, nombre, apellido, correo, password', 'required', 'message'=>'El campo {attribute} no puede ser vacío'),
 			array('id_tipo_usuario, estado_alerta', 'numerical', 'integerOnly'=>true),
 			array('latitud, longitud', 'numerical'),
 			array('numero_telefono, correo', 'length', 'max'=>25),
-                        array('numero_telefono','unique', 'className'=>'Usuario'),
-			array('regid', 'length', 'max'=>200),
+                        array('numero_telefono','unique', 'className'=>'Usuario', 'message'=>'El n° telefónico {value} ya se encuentra en nuestros registros'),
+			array('correo','unique', 'className'=>'Usuario', 'message'=>'El e-mail {value} ya está siendo usado en nuestro sistema.'),
+                        array('regid', 'length', 'max'=>200),
 			array('nombre, apellido', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>20),
+                        array('password_repeat', 'compare', 'compareAttribute'=>'password', 'on'=>'register', 'message'=>'Verifique contraseña por favor'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('numero_telefono, regid, id_tipo_usuario, nombre, apellido, correo, password, estado_alerta, latitud, longitud', 'safe', 'on'=>'search'),

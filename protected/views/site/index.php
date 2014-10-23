@@ -13,8 +13,16 @@ if(Yii::app()->user->isGuest){
         'content' => $carousel.'<p>Regístrate en nuestra página, descarga nuestra aplicación y sientete seguro en todo momento.</p>' . TbHtml::button('Descargar', array('color' =>TbHtml::BUTTON_COLOR_PRIMARY, 'size' => TbHtml::BUTTON_SIZE_LARGE)),
     )); 
 }else{
-     if(Yii::app()->user->name == "admin"){
+     if(Yii::app()->user->isAdmin()){
             //se genera index para administrador
+         echo "admin";
+     }else{
+         //se genera index para usuario
+         $aviso = Yii::app()->user->verificaAvisos();
+         if($aviso != null){
+             Yii::app()->user->setFlash($aviso['color'],$aviso['msg']);
+            $this->widget('bootstrap.widgets.TbAlert', array('block'=>true, ));
+         }
          
      }
 }

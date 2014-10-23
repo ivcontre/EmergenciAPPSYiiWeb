@@ -9,7 +9,7 @@ class WebUser extends CWebUser {
   private $_model;
  
   // Return first name.
-  // access it by Yii::app()->user->first_name
+  // access it by Yii::app()->user->nombre
   function getNombre(){
     $user = $this->loadUser(Yii::app()->user->id);
     if($user!= null)
@@ -43,5 +43,49 @@ class WebUser extends CWebUser {
         }
         return $this->_model;
     }
+    
+    function getIdConfiguracion(){
+        $user = $this->loadUser(Yii::app()->user->id);
+        if($user != null){
+            foreach($user->configuracion as $configuracion)
+                $conf = $configuracion;
+            return $conf->id_configuracion;
+        }
+    }
+    function verificaAvisos(){
+        $user = $this->loadUser(Yii::app()->user->id);
+        if($user != null){
+            foreach($user->configuracion as $configuracion)
+                $conf = $configuracion;
+            $msg = "<ul>";
+            if($conf != null){
+                if($conf->mensaje_alerta == null){
+                    $msg = $msg."<li>Agrega un mensaje de alerta</li>";
+                }
+                if($conf->radio_busqueda == null){
+                    $msg = $msg."<li>Agrega un radio de búsqueda</li>";
+                }
+                if($conf->numero_centro_medico == null){
+                    $msg = $msg."<li>Agrega un número favorito de un centro médico</li>";
+                }
+                if($conf->numero_bombero == null){
+                    $msg = $msg."<li>Agrega un número favorito de un cuerpo de bomberos</li>";
+                }
+                if($conf->numero_carabinero == null){
+                    $msg = $msg."<li>Agrega un número favorito de una comisaría</li>";
+                }
+                if($conf->numero_pdi == null){
+                    $msg = $msg."<li>Agrega un número favorito de un departamento de Policia de Investigaciones</li>";
+                }
+
+            }
+            if($msg == "<ul>"){
+                return null;
+            }else{
+                return array("msg"=>"Todavía no has terminado de configurar tu cuenta: \n".$msg."</ul>", "color"=>TbHtml::ALERT_COLOR_WARNING);
+            }
+        }
+    }
+    
 }
 ?>
