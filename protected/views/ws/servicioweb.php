@@ -43,6 +43,7 @@ $laConsulta = 'SELECT '.$tabla.'.id AS id, '.$tabla.'.nombre AS nombre, '.$tabla
   $total[$tabla] = $filas;
   $total['comuna'] = $filas[0]['comuna'];
   echo json_encode($total);
+  
     function getBoundaries($lat, $lng, $distance = 1, $earthRadius = 6371)
 {
     $return = array();

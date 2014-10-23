@@ -68,9 +68,9 @@ return array(
                         // Other controllers
                     ),
                     ),
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
+//		'db'=>array(
+//			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+//		),
 		// uncomment the following to use a MySQL database
 		// ip publica 146.83.196.166;port=3306
 		'db'=>array(
