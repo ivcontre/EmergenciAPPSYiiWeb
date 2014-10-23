@@ -1,5 +1,5 @@
-console.log('iniciando eventos de bomberos, usuario');
-    var actionBombero = (function() {
+console.log('iniciando eventos de PDI, usuario');
+    var actionPDI = (function() {
       var myOptions;
       var map;
       var marker;
@@ -9,12 +9,11 @@ console.log('iniciando eventos de bomberos, usuario');
       var ventana;
       var miComuna;
       
-      
       return {
         
         
         cargarMapa: function(){
-            google.maps.event.addDomListener(window, 'load', actionBombero.initializeMap());
+            google.maps.event.addDomListener(window, 'load', actionPDI.initializeMap());
         },
        
         initializeMap: function(){
@@ -59,9 +58,8 @@ console.log('iniciando eventos de bomberos, usuario');
                      });
                     var cadena = "";
                     
-                    
                      console.log(lat+", "+lng);
-                     var tabla = "bombero";
+                     var tabla = "pdi";
                      var datos = "&lat="+lat
                                +"&lng="+lng
                                +"&tabla="+tabla;
@@ -72,8 +70,8 @@ console.log('iniciando eventos de bomberos, usuario');
                 dataType: "json",
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
-                   var bombero = response.bombero;
-                    $.each(bombero, function(i, item){
+                   var pdi = response.pdi;
+                    $.each(pdi, function(i, item){
                         
                         var latlng = new google.maps.LatLng(item.lat,item.lng);
                         var marker = new google.maps.Marker({
@@ -106,14 +104,14 @@ console.log('iniciando eventos de bomberos, usuario');
             }
         },
         
-        initializeMapBomberosPorComuna: function(id_comuna){
+        initializeMapPDIPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
                for (var i = 0; i < markersArray.length; i++ ) {
                         markersArray[i].setMap(null);
                 }
                 
                 
-                var tabla = "bombero";
+                var tabla = "pdi";
                 var datos ="&id_comuna="+id_comuna
                             +"&tabla="+tabla;
                 console.log("datos: "+datos);
@@ -124,13 +122,12 @@ console.log('iniciando eventos de bomberos, usuario');
                 dataType: "json",
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
-                   if(response.bombero == null ){
+                   if(response.pdi == null ){
                        alert("No existen resultados para la comuna consultada");
-                       
-                       actionBombero.cargarMapa();
+                       actionPDI.cargarMapa();
                    }else{
-                       var bombero = response.bombero;
-                    $.each(bombero, function(i, item){
+                       var pdi = response.pdi;
+                    $.each(pdi, function(i, item){
                         var latlng = new google.maps.LatLng(item.lat,item.lng);
                         var marker = new google.maps.Marker({
                         position: latlng,

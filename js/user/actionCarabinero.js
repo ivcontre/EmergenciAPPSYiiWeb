@@ -1,5 +1,5 @@
-console.log('iniciando eventos de bomberos, usuario');
-    var actionBombero = (function() {
+console.log('iniciando eventos de carabineros, usuario');
+    var actionCarabinero = (function() {
       var myOptions;
       var map;
       var marker;
@@ -14,7 +14,7 @@ console.log('iniciando eventos de bomberos, usuario');
         
         
         cargarMapa: function(){
-            google.maps.event.addDomListener(window, 'load', actionBombero.initializeMap());
+            google.maps.event.addDomListener(window, 'load', actionCarabinero.initializeMap());
         },
        
         initializeMap: function(){
@@ -34,7 +34,7 @@ console.log('iniciando eventos de bomberos, usuario');
                      var lng = position.coords.longitude;
                      initialLocationuser = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
                      bounds.extend(initialLocationuser);
-                     geocoder.geocode({'latLng': initialLocationuser}, function(results, status) {
+                    geocoder.geocode({'latLng': initialLocationuser}, function(results, status) {
                          if (status == google.maps.GeocoderStatus.OK) {
                              if (results[0]) {
                                  var direccion = results[0].formatted_address;
@@ -57,11 +57,8 @@ console.log('iniciando eventos de bomberos, usuario');
                              }
                          }
                      });
-                    var cadena = "";
-                    
-                    
                      console.log(lat+", "+lng);
-                     var tabla = "bombero";
+                     var tabla = "carabinero";
                      var datos = "&lat="+lat
                                +"&lng="+lng
                                +"&tabla="+tabla;
@@ -72,14 +69,14 @@ console.log('iniciando eventos de bomberos, usuario');
                 dataType: "json",
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
-                   var bombero = response.bombero;
-                    $.each(bombero, function(i, item){
+                   var carabinero = response.carabinero;
+                    $.each(carabinero, function(i, item){
                         
                         var latlng = new google.maps.LatLng(item.lat,item.lng);
                         var marker = new google.maps.Marker({
                         position: latlng,
                         title: item.nombre,
-                        icon: yii.urls.base+"/icons/marcadorbombero.png"});
+                        icon: yii.urls.base+"/icons/marcadorcarabinero.png"});
                         bounds.extend(latlng);
                         var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p></div>";
                         google.maps.event.addListener(marker,"click", function(){
@@ -106,14 +103,14 @@ console.log('iniciando eventos de bomberos, usuario');
             }
         },
         
-        initializeMapBomberosPorComuna: function(id_comuna){
+        initializeMapCarabinerosPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
                for (var i = 0; i < markersArray.length; i++ ) {
                         markersArray[i].setMap(null);
                 }
                 
                 
-                var tabla = "bombero";
+                var tabla = "carabinero";
                 var datos ="&id_comuna="+id_comuna
                             +"&tabla="+tabla;
                 console.log("datos: "+datos);
@@ -124,18 +121,17 @@ console.log('iniciando eventos de bomberos, usuario');
                 dataType: "json",
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
-                   if(response.bombero == null ){
+                   if(response.carabinero == null ){
                        alert("No existen resultados para la comuna consultada");
-                       
-                       actionBombero.cargarMapa();
+                       actionCarabinero.cargarMapa();
                    }else{
-                       var bombero = response.bombero;
-                    $.each(bombero, function(i, item){
+                       var carabinero = response.carabinero;
+                    $.each(carabinero, function(i, item){
                         var latlng = new google.maps.LatLng(item.lat,item.lng);
                         var marker = new google.maps.Marker({
                         position: latlng,
                         title: item.nombre,
-                        icon: yii.urls.base+"/icons/marcadorbombero.png"});
+                        icon: yii.urls.base+"/icons/marcadorcarabinero.png"});
                         bounds.extend(latlng);
                         var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p></div>";
                         google.maps.event.addListener(marker,"click", function(){

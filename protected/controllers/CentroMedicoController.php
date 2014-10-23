@@ -122,10 +122,12 @@ class CentroMedicoController extends Controller
 	 */
 	public function actionIndex()
 	{
+                $this->layout=null;
 		$dataProvider=new CActiveDataProvider('CentroMedico');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**

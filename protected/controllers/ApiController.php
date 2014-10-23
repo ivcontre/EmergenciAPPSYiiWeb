@@ -242,31 +242,44 @@ class ApiController extends Controller {
         $laConsulta = 'SELECT ' . $tabla . '.id AS id, ' . $tabla . '.nombre AS nombre, ' . $tabla . '.x AS x, ' . $tabla . '.y AS y, ' . $tabla . '.direccion AS direccion,' . $tabla . '.telefono AS telefono ,comuna.nombre AS nombre
                          FROM ' . $tabla . ', comuna
                          WHERE ' . $tabla . '.id_comuna = ' . $id_comuna . ' '
-                . '         AND ' . $tabla . '.id_comuna = comuna.id_comuna';
+                . '      AND ' . $tabla . '.id_comuna = comuna.id_comuna';
         
         
-        $rows = Yii::app()->db->createCommand($laConsulta)->queryAll();
-        
+        $command = Yii::app()->db->createCommand($laConsulta);
+        $rows = $command->queryAll();
+        $count = $command->queryScalar();
         $filas = array();
-        
-        foreach($rows as $row){
-            $columna = array();
-            $columna['id'] = $row['id'];
-            $columna['nombre'] = utf8_encode($row['nombre']);
-            $columna['lat'] = $row['x'];
-            $columna['lng'] = $row['y'];
-            $columna['direccion'] = utf8_encode($row['direccion']);
-            $columna['telefono'] = $row['telefono'];
-           
-            $columna['comuna'] = $row['nombre'];
-            $filas[] = $columna;
-        }
-
         $total = array();
-        $total[$tabla] = $filas;
-        $total['comuna'] = $filas[0]['comuna'];
+        if($count > 0){
+            foreach($rows as $row){
+                $columna = array();
+                $columna['id'] = $row['id'];
+                $columna['nombre'] = utf8_encode($row['nombre']);
+                $columna['lat'] = $row['x'];
+                $columna['lng'] = $row['y'];
+                $columna['direccion'] = utf8_encode($row['direccion']);
+                $columna['telefono'] = $row['telefono'];
+
+                $columna['comuna'] = $row['nombre'];
+                $filas[] = $columna;
+            }
+
+            
+            $total[$tabla] = $filas;
+            $total['comuna'] = $filas[0]['comuna']; 
+            echo json_encode($total);
+        }else{
+            
+            $filas = 0;
+            $total[$tabla] = $filas;
+            $total['comuna'] = $filas[0]['comuna']; 
+            echo json_encode($total);
+        }
         
-        echo json_encode($total);
+        
+
+       
+        
     }
 
 }

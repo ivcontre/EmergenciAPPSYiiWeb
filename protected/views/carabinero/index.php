@@ -1,54 +1,59 @@
 <?php
-/* @var $this CarabineroController */
+/* @var $this BomberoController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
 	'Carabineros',
 );
+$baseUrl = Yii::app()->baseUrl; 
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl.'/js/user/actionCarabinero.js');
 
-$this->menu=array(
-	array('label'=>'Ingresar nuevo', 'url'=>array('create')),
-	array('label'=>'Administrar', 'url'=>array('admin')),
-);
+Yii::app()->clientScript->registerScript('helpers', '                                                           
+          yii = {                                                                                                     
+              urls: {                                                                                                 
+                  cercanos: '.CJSON::encode(Yii::app()->createUrl('api/cercanos')).',                                   
+                  base: '.CJSON::encode(Yii::app()->baseUrl).'                                                        
+              }                                                                                                       
+          };                                                                                                          
+      ');  
+
 ?>
 
-<h1>Carabineros</h1>
+<h1>Buscar por Comuna</h1>
+<div id="container">
+    
 
-<?php 
-//$this->widget('zii.widgets.CListView', array(
-//	'dataProvider'=>$dataProvider,
-//	'itemView'=>'_view',
-//)); 
-    $this->widget('bootstrap.widgets.TbGridView', array(
-        'type' => TbHtml::GRID_TYPE_HOVER,
-        'dataProvider'=>$dataProvider,
-        'columns'=>array(
-		'id',
-		'nombre',
-		'direccion',
-		array(
-                    'value' => '$data->idComuna->nombre',
-                    'name' => 'id_comuna'
-                ),
-		'telefono',
-		array(
-			'class'=>'CButtonColumn',
-                        'deleteButtonImageUrl'=>false,
-                        'updateButtonImageUrl'=>false,
-                        'viewButtonImageUrl'=>false,
-                        'template'=>'{view}',
-                        'buttons' => array(
-                            'view'=>array(
-                                    
-                                    'url'=>'Yii::app()->createUrl("carabinero/view", array("id"=>$data->id))',
-                                    'label'=>' ',
-                                    'options'=>array(
-                                        'class'=>TbHtml::ICON_SEARCH
-                                    ), // HTML options for the button tag
-                               
-                            ),
-                            ),
-		),
-	),
-    ));
-    ?>
+<div class="row">
+		
+                <?php
+                    
+                   
+                    
+                    
+                    $this->widget('zii.widgets.jui.CJuiAutoComplete', array (
+                        'name' => 'comuna',
+                        //'model' => $model,
+                        //'value' => $value,
+                        'sourceUrl' => $this->createUrl('ListarComunas'),
+                        'options' => array(
+                                    'minLength' => '2',
+                                    'showAnim' => 'fold',
+                                    'select' => 'js:function(event, ui) {$("#id_comuna").val(ui.item["nombre"]); '
+                            . 'actionCarabinero.initializeMapCarabinerosPorComuna(ui.item["nombre"]);}',
+                            
+                                   
+                        ),
+                    ));
+                     
+                     
+                ?>
+		
+</div>
+<div class="row">
+       <div id="map" style="width:100%; height:600px"></div>
+</div>
+    
+    </div>
+
+<?php echo "<script>actionCarabinero.cargarMapa();</script>";?>

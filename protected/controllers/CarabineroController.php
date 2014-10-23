@@ -122,10 +122,12 @@ class CarabineroController extends Controller
 	 */
 	public function actionIndex()
 	{
+                $this->layout=null;
 		$dataProvider=new CActiveDataProvider('Carabinero');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**
