@@ -10,7 +10,7 @@
  * @property string $numero
  * @property string $correo
  * @property integer $estado
- * @property integer $alerta_sms
+ * @property boolean $alerta_sms
  * @property integer $alerta_gps
  * @property integer $alerta_correo
  *
@@ -93,9 +93,9 @@ class Contacto extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+                
 		$criteria->compare('id_contacto',$this->id_contacto);
-		$criteria->compare('numero_telefono',$this->numero_telefono,true);
+		$criteria->compare('numero_telefono',Yii::app()->user->id,true);
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('numero',$this->numero,true);
 		$criteria->compare('correo',$this->correo,true);

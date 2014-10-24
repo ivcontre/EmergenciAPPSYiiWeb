@@ -51,13 +51,17 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                         array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'Perfil','items'=>array(
+                                                        array('label'=>'Contactos','url'=>array('contacto/admin')),
                                                         array('label'=>'Configuracion','url'=>array('configuracion/update&id='.Yii::app()->user->idConfiguracion)),
                                                         array('label'=>'Cuenta','url'=>array('usuario/update&id='.Yii::app()->user->id)),
+                                                        TbHtml::menuDivider(),
+                                                        array('label'=>'Logout ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                                            
                                             )
                                            , 'visible'=>Yii::app()->user->isUser()),
                                         
                                         array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                                        array('label'=>'Logout ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                                        array('label'=>'Logout ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>Yii::app()->user->isAdmin())
                                     ),
                                 ),
                     )));

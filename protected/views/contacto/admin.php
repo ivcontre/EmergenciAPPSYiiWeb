@@ -2,10 +2,9 @@
 /* @var $this ContactoController */
 /* @var $model Contacto */
 
-
 $this->breadcrumbs=array(
-	'Contactos'=>array('index'),
-	'Manage',
+	'Perfil'=>array('usuario/view&id='.$model->numero_telefono),
+	'Contactos',
 );
 
 $this->menu=array(
@@ -27,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Contactos</h1>
+<h1>Administrar Contactos</h1>
 
 <p>
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
@@ -47,17 +46,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id_contacto',
-		'numero_telefono',
+		//'id_contacto',
+		//'numero_telefono',
 		'nombre',
 		'numero',
 		'correo',
-		'estado',
-		/*
+		//'estado',
+		
 		'alerta_sms',
 		'alerta_gps',
 		'alerta_correo',
-		*/
+		
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),

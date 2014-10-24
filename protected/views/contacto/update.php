@@ -5,16 +5,15 @@
 
 <?php
 $this->breadcrumbs=array(
-	'Contactos'=>array('index'),
-	$model->id_contacto=>array('view','id'=>$model->id_contacto),
-	'Update',
+	'Contactos'=>array('admin'),
+	$model->nombre=>array('view','id'=>$model->id_contacto),
+	'Editar',
 );
 
 $this->menu=array(
-	array('label'=>'List Contacto', 'url'=>array('index')),
-	array('label'=>'Create Contacto', 'url'=>array('create')),
-	array('label'=>'View Contacto', 'url'=>array('view', 'id'=>$model->id_contacto)),
-	array('label'=>'Manage Contacto', 'url'=>array('admin')),
+	array('label'=>'Agregar nuevo', 'url'=>array('create')),
+	array('label'=>'Ver Contacto', 'url'=>array('view', 'id'=>$model->id_contacto)),
+	array('label'=>'Ver Todos', 'url'=>array('admin')),
 );
 ?>
 

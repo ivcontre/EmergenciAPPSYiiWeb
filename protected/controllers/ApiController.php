@@ -141,7 +141,7 @@ class ApiController extends Controller {
         Yii::import('application.vendors.*');
         require_once('GCMPushMessage/GCMPushMessage.php');
         $apiKey = "AIzaSyCsnD0xt6GCZUiFQPkm1OqsZyaOou3Vv78";
-        $devices = array('APA91bFxTnr_8rZfMaYIRXTr1mw3L_6rUtJbDUaJvHv9J5jLD8r3SRUedqEOQybRllS6SgzGur0ND9LBSLutDZvXf8H3eziCMD2C4u8frbtQnj1Xp2UgV2Rhp_GR8BZOrDMdel34oEth6leJfE1KnLbsag-Jq2U87P9_88HpfhTXYFQYLfj_gcA');
+        $devices = array('APA91bFxQs2GnpSBgiw0yEB3blPll4YDcdmUcRNWdEwbEIqvPOBBLtp-u9eP_zoY-triGgZ5zTyzTerTbtSSeJzH6kVHjfUGHuROi_kDBnBqPUPG1RgM3FjFvWUBmcKEhzUjl6Q8CF_RFJjyDMW2NgPscQScxMebGWCHkLY_YABzDdeBYeJc6mE');
         $message = "Un amigo se encuentra en peligro";
 
         $gcpm = new GCMPushMessage($apiKey);

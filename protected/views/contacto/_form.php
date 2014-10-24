@@ -19,21 +19,20 @@
 
     <?php echo $form->errorSummary($model); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'numero_telefono',array('span'=>5,'maxlength'=>15)); ?>
-
             <?php echo $form->textFieldControlGroup($model,'nombre',array('span'=>5,'maxlength'=>50)); ?>
 
             <?php echo $form->textFieldControlGroup($model,'numero',array('span'=>5,'maxlength'=>15)); ?>
 
             <?php echo $form->textFieldControlGroup($model,'correo',array('span'=>5,'maxlength'=>25)); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'estado',array('span'=>5)); ?>
-
-            <?php echo $form->textFieldControlGroup($model,'alerta_sms',array('span'=>5)); ?>
-
-            <?php echo $form->textFieldControlGroup($model,'alerta_gps',array('span'=>5)); ?>
-
-            <?php echo $form->textFieldControlGroup($model,'alerta_correo',array('span'=>5)); ?>
+            <?php //echo $form->textFieldControlGroup($model,'estado',array('span'=>5)); ?>
+    
+            <?php echo $form->checkBoxControlGroup($model, 'alerta_sms', array('span' => 5)); ?>
+            <?php //echo $form->textFieldControlGroup($model,'alerta_sms',array('span'=>5)); ?>
+            <?php echo $form->checkBoxControlGroup($model, 'alerta_gps', array('span' => 5)); ?>
+            <?php //echo $form->textFieldControlGroup($model,'alerta_gps',array('span'=>5)); ?>
+            <?php echo $form->checkBoxControlGroup($model, 'alerta_correo', array('span' => 5)); ?>
+            <?php //echo $form->textFieldControlGroup($model,'alerta_correo',array('span'=>5)); ?>
 
         <div class="form-actions">
         <?php echo TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array(
