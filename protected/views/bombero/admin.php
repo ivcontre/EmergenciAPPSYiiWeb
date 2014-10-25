@@ -3,8 +3,7 @@
 /* @var $model Bombero */
 
 $this->breadcrumbs=array(
-	'Bomberos'=>array('index'),
-	'Manage',
+	'Administrar Bomberos',
 );
 
 $this->menu=array(

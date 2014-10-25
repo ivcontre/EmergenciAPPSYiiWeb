@@ -3,8 +3,7 @@
 /* @var $model CentroMedico */
 
 $this->breadcrumbs=array(
-	'Centro Medicos'=>array('index'),
-	'Manage',
+	'Administrar Centros Médicos',
 );
 
 $this->menu=array(
