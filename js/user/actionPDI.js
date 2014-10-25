@@ -6,6 +6,8 @@ console.log('iniciando eventos de PDI, usuario');
       var markersArray = [];
       var bounds;
       var initialLocationuser;
+      var directionsDisplay;
+      var directionsService = new google.maps.DirectionsService();
       var ventana;
       var miComuna;
       
@@ -17,7 +19,7 @@ console.log('iniciando eventos de PDI, usuario');
         },
        
         initializeMap: function(){
-          
+           directionsDisplay = new google.maps.DirectionsRenderer();
             mapOptions = {
                       zoom: 13,
                       mapTypeId: google.maps.MapTypeId.ROADMAP  
@@ -25,6 +27,8 @@ console.log('iniciando eventos de PDI, usuario');
             geocoder = new google.maps.Geocoder();
 
             map = new google.maps.Map(document.getElementById('map'),mapOptions);
+            directionsDisplay.setMap(map);
+            directionsDisplay.setOptions( { suppressMarkers: true } );
             bounds = new google.maps.LatLngBounds();
             if(navigator.geolocation){
                 browserSupportFlag = true;
@@ -79,7 +83,7 @@ console.log('iniciando eventos de PDI, usuario');
                         title: item.nombre,
                         icon: yii.urls.base+"/icons/marcadorbombero.png"});
                         bounds.extend(latlng);
-                        var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p></div>";
+                        var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p><input type='button' value='Ir' onclick='actionPDI.ruta("+item.lat+","+item.lng+");'></div>";
                         google.maps.event.addListener(marker,"click", function(){
                            if(ventana){
                                ventana.close();
@@ -122,7 +126,7 @@ console.log('iniciando eventos de PDI, usuario');
                 dataType: "json",
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
-                   if(response.pdi == null ){
+                   if(response.pdi == 0 ){
                        alert("No existen resultados para la comuna consultada");
                        actionPDI.cargarMapa();
                    }else{
@@ -161,6 +165,23 @@ console.log('iniciando eventos de PDI, usuario');
                 
             
         },
+        ruta: function(lat_bom, lng_bom){
+            
+//            var start = new google.maps.LatLng(lat_miPos, lng_miPos);
+//            console.log(start);
+//            var end = new google.maps.LatLng(lat_bom, lng_bom);
+//            console.log(end);
+            var request = {
+                origin: initialLocationuser,
+                destination: new google.maps.LatLng(lat_bom, lng_bom),
+                travelMode: google.maps.TravelMode.WALKING
+            }; 
+            directionsService.route(request, function(result, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                  directionsDisplay.setDirections(result);
+                }
+            });
+        }
         
         
         };
