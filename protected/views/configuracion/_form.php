@@ -38,7 +38,7 @@
                 'options'=>array(
                     'range'=>'min',
                     'min'=>0,
-                    'max'=>100,
+                    'max'=>20,
                     'slide'=>'js:function(event, ui) { $("#Configuracion_radio_busqueda").val(ui.value);}'
                 ),
             ));

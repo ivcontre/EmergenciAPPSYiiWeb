@@ -49,15 +49,19 @@ class WebUser extends CWebUser {
         if($user != null){
             foreach($user->configuracion as $configuracion)
                 $conf = $configuracion;
-            return $conf->id_configuracion;
+            if(isset($conf))
+                return $conf->id_configuracion;
+            return -1;
         }
     }
     function verificaAvisos(){
+        $mensajes = array();
         $user = $this->loadUser(Yii::app()->user->id);
         if($user != null){
             foreach($user->configuracion as $configuracion)
                 $conf = $configuracion;
             $msg = "<ul>";
+            
             if($conf != null){
                 if($conf->mensaje_alerta == null){
                     $msg = $msg."<li>Agrega un mensaje de alerta</li>";
@@ -79,11 +83,14 @@ class WebUser extends CWebUser {
                 }
 
             }
-            if($msg == "<ul>"){
-                return null;
-            }else{
-                return array("msg"=>"Todavía no has terminado de configurar tu cuenta: \n".$msg."</ul>", "color"=>TbHtml::ALERT_COLOR_WARNING);
+            if($user->regid == null){
+                $msg2 = "Tu cuenta no está aún vinculada a un dispositivo móvil, ¡Que esperas para hacerlo!";
             }
+            if($msg != "<ul>")
+                $mensajes[] = array("msg"=>"Todavía no has terminado de configurar tu cuenta: \n".$msg."</ul>", "color"=>TbHtml::ALERT_COLOR_WARNING);
+            if(isset($msg2))
+                $mensajes[] = array("msg"=>$msg2,"color"=>TbHtml::ALERT_COLOR_INFO);
+            return $mensajes;
         }
     }
     

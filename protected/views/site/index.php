@@ -18,9 +18,9 @@ if(Yii::app()->user->isGuest){
          echo "admin";
      }else{
          //se genera index para usuario
-         $aviso = Yii::app()->user->verificaAvisos();
-         if($aviso != null){
-             Yii::app()->user->setFlash($aviso['color'],$aviso['msg']);
+         $mensajes = Yii::app()->user->verificaAvisos();
+         foreach($mensajes as $msg){
+             Yii::app()->user->setFlash($msg['color'],$msg['msg']);
             $this->widget('bootstrap.widgets.TbAlert', array('block'=>true, ));
          }
          
