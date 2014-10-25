@@ -52,7 +52,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'numero',
 		'correo',
 		//'estado',
-		
 		'alerta_sms',
 		'alerta_gps',
 		'alerta_correo',
