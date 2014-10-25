@@ -110,6 +110,7 @@ console.log('iniciando eventos de PDI, usuario');
         
         initializeMapPDIPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
+               directionsDisplay.setMap(null);
                for (var i = 0; i < markersArray.length; i++ ) {
                         markersArray[i].setMap(null);
                 }
