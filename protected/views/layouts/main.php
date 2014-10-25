@@ -51,17 +51,18 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                         array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'Perfil','items'=>array(
-                                                        array('label'=>'Contactos','url'=>array('contacto/admin'), 'visible'=>Yii::app()->user->isUser()),
+                                                        array('label'=>'Ver Perfil','url'=>array('usuario/view', 'id'=>Yii::app()->user->id), 'visible'=>Yii::app()->user->isUser()),
+                                                        array('label'=>'Mis Contactos','url'=>array('contacto/admin'), 'visible'=>Yii::app()->user->isUser()),
                                                         array('label'=>'Configuracion','url'=>array('configuracion/update&id='.Yii::app()->user->idConfiguracion), 'visible'=>Yii::app()->user->isUser()),
                                                         array('label'=>'Cuenta','url'=>array('usuario/update&id='.Yii::app()->user->id), 'visible'=>Yii::app()->user->isUser()),
                                                         TbHtml::menuDivider(),
-                                                        array('label'=>'Logout ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                                                        array('label'=>'Cerrar Sesión ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
                                             
                                             )
                                            , 'visible'=>Yii::app()->user->isUser()),
                                         
                                         array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                                        array('label'=>'Logout ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>Yii::app()->user->isAdmin())
+                                        array('label'=>'Cerrar Sesión ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>Yii::app()->user->isAdmin())
                                     ),
                                 ),
                     )));

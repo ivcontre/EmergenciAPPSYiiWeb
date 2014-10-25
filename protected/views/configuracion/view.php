@@ -20,7 +20,6 @@ $this->menu=array(
     'data'=>$model,
     'nullDisplay'=>'sin valor aún',
     'attributes'=>array(
-		'id_configuracion',
 		'numero_usuario',
 		'numero_pdi',
 		'numero_carabinero',

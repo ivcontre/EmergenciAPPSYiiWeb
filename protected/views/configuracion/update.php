@@ -6,18 +6,14 @@
 <?php
 $this->breadcrumbs=array(
 	'Perfil'=>array('usuario/view&id='.$model->usuario->numero_telefono),
-	'Mi Configuracion'=>array('view','id'=>$model->id_configuracion),
-	'Actualizar',
+	'Editar Configuración',
 );
 
 $this->menu=array(
-	array('label'=>'List Configuracion', 'url'=>array('index')),
-	array('label'=>'Create Configuracion', 'url'=>array('create')),
-	array('label'=>'View Configuracion', 'url'=>array('view', 'id'=>$model->id_configuracion)),
-	array('label'=>'Manage Configuracion', 'url'=>array('admin')),
+	array('label'=>'Perfil', 'url'=>array('usuario/view', 'id'=>$model->numero_usuario)),
 );
 ?>
 
-    <h1>Update Configuracion <?php echo $model->id_configuracion; ?></h1>
+    <h1>Actualiza tu Configuración</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
