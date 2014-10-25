@@ -1,5 +1,5 @@
-console.log('iniciando eventos de carabineros, usuario');
-    var actionCarabinero = (function() {
+console.log('iniciando eventos de bomberos, usuario');
+    var actionBombero = (function() {
       var myOptions;
       var map;
       var marker;
@@ -11,16 +11,21 @@ console.log('iniciando eventos de carabineros, usuario');
       var ventana;
       var miComuna;
       
+      var lat;
+      var lng;
+      
+      
       
       return {
         
         
         cargarMapa: function(){
-            google.maps.event.addDomListener(window, 'load', actionCarabinero.initializeMap());
+            google.maps.event.addDomListener(window, 'load', actionBombero.initializeMap());
         },
        
         initializeMap: function(){
-           directionsDisplay = new google.maps.DirectionsRenderer();
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            
             mapOptions = {
                       zoom: 13,
                       mapTypeId: google.maps.MapTypeId.ROADMAP  
@@ -38,7 +43,7 @@ console.log('iniciando eventos de carabineros, usuario');
                      var lng = position.coords.longitude;
                      initialLocationuser = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
                      bounds.extend(initialLocationuser);
-                    geocoder.geocode({'latLng': initialLocationuser}, function(results, status) {
+                     geocoder.geocode({'latLng': initialLocationuser}, function(results, status) {
                          if (status == google.maps.GeocoderStatus.OK) {
                              if (results[0]) {
                                  var direccion = results[0].formatted_address;
@@ -61,8 +66,11 @@ console.log('iniciando eventos de carabineros, usuario');
                              }
                          }
                      });
+                    var cadena = "";
+                    
+                    
                      console.log(lat+", "+lng);
-                     var tabla = "carabinero";
+                     var tabla = "bombero";
                      var datos = "&lat="+lat
                                +"&lng="+lng
                                +"&tabla="+tabla;
@@ -73,16 +81,16 @@ console.log('iniciando eventos de carabineros, usuario');
                 dataType: "json",
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
-                   var carabinero = response.carabinero;
-                    $.each(carabinero, function(i, item){
+                   var bombero = response.bombero;
+                    $.each(bombero, function(i, item){
                         
                         var latlng = new google.maps.LatLng(item.lat,item.lng);
                         var marker = new google.maps.Marker({
                         position: latlng,
                         title: item.nombre,
-                        icon: yii.urls.base+"/icons/marcadorcarabinero.png"});
+                        icon: yii.urls.base+"/icons/marcadorbombero.png"});
                         bounds.extend(latlng);
-                        var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p><input type='button' value='Ir' onclick='actionCarabinero.ruta("+item.lat+","+item.lng+");'></div>";
+                        var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p><input type='button' value='Ir' onclick='actionBombero.ruta("+item.lat+","+item.lng+");'></div>";
                         google.maps.event.addListener(marker,"click", function(){
                            if(ventana){
                                ventana.close();
@@ -107,15 +115,13 @@ console.log('iniciando eventos de carabineros, usuario');
             }
         },
         
-        initializeMapCarabinerosPorComuna: function(id_comuna){
+        initializeMapBomberosPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
-               directionsDisplay.setMap(null);
                for (var i = 0; i < markersArray.length; i++ ) {
                         markersArray[i].setMap(null);
                 }
                 
-                
-                var tabla = "carabinero";
+                var tabla = "bombero";
                 var datos ="&id_comuna="+id_comuna
                             +"&tabla="+tabla;
                 console.log("datos: "+datos);
@@ -126,17 +132,17 @@ console.log('iniciando eventos de carabineros, usuario');
                 dataType: "json",
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
-                   if(response.carabinero == 0 ){
-                       alert("No existen resultados para la comuna de "+response.comuna);
-                       actionCarabinero.cargarMapa();
+                   if(response.bombero == 0 ){
+                       alert("No existen resultados para la comuna "+reponse.comuna);
+                       actionBombero.cargarMapa();
                    }else{
-                       var carabinero = response.carabinero;
-                    $.each(carabinero, function(i, item){
+                    var bombero = response.bombero;
+                    $.each(bombero, function(i, item){
                         var latlng = new google.maps.LatLng(item.lat,item.lng);
                         var marker = new google.maps.Marker({
                         position: latlng,
                         title: item.nombre,
-                        icon: yii.urls.base+"/icons/marcadorcarabinero.png"});
+                        icon: yii.urls.base+"/icons/marcadorbombero.png"});
                         bounds.extend(latlng);
                         var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p></div>";
                         google.maps.event.addListener(marker,"click", function(){
@@ -165,7 +171,7 @@ console.log('iniciando eventos de carabineros, usuario');
                 
             
         },
-        ruta: function(lat, lng){
+        ruta: function(lat_bom, lng_bom){
             
 //            var start = new google.maps.LatLng(lat_miPos, lng_miPos);
 //            console.log(start);
@@ -173,7 +179,7 @@ console.log('iniciando eventos de carabineros, usuario');
 //            console.log(end);
             var request = {
                 origin: initialLocationuser,
-                destination: new google.maps.LatLng(lat, lng),
+                destination: new google.maps.LatLng(lat_bom, lng_bom),
                 travelMode: google.maps.TravelMode.WALKING
             }; 
             directionsService.route(request, function(result, status) {
@@ -182,6 +188,7 @@ console.log('iniciando eventos de carabineros, usuario');
                 }
             });
         }
+       
         
         
         };

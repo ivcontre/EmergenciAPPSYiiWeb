@@ -109,6 +109,7 @@ console.log('iniciando eventos de Centros Medicos, usuario');
         
         initializeMapCentrosMedicosPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
+               directionsDisplay.setMap(null);
                for (var i = 0; i < markersArray.length; i++ ) {
                         markersArray[i].setMap(null);
                 }
@@ -126,7 +127,7 @@ console.log('iniciando eventos de Centros Medicos, usuario');
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
                    if(response.centro_medico == 0 ){
-                       alert("No existen resultados para la comuna consultada");
+                       alert("No existen resultados para la comuna de "+response.comuna);
                        actionCentroMedico.cargarMapa();
                    }else{
                        var centro_medico = response.centro_medico;

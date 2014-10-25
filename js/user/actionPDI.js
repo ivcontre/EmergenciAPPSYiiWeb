@@ -110,6 +110,7 @@ console.log('iniciando eventos de PDI, usuario');
         
         initializeMapPDIPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
+               directionsDisplay.setMap(null);
                for (var i = 0; i < markersArray.length; i++ ) {
                         markersArray[i].setMap(null);
                 }
@@ -127,7 +128,7 @@ console.log('iniciando eventos de PDI, usuario');
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
                    if(response.pdi == 0 ){
-                       alert("No existen resultados para la comuna consultada");
+                       alert("No existen resultados para la comuna de "+response.comuna);
                        actionPDI.cargarMapa();
                    }else{
                        var pdi = response.pdi;

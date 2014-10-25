@@ -271,10 +271,19 @@ class ApiController extends Controller {
             $total['comuna'] = $filas[0]['comuna']; 
             echo json_encode($total);
         }else{
+            $laConsulta = 'SELECT * FROM comuna WHERE id_comuna = '.$id_comuna.'';
             
+            $command = Yii::app()->db->createCommand($laConsulta);
+            $rows = $command->queryAll();
             $filas = 0;
             $total[$tabla] = $filas;
-            $total['comuna'] = $filas[0]['comuna']; 
+            
+            foreach($rows as $row){
+                $total['comuna'] = utf8_encode($row['nombre']);
+            }
+                    
+            
+            
             echo json_encode($total);
         }
         
