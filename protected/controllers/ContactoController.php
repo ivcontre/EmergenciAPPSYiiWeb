@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioController extends Controller
+class ContactoController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -29,20 +29,19 @@ class UsuarioController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('user'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('user'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('user'),
 			),
 			array('deny',  // deny all users
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
-                        
 		);
 	}
 
@@ -63,16 +62,16 @@ class UsuarioController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Usuario;
+		$model=new Contacto;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Usuario']))
-		{
-			$model->attributes=$_POST['Usuario'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->numero_telefono));
+		if (isset($_POST['Contacto'])) {
+			$model->attributes=$_POST['Contacto'];
+			if ($model->save()) {
+				$this->redirect(array('view','id'=>$model->id_contacto));
+			}
 		}
 
 		$this->render('create',array(
@@ -87,17 +86,17 @@ class UsuarioController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-                $this->allowEdit($id);
+                
 		$model=$this->loadModel($id);
-
+                $this->allowEdit($model->numero_telefono);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Usuario']))
-		{
-			$model->attributes=$_POST['Usuario'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->numero_telefono));
+		if (isset($_POST['Contacto'])) {
+			$model->attributes=$_POST['Contacto'];
+			if ($model->save()) {
+				$this->redirect(array('view','id'=>$model->id_contacto));
+			}
 		}
 
 		$this->render('update',array(
@@ -112,11 +111,17 @@ class UsuarioController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if (Yii::app()->request->isPostRequest) {
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if (!isset($_GET['ajax'])) {
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			}
+		} else {
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		}
 	}
 
 	/**
@@ -124,7 +129,7 @@ class UsuarioController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Usuario');
+		$dataProvider=new CActiveDataProvider('Contacto');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -135,10 +140,11 @@ class UsuarioController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Usuario('search');
+		$model=new Contacto('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Usuario']))
-			$model->attributes=$_GET['Usuario'];
+		if (isset($_GET['Contacto'])) {
+			$model->attributes=$_GET['Contacto'];
+		}
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -149,33 +155,33 @@ class UsuarioController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Usuario the loaded model
+	 * @return Contacto the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Usuario::model()->findByPk($id);
-		if($model===null)
+		$model=Contacto::model()->findByPk($id);
+		if ($model===null) {
 			throw new CHttpException(404,'The requested page does not exist.');
+		}
 		return $model;
 	}
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Usuario $model the model to be validated
+	 * @param Contacto $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='usuario-form')
-		{
+		if (isset($_POST['ajax']) && $_POST['ajax']==='contacto-form') {
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
         
-        public function allowEdit($idUser)
+        public function allowEdit($idUsuario)
 	{
-            if($idUser != Yii::app()->user->id)
+            if($idUsuario != Yii::app()->user->id)
                 throw new CHttpException(404, 'El contenido solicitado no fue encontrado');
 	}
 }

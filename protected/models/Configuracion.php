@@ -36,9 +36,9 @@ class Configuracion extends CActiveRecord
 		// will receive user inputs.
 		return array(
 //			array('id_configuracion, numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico, radio_busqueda, mensaje_alerta, fecha_modificacion', 'required'),
-//			array('id_configuracion, radio_busqueda', 'numerical', 'integerOnly'=>true),
-//			array('numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico', 'length', 'max'=>15),
-//			array('mensaje_alerta', 'length', 'max'=>50),
+			array('id_configuracion, radio_busqueda', 'numerical', 'integerOnly'=>true),
+                        array('numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico', 'length', 'max'=>15),
+			array('mensaje_alerta', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_configuracion, numero_usuario, numero_pdi, numero_carabinero, numero_bombero, numero_centro_medico, radio_busqueda, mensaje_alerta, fecha_modificacion', 'safe', 'on'=>'search'),
@@ -63,15 +63,15 @@ class Configuracion extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_configuracion' => 'Id Configuracion',
-			'numero_usuario' => 'Numero Usuario',
-			'numero_pdi' => 'Numero Pdi',
-			'numero_carabinero' => 'Numero Carabinero',
-			'numero_bombero' => 'Numero Bombero',
-			'numero_centro_medico' => 'Numero Centro Medico',
-			'radio_busqueda' => 'Radio Busqueda',
+			'id_configuracion' => 'ID Configuración',
+			'numero_usuario' => 'Número Usuario',
+			'numero_pdi' => 'Número PDI',
+			'numero_carabinero' => 'Número Carabinero',
+			'numero_bombero' => 'Número Bombero',
+			'numero_centro_medico' => 'Número Centro Médico',
+			'radio_busqueda' => 'Radio Búsqueda',
 			'mensaje_alerta' => 'Mensaje Alerta',
-			'fecha_modificacion' => 'Fecha Modificacion',
+			'fecha_modificacion' => 'Fecha Modificación',
 		);
 	}
 
