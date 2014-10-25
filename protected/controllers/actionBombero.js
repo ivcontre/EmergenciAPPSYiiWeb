@@ -133,7 +133,7 @@ console.log('iniciando eventos de bomberos, usuario');
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
                    if(response.bombero == 0 ){
-                       alert("No existen resultados para la comuna de "+response.comuna);
+                       alert("No existen resultados para la comuna "+reponse.comuna);
                        actionBombero.cargarMapa();
                    }else{
                     var bombero = response.bombero;

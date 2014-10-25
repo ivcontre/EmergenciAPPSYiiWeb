@@ -126,7 +126,7 @@ console.log('iniciando eventos de carabineros, usuario');
                 success: function(response) {
                    console.log("ajax ejecutado correctamente");
                    if(response.carabinero == 0 ){
-                       alert("No existen resultados para la comuna consultada");
+                       alert("No existen resultados para la comuna de "+response.comuna);
                        actionCarabinero.cargarMapa();
                    }else{
                        var carabinero = response.carabinero;
