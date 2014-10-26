@@ -72,7 +72,17 @@ console.log('iniciando eventos de Centros Medicos, usuario');
                 data: datos,
                 dataType: "json",
                 success: function(response) {
-                   console.log("ajax ejecutado correctamente");
+                    if(response.centro_medico == 0){
+                        if(confirm("No se encuentran resultados en el radio de búsqueda de "+response.radio+" km que usted ha configurado. ¿ Desea configurarlo ahora ?.")){
+                           document.location.href="http://parra.chillan.ubiobio.cl:8070/rhormaza/index.php?r=configuracion/update&id="+response.id_config;
+                           
+                        }else{
+                          
+                          actionCentroMedico.mapaChile();
+                          
+                       }
+                    }else{
+                        console.log("ajax ejecutado correctamente");
                    var centroMedico = response.centro_medico;
                     $.each(centroMedico, function(i, item){
                         
@@ -95,6 +105,8 @@ console.log('iniciando eventos de Centros Medicos, usuario');
                         
                     });
                     map.fitBounds(bounds);
+                    }
+                   
                     
                 },
                 error: function(e) {
@@ -181,6 +193,21 @@ console.log('iniciando eventos de Centros Medicos, usuario');
                   directionsDisplay.setDirections(result);
                 }
             });
+        },
+        mapaChile: function(){
+             console.log("mapa de chile");
+            
+            var mapOptions = {
+                zoom: 4,
+                center: new google.maps.LatLng(-36.739055, -71.0574941)
+              };
+              
+             map = new google.maps.Map(document.getElementById('map'),
+                  mapOptions);
+             
+             document.getElementById("comuna").value = "";              
+             document.getElementById("comuna").placeholder ="Ingrese Comuna";
+             console.log("mapa de chile2");
         }
         
         
