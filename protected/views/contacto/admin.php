@@ -3,13 +3,12 @@
 /* @var $model Contacto */
 
 $this->breadcrumbs=array(
-	'Perfil'=>array('usuario/view&id='.$model->numero_telefono),
+	'Perfil'=>array('usuario/view&id='.Yii::app()->user->id),
 	'Contactos',
 );
 
 $this->menu=array(
-	array('label'=>'List Contacto', 'url'=>array('index')),
-	array('label'=>'Create Contacto', 'url'=>array('create')),
+	array('label'=>'Agregar Nuevo', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -44,6 +43,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'contacto-grid',
 	'dataProvider'=>$model->search(),
+        'emptyText'=>'No has agregado contactos todavía :(',
 	'filter'=>$model,
 	'columns'=>array(
 		//'id_contacto',

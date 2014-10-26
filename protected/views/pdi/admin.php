@@ -3,8 +3,7 @@
 /* @var $model PDI */
 
 $this->breadcrumbs=array(
-	'Pdis'=>array('index'),
-	'Manage',
+	'Administrar PDI',
 );
 
 $this->menu=array(

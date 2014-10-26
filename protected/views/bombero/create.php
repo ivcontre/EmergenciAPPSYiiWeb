@@ -6,13 +6,13 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl.'/js/admin/actionBombero.js');
 
 $this->breadcrumbs=array(
-	'Bomberos'=>array('index'),
+	'Bomberos'=>array('admin'),
 	'Nuevo',
 );
 
 $this->menu=array(
-	array('label'=>'Listar', 'url'=>array('index')),
-	array('label'=>'Administrar', 'url'=>array('admin')),
+	//array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ver todos', 'url'=>array('admin')),
 );
 ?>
 

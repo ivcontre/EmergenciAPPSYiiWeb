@@ -9,13 +9,13 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl.'/js/admin/actionCarabinero.js');
 
 $this->breadcrumbs=array(
-	'Carabineros'=>array('index'),
+	'Carabineros'=>array('admin'),
 	'Nuevo',
 );
 
 $this->menu=array(
-	array('label'=>'Listar', 'url'=>array('index')),
-	array('label'=>'Administrar', 'url'=>array('admin')),
+	//array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ver Todos', 'url'=>array('admin')),
 );
 ?>
 <h1>Crear Carabinero</h1>

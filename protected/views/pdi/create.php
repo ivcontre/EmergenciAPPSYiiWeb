@@ -6,13 +6,13 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl.'/js/admin/actionPDI.js');
 
 $this->breadcrumbs=array(
-	'Pdis'=>array('index'),
+	'Pdis'=>array('admin'),
 	'Nuevo',
 );
 
 $this->menu=array(
-	array('label'=>'Listar', 'url'=>array('index')),
-	array('label'=>'Administrar', 'url'=>array('admin')),
+	//array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ver Todos', 'url'=>array('admin')),
 );
 ?>
 

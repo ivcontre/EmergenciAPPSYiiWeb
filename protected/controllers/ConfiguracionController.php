@@ -97,6 +97,7 @@ class ConfiguracionController extends Controller
                         date_default_timezone_set("America/Santiago");
                         $model->fecha_modificacion = date("Y-m-d H:i:s");
 			if ($model->save()) {
+                                
 				$this->redirect(array('view','id'=>$model->id_configuracion));
 			}
 		}
@@ -180,9 +181,29 @@ class ConfiguracionController extends Controller
 			Yii::app()->end();
 		}
 	}
+        /**
+         * Método encargado de validar si la configuración solicitada
+         * es la misma del usuario logeado
+         * @param type $idConfig
+         * @throws CHttpException
+         */
         public function allowEdit($idConfig)
 	{
             if($idConfig != Yii::app()->user->idConfiguracion)
                 throw new CHttpException(404, 'El contenido solicitado no fue encontrado');
 	}
+        
+        public function sincronizaDispositivo($configuracion){
+            $apiKey = "AIzaSyCsnD0xt6GCZUiFQPkm1OqsZyaOou3Vv78";
+            $usuario = $configuracion->usuario;
+            if($usuario->regid != null){
+                $message = "Actualiza conf";
+                $devices = array($usuario->regid);
+                Yii::import('application.vendors.*');
+                require_once('GCMPushMessage/GCMPushMessage.php');
+                $gcpm = new GCMPushMessage($apiKey);
+                $gcpm->setDevices($devices);
+                $gcpm->send($message, array(''));
+            }
+        }
 }

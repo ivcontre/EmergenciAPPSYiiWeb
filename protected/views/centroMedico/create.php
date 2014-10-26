@@ -7,13 +7,13 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl.'/js/admin/actionCentroMedico.js');
 
 $this->breadcrumbs=array(
-	'Centro Medicos'=>array('index'),
-	'Nuevo',
+	'Centro Medicos'=>array('admin'),
+	'Nuevo Centro Médico',
 );
 
 $this->menu=array(
-	array('label'=>'Listar', 'url'=>array('index')),
-	array('label'=>'Administrar', 'url'=>array('admin')),
+	//array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Ver Todos', 'url'=>array('admin')),
 );
 ?>
 

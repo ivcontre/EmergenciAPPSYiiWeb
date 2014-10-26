@@ -18,7 +18,7 @@
 
     <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
-    <?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model,'Por favor arregla los siguientes errores:'); ?>
 
             <?php //echo $form->textFieldControlGroup($model,'numero_telefono',array('span'=>3,'maxlength'=>25)); ?>
 

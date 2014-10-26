@@ -3,8 +3,7 @@
 /* @var $model Carabinero */
 
 $this->breadcrumbs=array(
-	'Carabineros'=>array('index'),
-	'Administrar',
+	'Administrar Carabineros',
 );
 
 $this->menu=array(
