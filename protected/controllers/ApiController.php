@@ -17,7 +17,20 @@ class ApiController extends Controller {
      * Key which has to be in HTTP USERNAME and PASSWORD headers 
      */
     Const APPLICATION_ID = 'ASCCPE';
+    
+    /**
+     * Esta es la key para poder utilizar los servicios de google cloud messagin
+     * @var String
+     */
+    private $API_KEY_GCM = 'AIzaSyCsnD0xt6GCZUiFQPkm1OqsZyaOou3Vv78';
 
+    /*
+     * Acciones que se realizarán al momento de enviar un GCM a un dispositivo
+     */
+    private $NOTIF_CONFIGURACION = 0;
+    private $NOTIF_CONTACTOS = 1;
+    private $NOTIF_CUENTA = 2;
+    private $NOTIF_ALERTA = 3;
     /**
      * Default response format
      * either 'json' or 'xml'
@@ -71,15 +84,18 @@ class ApiController extends Controller {
         }
     }
 
-    public function actionEnviaAlertas() {
+    public function actionEnviaAlerta() {
         /*
          * Requiere de la variable id_usuario
          */
-        if (isset($_GET['id_usuario'])) {
-            $id = $_GET['id_usuario'];
+        if (isset($_REQUEST['id_usuario'])) {
+            $id = $_REQUEST['id_usuario'];
         }
+        $lat = $_REQUEST['lat'];
+        $lng = $_REQUEST['lng'];
         $usuario = Usuario::model()->findByPk($id);
         if ($usuario != null) {
+            
             $regids = array();
             $correos = array();
             $contactos = $usuario->contactos;
@@ -89,6 +105,7 @@ class ApiController extends Controller {
             if ($contactos != null) {
                 foreach ($contactos as $contacto) {
                     if ($contacto->alerta_gps == 1) {
+                        //TODO crear tabla notificación 
                         $usuario = Usuario::model()->findByPk($contacto->numero);
                         /*
                          * Si el contacto posee una cuenta y se ha registrado con un smartphone
@@ -103,7 +120,7 @@ class ApiController extends Controller {
                     }
                 }
 
-                $this->enviarCorreo($correos);
+                //$this->enviarCorreo($correos);
                 $this->enviarNotificacion($regids, $usuario);
             }
         }
@@ -126,13 +143,13 @@ class ApiController extends Controller {
         if (count($regids) > 0) {
             Yii::import('application.vendors.*');
             require_once('GCMPushMessage/GCMPushMessage.php');
-            $apiKey = "AIzaSyCsnD0xt6GCZUiFQPkm1OqsZyaOou3Vv78";
+            //$apiKey = "AIzaSyCsnD0xt6GCZUiFQPkm1OqsZyaOou3Vv78";
 //          $devices = array('APA91bFxTnr_8rZfMaYIRXTr1mw3L_6rUtJbDUaJvHv9J5jLD8r3SRUedqEOQybRllS6SgzGur0ND9LBSLutDZvXf8H3eziCMD2C4u8frbtQnj1Xp2UgV2Rhp_GR8BZOrDMdel34oEth6leJfE1KnLbsag-Jq2U87P9_88HpfhTXYFQYLfj_gcA');
             $message = "Un amigo se encuentra en peligro";
 
-            $gcpm = new GCMPushMessage($apiKey);
+            $gcpm = new GCMPushMessage($this->API_KEY_GCM);
             $gcpm->setDevices($regids);
-            $response = $gcpm->send($message, array('title' => 'Test title', 'msg' => 'Tu amigo ' . $usuario->nombre . ' se encuentra en peligro'));
+            $response = $gcpm->send($message, array('opcion' => '0', 'msg' => 'hola'));
             echo $response;
         }
     }
