@@ -175,6 +175,7 @@ class ApiController extends Controller {
         $usuario = Usuario::model()->findByPk(Yii::app()->user->id);
         foreach ($usuario->configuracion as $conf) {
             $distance = $conf->radio_busqueda;
+            $id_configuracion = $conf->id_configuracion;
         }
         if($distance == null)
             $distance = 5;
@@ -202,28 +203,42 @@ class ApiController extends Controller {
                          ORDER BY distance ASC';
         
         
-        $rows = Yii::app()->db->createCommand($laConsulta)->queryAll();
+        $command = Yii::app()->db->createCommand($laConsulta);
+        $rows = $command->queryAll();
+        $count = $command->queryScalar();
         
-        $filas = array();
-        
-        foreach($rows as $row){
-            $columna = array();
-            $columna['id'] = $row['id'];
-            $columna['nombre'] = utf8_encode($row['nombre']);
-            $columna['lat'] = $row['x'];
-            $columna['lng'] = $row['y'];
-            $columna['direccion'] = utf8_encode($row['direccion']);
-            $columna['telefono'] = $row['telefono'];
-            $columna['distancia'] = $row['distance'];
-            $columna['comuna'] = utf8_encode($row['nombre']);
-            $filas[] = $columna;
-        }
-
         $total = array();
-        $total[$tabla] = $filas;
-        $total['comuna'] = $filas[0]['comuna'];
+        $filas = array();
+        if($count > 0){
+           foreach($rows as $row){
+                $columna = array();
+                $columna['id'] = $row['id'];
+                $columna['nombre'] = utf8_encode($row['nombre']);
+                $columna['lat'] = $row['x'];
+                $columna['lng'] = $row['y'];
+                $columna['direccion'] = utf8_encode($row['direccion']);
+                $columna['telefono'] = $row['telefono'];
+                $columna['distancia'] = $row['distance'];
+                $columna['comuna'] = utf8_encode($row['nombre']);
+                $filas[] = $columna;
+            }
+
+            
+            $total[$tabla] = $filas;
+            $total['comuna'] = $filas[0]['comuna'];
+
+            echo json_encode($total); 
+        }else{
+            $total[$tabla] = 0;
+            $total['radio'] = $distance;
+            $total['id_config'] = $id_configuracion;
+
+            echo json_encode($total); 
+        }
         
-        echo json_encode($total);
+       
+        
+        
     }
 
     public function get_boundaries($lat, $lng, $distance = 1, $earthRadius = 6371) {

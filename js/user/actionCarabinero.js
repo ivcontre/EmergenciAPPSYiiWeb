@@ -9,6 +9,7 @@ console.log('iniciando eventos de carabineros, usuario');
       var directionsDisplay;
       var directionsService = new google.maps.DirectionsService();
       var ventana;
+      var info;
       var miComuna;
       
       
@@ -48,7 +49,7 @@ console.log('iniciando eventos de carabineros, usuario');
                                  miComuna = com.replace(" ","");
                                  
                                  document.getElementById("comuna").value = miComuna;
-                                 var info = "<div><h2>Estás Aquí</h2><p>"+results[0].formatted_address+"</p></div>";
+                                 info = "<div><h2>Estás Aquí</h2><p>"+results[0].formatted_address+"</p></div>";
                                  marker = new google.maps.Marker({position: initialLocationuser,map:map});
                                  markersArray.push(marker);
                                  google.maps.event.addListener(marker,"click", function(){
@@ -72,6 +73,13 @@ console.log('iniciando eventos de carabineros, usuario');
                 data: datos,
                 dataType: "json",
                 success: function(response) {
+                if(response.carabinero == 0){
+                    if(confirm("No se encuentran resultados en el radio de búsqueda de "+response.radio+" km que usted ha configurado. ¿ Desea configurarlo ahora ?.")){
+                           document.location.href="http://parra.chillan.ubiobio.cl:8070/rhormaza/index.php?r=configuracion/update&id="+response.id_config;
+                       }else{
+                          actionCarabinero.mapaChile();
+                       }
+                }else{
                    console.log("ajax ejecutado correctamente");
                    var carabinero = response.carabinero;
                     $.each(carabinero, function(i, item){
@@ -94,7 +102,9 @@ console.log('iniciando eventos de carabineros, usuario');
                         marker.setMap(map); 
                         
                     });
-                    map.fitBounds(bounds);
+                    map.fitBounds(bounds); 
+                }
+                   
                     
                 },
                 error: function(e) {
@@ -110,9 +120,7 @@ console.log('iniciando eventos de carabineros, usuario');
         initializeMapCarabinerosPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
                directionsDisplay.setMap(null);
-               for (var i = 0; i < markersArray.length; i++ ) {
-                        markersArray[i].setMap(null);
-                }
+               
                 
                 
                 var tabla = "carabinero";
@@ -125,11 +133,15 @@ console.log('iniciando eventos de carabineros, usuario');
                 data: datos,
                 dataType: "json",
                 success: function(response) {
+                   
                    console.log("ajax ejecutado correctamente");
                    if(response.carabinero == 0 ){
                        alert("No existen resultados para la comuna de "+response.comuna);
                        actionCarabinero.cargarMapa();
                    }else{
+                       for (var i = 0; i < markersArray.length; i++ ) {
+                            markersArray[i].setMap(null);
+                        }
                        var carabinero = response.carabinero;
                     $.each(carabinero, function(i, item){
                         var latlng = new google.maps.LatLng(item.lat,item.lng);
@@ -181,7 +193,22 @@ console.log('iniciando eventos de carabineros, usuario');
                   directionsDisplay.setDirections(result);
                 }
             });
-        }
+        },
+        mapaChile: function(){
+             console.log("mapa de chile");
+            
+            var mapOptions = {
+                zoom: 4,
+                center: new google.maps.LatLng(-36.739055, -71.0574941)
+              };
+              
+             map = new google.maps.Map(document.getElementById('map'),
+                  mapOptions);
+             
+             document.getElementById("comuna").value = "";              
+             document.getElementById("comuna").placeholder ="Ingrese Comuna";
+             console.log("mapa de chile2");
+        },
         
         
         };
