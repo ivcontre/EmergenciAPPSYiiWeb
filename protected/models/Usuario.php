@@ -14,8 +14,10 @@
  * @property integer $estado_alerta
  * @property double $latitud
  * @property double $longitud
+ * @property string $fecha_ingreso
  *
  * The followings are the available model relations:
+ * @property Notificacion[] $notificacions
  * @property Contacto[] $contactos
  * @property TipoUsuario $idTipoUsuario
  * @property Configuracion $configuracion
@@ -42,7 +44,8 @@ class Usuario extends CActiveRecord
 			array('numero_telefono, id_tipo_usuario, nombre, apellido, correo, password', 'required', 'message'=>'El campo {attribute} no puede ser vacío'),
 			array('id_tipo_usuario, estado_alerta', 'numerical', 'integerOnly'=>true),
 			array('latitud, longitud', 'numerical'),
-			array('numero_telefono, correo', 'length', 'max'=>25),
+			array('numero_telefono', 'length', 'max'=>25),
+                        array('correo', 'length', 'max'=>50),
                         array('numero_telefono','unique', 'className'=>'Usuario', 'message'=>'El n° telefónico {value} ya se encuentra en nuestros registros'),
 			array('correo','unique', 'className'=>'Usuario', 'message'=>'El e-mail {value} ya está siendo usado en nuestro sistema.'),
                         array('regid', 'length', 'max'=>200),
@@ -63,6 +66,7 @@ class Usuario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                        'notificaciones' => array(self::HAS_MANY, 'Notificacion', 'numero_telefono'),
 			'contactos' => array(self::HAS_MANY, 'Contacto', 'numero_telefono'),
 			'idTipoUsuario' => array(self::BELONGS_TO, 'TipoUsuario', 'id_tipo_usuario'),
                         'configuracion' => array(self::HAS_MANY, 'Configuracion', 'numero_usuario'),

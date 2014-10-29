@@ -63,25 +63,44 @@ class ApiController extends Controller {
         }
     }
 
-    public function actionRealizaAccion() {
-        echo "hola";
-        echo $_GET['hola'];
-        if (isset($_GET['action'])) {
-            switch ($_GET['action']) {
-                case 'envia_alerta':
-                    $model = Usuario::model()->findByPk($_GET['id_usuario']);
-                    echo "enviando alerta de :" . $model->nombre . " para:";
-                    $contactos = Contacto::model()->findAll('numero_telefono=:id', array(':id' => $_GET['id_usuario']));
-                    foreach ($contactos as $contacto) {
-                        echo $contacto->nombre;
+    public function actionActualizaPosicion() {
+       if(isset($_REQUEST['lat']) && isset($_REQUEST['lng']) && isset($_REQUEST['id_usuario'])){       
+           $lat = $_REQUEST['lat'];
+           $lng = $_REQUEST['lng'];
+           
+           $numero_telefono = $_REQUEST['id_usuario'];
+           $usuario = Usuario::model()->findByPk($numero_telefono);
+           if($usuario != null){
+               if($lat != 0 && $lng != 0){
+               $usuario->latitud = $lat;
+               $usuario->longitud = $lng;
+               if($usuario->save()){
+                   echo "actualizacion correcta";
+               }else{
+                   echo "no fue posible actualizar ";
+               }
+               }else{
+                   $usuario->latitud = $lat;
+                   $usuario->longitud = $lng;
+                   $usuario->estado_alerta = 0;                  
+                    if($usuario->save()){
+                        echo "actualizacion correcta";
+                    }else{
+                        echo "no fue posible actualizar ";
                     }
-
-                    break;
-                case 'guarda_contacto':
-                    echo "guardando contacto para: " . $_GET['id_usuario'];
-                    break;
-            }
-        }
+                    $notificaciones = Notificacion::model()->findAllByAttributes(array('numero_telefono'=>$usuario->numero_telefono,'estado'=>1));
+                    if($notificaciones != null){
+                        foreach($notificaciones as $notificacion){
+                            
+                            $notificacion->estado = 0;
+  
+                            $notificacion->save();
+                        }   
+                    }
+                    
+               }
+           }
+       }
     }
 
     public function actionEnviaAlerta() {
@@ -95,18 +114,23 @@ class ApiController extends Controller {
         $lng = $_REQUEST['lng'];
         $usuario = Usuario::model()->findByPk($id);
         if ($usuario != null) {
-            
+            $usuario->estado_alerta = 1;
+            $usuario->latitud = $lat;
+            $usuario->longitud = $lng;
+            $usuario->save();
             $regids = array();
             $correos = array();
             $contactos = $usuario->contactos;
             /*
              * Verifico si el usuario registra contactos
              */
+            $notifiContactos = array();
             if ($contactos != null) {
                 foreach ($contactos as $contacto) {
                     if ($contacto->alerta_gps == 1) {
                         //TODO crear tabla notificación 
                         $usuario = Usuario::model()->findByPk($contacto->numero);
+                        $notifiContactos[] = $contacto->numero; 
                         /*
                          * Si el contacto posee una cuenta y se ha registrado con un smartphone
                          * se le podrá enviar una notificacion
@@ -119,7 +143,14 @@ class ApiController extends Controller {
                         $correos[] = $contacto->correo;
                     }
                 }
-
+                foreach($notifiContactos as $numero_contacto){
+                    $notificacion = new Notificacion();
+                    $notificacion->numero_contacto = $numero_contacto;
+                    $notificacion->numero_telefono = $id;
+                    $notificacion->estado = 1;
+                    if(!$notificacion->save())
+                        echo var_dump($notificacion->getErrors());
+                }
                 //$this->enviarCorreo($correos);
                 $this->enviarNotificacion($regids, $usuario);
             }
@@ -133,10 +164,13 @@ class ApiController extends Controller {
      */
     private function enviarCorreo($correos) {
         foreach ($correos as $correo) {
-            echo $correo . " ";
+//            echo $correo . " ";
         }
     }
-
+    /**
+     * Funcion encargada de enviar notificacion a usuarios registrados con un dispositivo
+     * movil
+     */
     private function enviarNotificacion($regids, $usuario) {
         Yii::import('application.vendors.*');
         require_once('GCMPushMessage/GCMPushMessage.php');
@@ -153,18 +187,26 @@ class ApiController extends Controller {
             echo $response;
         }
     }
-
-    public function actionUpdate() {
-        Yii::import('application.vendors.*');
-        require_once('GCMPushMessage/GCMPushMessage.php');
-        $apiKey = "AIzaSyCsnD0xt6GCZUiFQPkm1OqsZyaOou3Vv78";
-        $devices = array('APA91bFxQs2GnpSBgiw0yEB3blPll4YDcdmUcRNWdEwbEIqvPOBBLtp-u9eP_zoY-triGgZ5zTyzTerTbtSSeJzH6kVHjfUGHuROi_kDBnBqPUPG1RgM3FjFvWUBmcKEhzUjl6Q8CF_RFJjyDMW2NgPscQScxMebGWCHkLY_YABzDdeBYeJc6mE');
-        $message = "Un amigo se encuentra en peligro";
-
-        $gcpm = new GCMPushMessage($apiKey);
-        $gcpm->setDevices($devices);
-        $response = $gcpm->send($message, array('title' => 'Test title', 'msg' => 'Vieja despaila :D'));
-        echo $response;
+    /**
+     * Metodo encargado de obtener a todos los usuarios que requieren de mi ayuda
+     */
+    public function actionAlertas(){
+        if(isset($_REQUEST['id_usuario'])){
+            $id = $_REQUEST['id_usuario'];
+            $usuario = Usuario::model()->findByPk($id);
+            if($usuario != null){
+                $notificaciones = Notificacion::model()->findByAttributes(array('numero_contacto'=>$id, 'estado'=>'1'));
+                if($notificaciones != null){
+                    foreach($notifiaciones as $notificacion){
+                        $user = $notificacion->usuario;
+                        $response[] = array('nombre'=>$user->nombre, 'lat'=>$user->latitud, 'lng'=>$user->longitud);
+                    }
+                    echo json_encode($response);
+                }
+            }
+            
+        }
+        echo "false";
     }
 
     public function actionCercanos() {
