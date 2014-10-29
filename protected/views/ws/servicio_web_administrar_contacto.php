@@ -70,11 +70,10 @@
            $mensaje = $mensaje."<p>Correo: $usuario_correo</p>";
            $mail->msgHTML('<p>'.$mensaje.'</p>');
            $mail->AltBody = $mensaje;
-           if (!$mail->send()) {
-               echo "false";
-           }else{
+           $mail->send();
+           
                echo "true";
-           }
+           
            
        }else{
            echo "false";

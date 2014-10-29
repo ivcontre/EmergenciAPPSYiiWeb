@@ -149,7 +149,7 @@ class ApiController extends Controller {
 
             $gcpm = new GCMPushMessage($this->API_KEY_GCM);
             $gcpm->setDevices($regids);
-            $response = $gcpm->send($message, array('opcion' => '0', 'msg' => 'hola'));
+            $response = $gcpm->send($message, array('opcion' => 3, 'msg' => 'hola'));
             echo $response;
         }
     }
