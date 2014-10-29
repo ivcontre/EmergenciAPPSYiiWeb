@@ -95,7 +95,7 @@ class CentroMedico extends CActiveRecord
                 
                 $criteria->compare('idComuna.nombre',$this->id_comuna,true);
 		$criteria->compare('id',$this->id);
-		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('t.nombre',$this->nombre,true);
 		$criteria->compare('direccion',$this->direccion,true);
 		//$criteria->compare('id_comuna',$this->id_comuna);
 		$criteria->compare('x',$this->x);
