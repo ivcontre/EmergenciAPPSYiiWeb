@@ -92,7 +92,7 @@ class PDI extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('t.nombre',$this->nombre,true);
 		$criteria->compare('direccion',$this->direccion,true);
 		$criteria->compare('id_comuna',$this->id_comuna);
 		$criteria->compare('x',$this->x);
