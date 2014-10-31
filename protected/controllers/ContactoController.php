@@ -196,17 +196,32 @@ class ContactoController extends Controller
             $usuario = Usuario::model()->findByPk(Yii::app()->user->id);
             if($usuario != null){
                 $response = array();
-                $notificaciones = Notificacion::model()->findAllByAttributes(array('numero_contacto'=>$id, 'estado'=>'1'));
+                $response['title'] = 'No tienes alertas';
+                $notificaciones = Notificacion::model()->findAllByAttributes(array('numero_contacto'=>$usuario->numero_telefono, 'estado'=>'1'));
                 if($notificaciones != null){
+                    $response['title'] = 'Amigos en Peligro!';
+                    $response['htmlOptions'] = array('color'=>TbHtml::BUTTON_COLOR_WARNING);
+                    $listUser = array();
                     foreach($notificaciones as $notificacion){
+                        
                         $user = $notificacion->usuario;
-                        $response[] = array('nombre'=>$user->nombre, 'lat'=>$user->latitud, 'lng'=>$user->longitud, 'numero_telefono'=> $user->numero_telefono);
+                        $cfgs = $user->configuracion;
+                        $configuracion;
+                        foreach($cfgs as $conf){
+                            $configuracion = $conf;
+                        }
+                         
+                        $listUser[] = array(
+                            'label'=>$user->nombre.' - '.$user->numero_telefono, 
+                            'url'=>'javascript:actionSeguimiento.cargaPunto('.$user->latitud.','.$user->longitud.',"'.$user->nombre.'","'.$user->numero_telefono.'","'.$configuracion->mensaje_alerta.'")'
+                            );
+                        
                     }
-                    echo json_encode($response);
+                    $response['labels'] = $listUser;
                 }else{
-                    $response[] = 'No tienes alertas';
-                    $response[] = array();
-                    $response[] = array();
+                    
+                    $response['labels'] = array();
+                    $response['htmlOptions'] = array('color'=>TbHtml::BUTTON_COLOR_SUCCESS);
                     
                 }
                 return $response;
