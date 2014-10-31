@@ -37,6 +37,10 @@ return array(
 
 	// application components
 	'components'=>array(
+                // yiiwheels configuration
+            'yiiwheels' => array(
+            'class' => 'yiiwheels.YiiWheels',
+                ),
                 'bootstrap' => array(
                     'class' => 'bootstrap.components.TbApi',   
                 ),
@@ -110,6 +114,8 @@ return array(
 	),
         'aliases' => array(
             'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+            // yiiwheels configuration
+            'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), // change if necessary
         ),
 
 );

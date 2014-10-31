@@ -29,16 +29,17 @@ class ContactoController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('@'),
+				'users'=>array('user'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
 				'users'=>array('user'),
 			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete','seguimiento'),
+				'users'=>array('user'),
+			),
+                        
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -150,6 +151,12 @@ class ContactoController extends Controller
 			'model'=>$model,
 		));
 	}
+        
+        public function actionSeguimiento(){
+            $this->layout='';
+            $this->render('seguimiento');
+            $this->layout='//layouts/column2';
+        }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -184,4 +191,25 @@ class ContactoController extends Controller
             if($idUsuario != Yii::app()->user->id)
                 throw new CHttpException(404, 'El contenido solicitado no fue encontrado');
 	}
+        
+        public function alertas(){
+            $usuario = Usuario::model()->findByPk(Yii::app()->user->id);
+            if($usuario != null){
+                $response = array();
+                $notificaciones = Notificacion::model()->findAllByAttributes(array('numero_contacto'=>$id, 'estado'=>'1'));
+                if($notificaciones != null){
+                    foreach($notificaciones as $notificacion){
+                        $user = $notificacion->usuario;
+                        $response[] = array('nombre'=>$user->nombre, 'lat'=>$user->latitud, 'lng'=>$user->longitud, 'numero_telefono'=> $user->numero_telefono);
+                    }
+                    echo json_encode($response);
+                }else{
+                    $response[] = 'No tienes alertas';
+                    $response[] = array();
+                    $response[] = array();
+                    
+                }
+                return $response;
+            }
+        }
 }

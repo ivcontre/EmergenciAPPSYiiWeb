@@ -189,17 +189,19 @@ class ApiController extends Controller {
     }
     /**
      * Metodo encargado de obtener a todos los usuarios que requieren de mi ayuda
+     * 
      */
     public function actionAlertas(){
         if(isset($_REQUEST['id_usuario'])){
             $id = $_REQUEST['id_usuario'];
             $usuario = Usuario::model()->findByPk($id);
             if($usuario != null){
-                $notificaciones = Notificacion::model()->findByAttributes(array('numero_contacto'=>$id, 'estado'=>'1'));
+                $response = array();
+                $notificaciones = Notificacion::model()->findAllByAttributes(array('numero_contacto'=>$id, 'estado'=>'1'));
                 if($notificaciones != null){
-                    foreach($notifiaciones as $notificacion){
+                    foreach($notificaciones as $notificacion){
                         $user = $notificacion->usuario;
-                        $response[] = array('nombre'=>$user->nombre, 'lat'=>$user->latitud, 'lng'=>$user->longitud);
+                        $response[] = array('nombre'=>$user->nombre, 'lat'=>$user->latitud, 'lng'=>$user->longitud, 'numero_telefono'=> $user->numero_telefono);
                     }
                     echo json_encode($response);
                 }

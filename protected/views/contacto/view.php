@@ -5,20 +5,19 @@
 
 <?php
 $this->breadcrumbs=array(
-	'Contactos'=>array('index'),
-	$model->id_contacto,
+	'Contactos'=>array('admin'),
+	$model->nombre,
 );
 
 $this->menu=array(
-	array('label'=>'List Contacto', 'url'=>array('index')),
-	array('label'=>'Create Contacto', 'url'=>array('create')),
-	array('label'=>'Update Contacto', 'url'=>array('update', 'id'=>$model->id_contacto)),
-	array('label'=>'Delete Contacto', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_contacto),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Contacto', 'url'=>array('admin')),
+	array('label'=>'Ver todos', 'url'=>array('admin')),
+	array('label'=>'Agregar Nuevo', 'url'=>array('create')),
+	array('label'=>'Editar', 'url'=>array('update', 'id'=>$model->id_contacto)),
+	array('label'=>'Eliminar', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_contacto),'confirm'=>'Estás seguro de eliminar tu contacto?')),
 );
 ?>
 
-<h1>View Contacto #<?php echo $model->id_contacto; ?></h1>
+<h1># <?php echo $model->nombre; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView',array(
     'htmlOptions' => array(
@@ -31,9 +30,23 @@ $this->menu=array(
 		'nombre',
 		'numero',
 		'correo',
-		'estado',
-		'alerta_sms',
-		'alerta_gps',
-		'alerta_correo',
+                array(
+                    'value' => ($model->estado == 0)?'No ha activado su alerta':'Su dispositivo se encuentra en modo alerta',
+                    'name' => 'estado'
+                ),
+                array(
+                    'value' => ($model->alerta_sms == 0)?'Envío SMS Desactivado':'Envío SMS Activado',
+                    'name' => 'alerta_sms'
+                ),
+                array(
+                    'value' => ($model->alerta_gps == 0)?'Seguimiento Desactivado':'Seguimiento Activado',
+                    'name' => 'alerta_gps'
+                ),
+                array(
+                    'value' => ($model->alerta_correo == 0)?'Envío de e-mail Desactivado':'Envío de e-mail Activado',
+                    'name' => 'alerta_correo'
+                ),
 	),
-)); ?>
+)); 
+
+?>

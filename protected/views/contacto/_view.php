@@ -26,7 +26,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('estado')); ?>:</b>
-	<?php echo CHtml::encode($data->estado); ?>
+	<?php echo CHtml::encode(($data->estado== 0)?'No ha activado su alerta':'Su dispositivo se encuentra en modo alerta'); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('alerta_sms')); ?>:</b>
