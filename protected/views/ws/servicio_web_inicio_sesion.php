@@ -18,6 +18,7 @@
            $usuario['nombre'] = $row['nombre'];
            $usuario['apellido'] = $row['apellido'];
            $usuario['correo'] = $row['correo'];
+           $usuario['estadoAlerta'] = $row['estado_alerta'];
        }
        
        $consulta = "SELECT * FROM contacto WHERE numero_telefono = '".$telefono."' ORDER BY nombre ASC ;";
