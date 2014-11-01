@@ -129,14 +129,14 @@ class ApiController extends Controller {
                 foreach ($contactos as $contacto) {
                     if ($contacto->alerta_gps == 1) {
                         //TODO crear tabla notificación 
-                        $usuario = Usuario::model()->findByPk($contacto->numero);
+                        $usu = Usuario::model()->findByPk($contacto->numero);
                         $notifiContactos[] = $contacto->numero; 
                         /*
                          * Si el contacto posee una cuenta y se ha registrado con un smartphone
                          * se le podrá enviar una notificacion
                          */
-                        if ($usuario != null) {
-                            $regids[] = $usuario->regid;
+                        if ($usu != null) {
+                            $regids[] = $usu->regid;
                         }
                     }
                     if ($contacto->alerta_correo == 1) {
@@ -179,11 +179,11 @@ class ApiController extends Controller {
             require_once('GCMPushMessage/GCMPushMessage.php');
             //$apiKey = "AIzaSyCsnD0xt6GCZUiFQPkm1OqsZyaOou3Vv78";
 //          $devices = array('APA91bFxTnr_8rZfMaYIRXTr1mw3L_6rUtJbDUaJvHv9J5jLD8r3SRUedqEOQybRllS6SgzGur0ND9LBSLutDZvXf8H3eziCMD2C4u8frbtQnj1Xp2UgV2Rhp_GR8BZOrDMdel34oEth6leJfE1KnLbsag-Jq2U87P9_88HpfhTXYFQYLfj_gcA');
-            $message = "Un amigo se encuentra en peligro";
-
+            $message = $usuario->configuracion->mensaje_alerta;
+            
             $gcpm = new GCMPushMessage($this->API_KEY_GCM);
             $gcpm->setDevices($regids);
-            $response = $gcpm->send($message, array('opcion' => 3, 'msg' => 'hola'));
+            $response = $gcpm->send($message, array('opcion' => 3, 'nombre' => $usuario->nombre,'msg'=>$message));
             echo $response;
         }
     }
@@ -217,10 +217,9 @@ class ApiController extends Controller {
         $lng = (float) $_GET['lng'];
         
         $usuario = Usuario::model()->findByPk(Yii::app()->user->id);
-        foreach ($usuario->configuracion as $conf) {
-            $distance = $conf->radio_busqueda;
-            $id_configuracion = $conf->id_configuracion;
-        }
+        $conf = $usuario->configuracion;
+        $distance = $conf->radio_busqueda;
+        $id_configuracion = $conf->id_configuracion;
         if($distance == null)
             $distance = 5;
        

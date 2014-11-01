@@ -47,8 +47,7 @@ class WebUser extends CWebUser {
     function getIdConfiguracion(){
         $user = $this->loadUser(Yii::app()->user->id);
         if($user != null){
-            foreach($user->configuracion as $configuracion)
-                $conf = $configuracion;
+            $conf = $user->configuracion;
             if(isset($conf))
                 return $conf->id_configuracion;
             return -1;
@@ -58,8 +57,7 @@ class WebUser extends CWebUser {
         $mensajes = array();
         $user = $this->loadUser(Yii::app()->user->id);
         if($user != null){
-            foreach($user->configuracion as $configuracion)
-                $conf = $configuracion;
+            $conf = $user->configuracion;
             $msg = "<ul>";
             
             if($conf != null){

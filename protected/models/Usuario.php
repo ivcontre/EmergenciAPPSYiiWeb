@@ -69,7 +69,7 @@ class Usuario extends CActiveRecord
                         'notificaciones' => array(self::HAS_MANY, 'Notificacion', 'numero_telefono'),
 			'contactos' => array(self::HAS_MANY, 'Contacto', 'numero_telefono'),
 			'idTipoUsuario' => array(self::BELONGS_TO, 'TipoUsuario', 'id_tipo_usuario'),
-                        'configuracion' => array(self::HAS_MANY, 'Configuracion', 'numero_usuario'),
+                        'configuracion' => array(self::HAS_ONE, 'Configuracion', 'numero_usuario'),
 		);
 	}
 
