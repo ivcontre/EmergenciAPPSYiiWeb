@@ -53,6 +53,56 @@ class WebUser extends CWebUser {
             return -1;
         }
     }
+    
+    function obtenerNotificacionesGrafico(){
+        $notificaciones = Yii::app()->db->createCommand()
+            ->select('COUNT(*) as cantidad, DATE(fecha) as fecha')
+            ->from('Notificacion')  //Your Table name
+            ->group('DATE(fecha)') 
+            ->where('fecha BETWEEN date_sub(NOW(), INTERVAL 7 DAY)  AND sysdate()') // Write your where condition here
+            ->queryAll(); 
+        //obtener registrados en los ultimos 7 dias
+        $registrados = Yii::app()->db->createCommand()
+            ->select('COUNT(*) as cantidad, DATE(fecha_ingreso) as fecha')
+            ->from('usuario')  //Your Table name
+            ->group('DATE(fecha_ingreso)') 
+            ->where('fecha_ingreso BETWEEN date_sub(NOW(), INTERVAL 7 DAY)  AND sysdate()') // Write your where condition here
+            ->queryAll();
+        date_default_timezone_set("America/Santiago");
+        $fechaActual = date("Y-m-d");
+        $categories = array(
+            date("Y-m-d",strtotime('-6 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-5 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-4 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-3 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-2 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-1 day',strtotime($fechaActual))),
+            $fechaActual);
+        $dataNotificacion = array(0,0,0,0,0,0,0);
+        $dataRegistrados = array(0,0,0,0,0,0,0);
+        
+        for($i=0; $i<count($notificaciones); $i++){
+            for($j=0; $j<count($categories); $j++){
+                if($notificaciones[$i]['fecha'] == $categories[$j])
+                    $dataNotificacion[$j] = intval($notificaciones[$i]['cantidad']);
+            }
+        }
+        
+        for($i=0; $i<count($registrados); $i++){
+            for($j=0; $j<count($categories); $j++){
+                if($registrados[$i]['fecha'] == $categories[$j])
+                    $dataRegistrados[$j] = intval($registrados[$i]['cantidad']);
+            }
+        }
+        $response['categories'] = $categories;
+        $response['dataNotificaciones'] = $dataNotificacion;
+        $response['dataRegistrados'] = $dataRegistrados;
+        return $response;
+    }
+    /**
+     * Metodo encargado de verificar avisos para usuario
+     * @return Array
+     */
     function verificaAvisos(){
         $mensajes = array();
         $user = $this->loadUser(Yii::app()->user->id);

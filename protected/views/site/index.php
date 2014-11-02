@@ -15,7 +15,25 @@ if(Yii::app()->user->isGuest){
 }else{
      if(Yii::app()->user->isAdmin()){
             //se genera index para administrador
-         echo "admin";
+         $response = Yii::app()->user->obtenerNotificacionesGrafico();
+         $this->widget(
+    'yiiwheels.widgets.highcharts.WhHighCharts',
+    array(
+        'pluginOptions' => array(
+            'title'  => array('text' => 'Gráfico de Actividad en los últimos 7 días'),
+            'xAxis'  => array(
+                'categories' => $response['categories']
+            ),
+            'yAxis'  => array(
+                'title' => array('text' => 'Cantidad')
+            ),
+            'series' => array(
+                array('name' => 'Notificaciones Generadas', 'data' => $response['dataNotificaciones']),
+                array('name' => 'Usuarios registrados', 'data' => $response['dataRegistrados']),
+            )
+        )
+    )
+);
      }else{
          //se genera index para usuario
          $mensajes = Yii::app()->user->verificaAvisos();
