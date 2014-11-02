@@ -35,46 +35,50 @@
         
         $resultado_max = mysql_query("SELECT MAX(id_contacto) FROM contacto", $link);
         $row = mysql_fetch_row($resultado_max);
-        
         $highest_id = $row[0];
-       
-       if($highest_id != 0){
-           $id = $highest_id+1;
-       }else{
-           $id = 1;
-       }
-       $estado = 0;
-       $consulta = "INSERT INTO contacto (id_contacto, numero_telefono, nombre, numero, correo, estado, alerta_sms, alerta_gps, alerta_correo) VALUES (".$id.",'".$numero_telefono."', '".$nombre."', '".$numero."', '".$correo."', ".$estado.", ".$alerta_sms.", ".$alerta_gps.", ".$alerta_correo.");";
-       
-       $resultado = mysql_query($consulta,$link);
+        if($highest_id != 0){
+            $id = $highest_id+1;
+        }else{
+            $id = 1;
+        }
+        
+        $verifica_correro ="SELECT * FROM usuario WHERE correo = '".$correo."'";
+        $resultado_verifica_correo = mysql_query($verifica_correro,$link);
+        $cantidad_usuarios = mysql_num_rows($resultado_verifica_correo);
+        
+        
+        $estado = 0;
+        $consulta = "INSERT INTO contacto (id_contacto, numero_telefono, nombre, numero, correo, estado, alerta_sms, alerta_gps, alerta_correo) VALUES (".$id.",'".$numero_telefono."', '".$nombre."', '".$numero."', '".$correo."', ".$estado.", ".$alerta_sms.", ".$alerta_gps.", ".$alerta_correo.");";
+        $resultado = mysql_query($consulta,$link);
        if($resultado){
-           $mail = new PHPMailer();
-           $mail->isSMTP();
-           $mail->SMTPDebug = 0;
-           $mail->Debugoutput = "html";
-           $mail->Host = 'smtp.gmail.com';
-           $mail->Port = 587;
-           $mail->SMTPSecure = 'tls';
-           $mail->SMTPAuth = true;
-           $mail->Username = "EmergenciAPPS@gmail.com";
-           $mail->Password = "emergencia";
-           $mail->setFrom('EmergenciAPPS@gmail.com', 'Alerta EmergenciAPPS');
-           $mail->addReplyTo('EmergenciAPPS@gmail.com', 'Alerta EmergenciAPPS');
-           $mail->addAddress($correo, $correo);
-           $asunto = "EmergenciAPPS: ".$usuario_nombre." ".$usuario_apellido." te ha agregado como contacto.";
-           $link = "http://parra.chillan.ubiobio.cl:8070/rhormaza/index.php";
-           $mail->Subject = $asunto;
-           $mensaje = "<p>Hola ".$nombre.", ".$usuario_nombre." te ha agregado como un contacto favorito en su Aplicación EmergenciAPPS. Cuando ".$usuario_nombre. " esté en peligro te enviará una alerta para que tú estés al tanto de su situación actual.</p>";
-           $mensaje = $mensaje."<p>Puedes descargar nuestra Aplicación y sentirte seguro en todo momento pinchando el icono<a href='http://parra.chillan.ubiobio.cl:8070/rhormaza/index.php'><img with='64' height='64' src='http://colvin.chillan.ubiobio.cl:8070/rhormaza/Vista/imagen/logo.png'></a></p>";
-           $mensaje = $mensaje."<p>Contacto de ".$usuario_nombre." ".$usuario_apellido."</p>";
-           $mensaje = $mensaje."<p>Número: +569 $numero_telefono</p>";
-           $mensaje = $mensaje."<p>Correo: $usuario_correo</p>";
-           $mail->msgHTML('<p>'.$mensaje.'</p>');
-           $mail->AltBody = $mensaje;
-           $mail->send();
+           if($cantidad_usuarios == 0){
+               $mail = new PHPMailer();
+                $mail->isSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->Debugoutput = "html";
+                $mail->Host = 'smtp.gmail.com';
+                $mail->Port = 587;
+                $mail->SMTPSecure = 'tls';
+                $mail->SMTPAuth = true;
+                $mail->Username = "EmergenciAPPS@gmail.com";
+                $mail->Password = "emergencia";
+                $mail->setFrom('EmergenciAPPS@gmail.com', 'Alerta EmergenciAPPS');
+                $mail->addReplyTo('EmergenciAPPS@gmail.com', 'Alerta EmergenciAPPS');
+                $mail->addAddress($correo, $correo);
+                $asunto = "EmergenciAPPS: ".$usuario_nombre." ".$usuario_apellido." te ha agregado como contacto.";
+                $link = "http://parra.chillan.ubiobio.cl:8070/rhormaza/index.php";
+                $mail->Subject = $asunto;
+                $mensaje = "<p>Hola ".$nombre.", ".$usuario_nombre." te ha agregado como un contacto favorito en su Aplicación EmergenciAPPS. Cuando ".$usuario_nombre. " esté en peligro te enviará una alerta para que tú estés al tanto de su situación actual.</p>";
+                $mensaje = $mensaje."<p>Puedes descargar nuestra Aplicación y sentirte seguro en todo momento pinchando el icono<a href='http://parra.chillan.ubiobio.cl:8070/rhormaza/index.php'><img with='64' height='64' src='http://colvin.chillan.ubiobio.cl:8070/rhormaza/Vista/imagen/logo.png'></a></p>";
+                $mensaje = $mensaje."<p>Contacto de ".$usuario_nombre." ".$usuario_apellido."</p>";
+                $mensaje = $mensaje."<p>Número: +569 $numero_telefono</p>";
+                $mensaje = $mensaje."<p>Correo: $usuario_correo</p>";
+                $mail->msgHTML('<p>'.$mensaje.'</p>');
+                $mail->AltBody = $mensaje;
+                $mail->send();
+           }
            
-               echo "true";
-           
+           echo "true";
            
        }else{
            echo "false";
