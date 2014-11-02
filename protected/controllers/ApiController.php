@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
 
+
+
 /**
  * Description of ApiController
  *
@@ -162,10 +164,65 @@ class ApiController extends Controller {
      * 
      * @param type $correos
      */
-    private function enviarCorreo($correos) {
-        foreach ($correos as $correo) {
-//            echo $correo . " ";
+    public function actionEnviaCorreo() {
+        Yii::import('application.vendors.*');
+        require_once('PHPMailer/PHPMailerAutoload.php');
+        if (isset($_REQUEST['id_usuario'])) {
+            $id = $_REQUEST['id_usuario'];
         }
+        $lat = $_REQUEST['lat'];
+        $lng = $_REQUEST['lng'];
+        $configuracion = Configuracion::model()->findAllByAttributes(array('numero_usuario'=>$id));
+        foreach ($configuracion as $conf){
+            $mensaje_alerta = $conf->mensaje_alerta;
+        }
+        
+        $usuario = Usuario::model()->findByPk($id);
+        $miNombre = $usuario->nombre;
+        $miApellido = $usuario->apellido;
+        $miCorreo = $usuario->correo;
+        
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        
+        $mail->SMTPDebug = 0;
+
+        $mail->Debugoutput = "html";
+
+        $mail->Host = 'smtp.gmail.com';
+
+        $mail->Port = 587;
+
+        $mail->SMTPSecure = 'tls';
+
+        $mail->SMTPAuth = true;
+
+        $mail->Username = "EmergenciAPPS@gmail.com";
+
+        $mail->Password = "emergencia";
+
+        $mail->setFrom('EmergenciAPPS@gmail.com', 'Alerta EmergenciAPPS');
+        
+        $asunto="Ayuda a tu amigo $miNombre ".$miApellido;
+        $mail->Subject = $asunto;
+        
+        $link = "http://colvin.chillan.ubiobio.cl:8070/rhormaza/Vista/emergenciaAPPS.php?x=$lat&y=$lng";
+        $mensaje = "<p>$miNombre ".$miApellido." dice: \"$mensaje_alerta\".</p>";
+        $mensaje = $mensaje."<p> Puedes llamarlo al siguiente número +569$id,</p><p> o ver dónde se encuentra en el siguiente link:</p> ".$link;
+
+        $mail->msgHTML('<p>'.$mensaje.'</p>');
+        $mail->AltBody = $mensaje;
+        
+        $contactos = Contacto::model()->findAllByAttributes(array('numero_telefono'=>$id,'alerta_correo'=>1));
+        foreach ($contactos as $cont){
+            
+            $mail->addAddress($cont->correo, $cont->correo);
+            $mail->send();
+        }
+        
+        
+        
+        
     }
     /**
      * Funcion encargada de enviar notificacion a usuarios registrados con un dispositivo
@@ -365,6 +422,24 @@ class ApiController extends Controller {
         
 
        
+        
+    }
+    
+    public function actionEliminarRegId(){
+        if (isset($_REQUEST['id_usuario'])) {
+            $id = $_REQUEST['id_usuario'];
+        }
+        $usuario = Usuario::model()->findByPk($id);
+        if($usuario != null){
+            $usuario->regid = " ";
+            
+        }
+        if($usuario->save()){
+            echo "true";
+        }else{
+            echo "false";
+        }
+        
         
     }
 

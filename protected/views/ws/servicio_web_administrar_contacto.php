@@ -1,7 +1,7 @@
 <?php
-    require 'PHPMailer/PHPMailerAutoload.php';
+    require '../../vendors/PHPMailer/PHPMailerAutoload.php';
     
-    
+   
     if(isset($_POST['numero_telefono'])){
        $numero_telefono = $_POST['numero_telefono']; 
     }
@@ -28,6 +28,7 @@
     mysql_select_db("rhormaza",$link);
     
     if($_POST['id_contacto'] == -1){ // Se ingresa contacto nuevo
+        
         $usuario_nombre = $_POST['usuario_nombre'];
         $usuario_apellido = $_POST['usuario_apellido'];
         $usuario_correo = $_POST['usuario_correo'];
@@ -81,10 +82,12 @@
        mysql_close($link);
       
     }else{ // Se elimina un contacto
-        if(!isset($_POST['numero_telefono']) && !isset($_POST['numero']) && !isset($_POST['nombre']) && !isset($_POST['correo'])){
+        if(!isset($_POST['numero_telefono']) && !isset($_POST['numero']) && !isset($_POST['nombre']) && !isset($_POST['correo']) && isset($_POST['id_contacto'])){
+            
             $id_contacto = $_POST['id_contacto'];
             $consulta = "DELETE FROM contacto WHERE id_contacto = ".$id_contacto.";";
             $resultado = mysql_query($consulta,$link);
+            
             if($resultado){
                 echo "true";
             }else{
@@ -93,6 +96,7 @@
             mysql_close($link);
            
         }else{ // Se actualiza un contacto
+            
             $id_contacto = $_POST['id_contacto'];
             $estado = $_POST['estado'];
             $consulta = "UPDATE contacto SET numero_telefono = '".$numero_telefono."', nombre = '".$nombre."', numero = '".$numero."', correo = '".$correo."', estado = ".$estado.", alerta_sms = ".$alerta_sms.", alerta_gps = ".$alerta_gps.", alerta_correo = ".$alerta_correo." WHERE id_contacto = ".$id_contacto.";";
