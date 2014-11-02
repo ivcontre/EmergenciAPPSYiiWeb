@@ -442,6 +442,33 @@ class ApiController extends Controller {
         
         
     }
+    
+    public function actionGetContactos(){
+        if (isset($_REQUEST['id_usuario'])) {
+            $id = $_REQUEST['id_usuario'];
+        }
+        
+        $contactos = Contacto::model()->findAllByAttributes(array('numero_telefono'=>$id));
+        $arrayContactos = Array();
+        
+        foreach($contactos as $con){
+           $contacto['id_contacto'] = $con['id_contacto'];
+           $contacto['nombre'] = utf8_encode($con['nombre']);
+           $contacto['numero_telefono'] = $con['numero_telefono'];
+           $contacto['numero'] = $con['numero'];
+           $contacto['correo'] = $con['correo'];
+           $contacto['alerta_sms'] = $con['alerta_sms'];
+           $contacto['alerta_gps'] = $con['alerta_gps'];
+           $contacto['alerta_correo'] = $con['alerta_correo'];
+           $contacto['estado'] = $con['estado'];
+           $arrayContactos[] = $contacto;
+        }
+         
+         echo json_encode($arrayContactos);
+        
+        
+        
+    }
 
 }
 
