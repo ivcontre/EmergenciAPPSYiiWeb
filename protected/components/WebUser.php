@@ -142,5 +142,17 @@ class WebUser extends CWebUser {
         }
     }
     
+    public function countAlertas(){
+        $alertas = Yii::app()->db->createCommand()
+            ->select('COUNT(*) as cantidad')
+            ->from('Notificacion')  //Your Table name
+            ->where('numero_contacto='.Yii::app()->user->id) // Write your where condition here
+            ->queryAll(); 
+        if($alertas[0]['cantidad'] > 0){
+            return TbHtml::badge($alertas[0]['cantidad'], array('color' => TbHtml::BADGE_COLOR_IMPORTANT));
+        }else{
+            return TbHtml::badge('0', array('color' => TbHtml::BADGE_COLOR_INFO));
+        }
+    }
 }
 ?>

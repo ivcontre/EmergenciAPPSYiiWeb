@@ -50,6 +50,8 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                         array('label'=>'Bomberos', 'url'=>array('/bombero/index'), 'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>"Seguimiento",'url'=>array('/contacto/seguimiento'), 'visible'=>Yii::app()->user->isUser()),
+                                        //array("<li><a>".Yii::app()->user->countAlertas()."</a></li>",'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'Perfil','items'=>array(
                                                         array('label'=>'Ver Perfil','url'=>array('usuario/view', 'id'=>Yii::app()->user->id), 'visible'=>Yii::app()->user->isUser()),
                                                         array('label'=>'Mis Contactos','url'=>array('contacto/admin'), 'visible'=>Yii::app()->user->isUser()),
@@ -67,6 +69,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                 ),
                     )));
 ?>
+
 <div  class="container" id="page">
 
 	<div id="mainmenu">

@@ -205,11 +205,7 @@ class ContactoController extends Controller
                     foreach($notificaciones as $notificacion){
                         
                         $user = $notificacion->usuario;
-                        $cfgs = $user->configuracion;
-                        $configuracion;
-                        foreach($cfgs as $conf){
-                            $configuracion = $conf;
-                        }
+                        $configuracion = $user->configuracion;
                          
                         $listUser[] = array(
                             'label'=>$user->nombre.' - '.$user->numero_telefono, 
