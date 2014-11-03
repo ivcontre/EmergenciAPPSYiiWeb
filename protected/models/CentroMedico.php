@@ -91,6 +91,9 @@ class CentroMedico extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+                
+                $_SESSION['datos_filtrados'] = $criteria;
+                
                 $criteria->with = 'idComuna';
                 
                 $criteria->compare('idComuna.nombre',$this->id_comuna,true);

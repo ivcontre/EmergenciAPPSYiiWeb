@@ -195,4 +195,30 @@ class CentroMedicoController extends Controller
             }
             echo CJSON::encode($arr);
     }
+    
+        public function actionPrintDocument(){
+            $model = new CentroMedico;
+            $criteria = $_SESSION['datos_filtrados'];
+            $data = CentroMedico::model()->findAll($criteria);
+            
+            $mPDF1 = Yii::app()->ePdf->mpdf(
+                    'utf-8',
+                    'LETTER',
+                    0,
+                    '12',
+                    15,
+                    15,
+                    50,
+                    25,
+                    9,
+                    9,
+                    'P'
+                    );
+            $mPDF1->useOnlyCoreFonts = true;
+            $mPDF1->SetTitle("Centros Médicos");
+            $mPDF1->SetAuthor("EmergenciAPPS");
+            $mPDF1->SetDisplayMode("fullpage");
+            $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$data),true));
+            $mPDF1->Output('CentrosMedicos'.date('YmdHis'),'I');
+        }
 }
