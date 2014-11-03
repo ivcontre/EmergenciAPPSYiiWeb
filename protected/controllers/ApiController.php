@@ -153,7 +153,7 @@ class ApiController extends Controller {
                     if(!$notificacion->save())
                         echo var_dump($notificacion->getErrors());
                 }
-                //$this->enviarCorreo($correos);
+                $this->enviarCorreos($correos, $usuario);
                 $this->enviarNotificacion($regids, $usuario);
             }
         }
@@ -164,23 +164,19 @@ class ApiController extends Controller {
      * 
      * @param type $correos
      */
-    public function actionEnviaCorreo() {
+    public function enviarCorreos($correos, $usuario) {
         Yii::import('application.vendors.*');
         require_once('PHPMailer/PHPMailerAutoload.php');
-        if (isset($_REQUEST['id_usuario'])) {
-            $id = $_REQUEST['id_usuario'];
-        }
-        $lat = $_REQUEST['lat'];
-        $lng = $_REQUEST['lng'];
-        $configuracion = Configuracion::model()->findAllByAttributes(array('numero_usuario'=>$id));
-        foreach ($configuracion as $conf){
-            $mensaje_alerta = $conf->mensaje_alerta;
-        }
         
-        $usuario = Usuario::model()->findByPk($id);
+        $configuracion = $usuario->configuracion;
+        
+        $mensaje_alerta = $configuracion->mensaje_alerta;
+
         $miNombre = $usuario->nombre;
         $miApellido = $usuario->apellido;
         $miCorreo = $usuario->correo;
+        $lat = $usuario->latitud;
+        $lng = $usuario->longitud;
         
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -208,15 +204,15 @@ class ApiController extends Controller {
         
         $link = "http://colvin.chillan.ubiobio.cl:8070/rhormaza/Vista/emergenciaAPPS.php?x=$lat&y=$lng";
         $mensaje = "<p>$miNombre ".$miApellido." dice: \"$mensaje_alerta\".</p>";
-        $mensaje = $mensaje."<p> Puedes llamarlo al siguiente número +569$id,</p><p> o ver dónde se encuentra en el siguiente link:</p> ".$link;
+        $mensaje = $mensaje."<p> Puedes llamarlo al siguiente número +569$usuario->numero_telefono,</p><p> o ver dónde se encuentra en el siguiente link:</p> ".$link;
 
         $mail->msgHTML('<p>'.$mensaje.'</p>');
         $mail->AltBody = $mensaje;
         
         $contactos = Contacto::model()->findAllByAttributes(array('numero_telefono'=>$id,'alerta_correo'=>1));
-        foreach ($contactos as $cont){
+        foreach ($correos as $correo){
             
-            $mail->addAddress($cont->correo, $cont->correo);
+            $mail->addAddress($correo, $correo);
             $mail->send();
         }
         
