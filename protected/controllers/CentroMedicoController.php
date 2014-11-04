@@ -217,7 +217,8 @@ class CentroMedicoController extends Controller
             $mPDF1->SetTitle("Centros Médicos");
             $mPDF1->SetAuthor("EmergenciAPPS");
             $mPDF1->SetDisplayMode("fullpage");
-            $mPDF1->WriteHTML($this->renderPartial('reporte',array('models'=>$data),true));
+            $mPDF1->WriteHTML(Yii::app()->baseUrl.'protected/extensions/bootstrap/assets/css/bootstrap.css',1);
+            $mPDF1->WriteHTML($this->renderPartial('reporte',array('models'=>$data),true),2);
             $mPDF1->Output('CentrosMedicos','I');
         }
 }
