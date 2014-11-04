@@ -1,9 +1,11 @@
 
 <?php Yii::app()->bootstrap->register(); ?>
         <div class="container">
-            <h1><small>Centros médicos</small></h1>
+            <h1><small>Bomberos de Chile</small></h1>
+            
+
 <?php
-/* @var $model CentroMedico */
+/* @var $model Bombero */
 /* @var $criteria Criteria */
 
     $this->widget('bootstrap.widgets.TbGridView', array(

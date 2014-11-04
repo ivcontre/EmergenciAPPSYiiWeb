@@ -1,7 +1,7 @@
 
 <?php Yii::app()->bootstrap->register(); ?>
         <div class="container">
-            <h1><small>Centros médicos</small></h1>
+            <h1><small>Carabineros de Chile</small></h1>
 <?php
 /* @var $model CentroMedico */
 /* @var $criteria Criteria */
