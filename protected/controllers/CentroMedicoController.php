@@ -36,7 +36,7 @@ class CentroMedicoController extends Controller
 				'users'=>array('@'),
 			),
                         array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','view'),
+				'actions'=>array('create','update','view','PrintDocument'),
 				'users'=>array('admin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -219,6 +219,6 @@ class CentroMedicoController extends Controller
             $mPDF1->SetAuthor("EmergenciAPPS");
             $mPDF1->SetDisplayMode("fullpage");
             $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$data),true));
-            $mPDF1->Output('CentrosMedicos'.date('YmdHis'),'I');
+            $mPDF1->Output('CentrosMedicos','I');
         }
 }
