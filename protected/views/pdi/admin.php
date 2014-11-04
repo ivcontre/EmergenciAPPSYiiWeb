@@ -7,8 +7,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PDI', 'url'=>array('index')),
-	array('label'=>'Create PDI', 'url'=>array('create')),
+	array('label'=>'Ingresar Nuevo', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
