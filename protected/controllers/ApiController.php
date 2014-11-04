@@ -208,12 +208,10 @@ class ApiController extends Controller {
 
         $mail->msgHTML('<p>'.$mensaje.'</p>');
         $mail->AltBody = $mensaje;
-        
-        $contactos = Contacto::model()->findAllByAttributes(array('numero_telefono'=>$id,'alerta_correo'=>1));
         foreach ($correos as $correo){
             
             $mail->addAddress($correo, $correo);
-            $mail->send();
+            echo $mail->send();
         }
         
         

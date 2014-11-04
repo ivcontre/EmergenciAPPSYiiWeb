@@ -98,7 +98,7 @@ class PDI extends CActiveRecord
 		$criteria->compare('x',$this->x);
 		$criteria->compare('y',$this->y);
 		$criteria->compare('telefono',$this->telefono,true);
-                $_SESSION['datos_filtrados'] = $criteria;
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

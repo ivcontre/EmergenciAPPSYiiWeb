@@ -8,6 +8,8 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Ingresar Nuevo', 'url'=>array('create')),
+     TbHtml::menuDivider(),
+        array('label'=>'Generar Reporte', 'url'=>array('PrintDocument')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
