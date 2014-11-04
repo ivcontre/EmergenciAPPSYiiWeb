@@ -197,7 +197,6 @@ class CentroMedicoController extends Controller
     }
     
         public function actionPrintDocument(){
-            $model = new CentroMedico;
             $criteria = $_SESSION['datos_filtrados'];
             $data = CentroMedico::model()->findAll($criteria);
             
@@ -214,11 +213,11 @@ class CentroMedicoController extends Controller
                     9,
                     'P'
                     );
-            $mPDF1->useOnlyCoreFonts = true;
+            $mPDF1->useOnlyCoreFonts = false;
             $mPDF1->SetTitle("Centros Médicos");
             $mPDF1->SetAuthor("EmergenciAPPS");
             $mPDF1->SetDisplayMode("fullpage");
-            $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$data),true));
+            $mPDF1->WriteHTML($this->renderPartial('reporte',array('models'=>$data),true));
             $mPDF1->Output('CentrosMedicos','I');
         }
 }
