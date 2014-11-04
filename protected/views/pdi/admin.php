@@ -24,7 +24,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar Policia de Investigaciones</h1>
+<h1>Administrar Policía de Investigaciones</h1>
 
 <?php 
 $this->widget('bootstrap.widgets.TbGridView', array(

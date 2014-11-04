@@ -34,7 +34,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
    'dataProvider' => $model->search(),
    'filter' => $model,
    'type' => TbHtml::GRID_TYPE_HOVER,
-   'template' => "{items}",
+   
    'columns'=>array(
 		'id_comuna',
 		'nombre',

@@ -15,16 +15,14 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
         
-        <script type="text/javascript"
-            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyABFOUcj13ijdy8NXET-QDrMTFzVEvbMEY&sensor=false">
-        </script>
+       
         
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/funciones.js"></script>
         <!--link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/YiiBootstrap-master/css/bootstrap.css" media="print" /-->
         <?php Yii::app()->bootstrap->register(); ?>
 
          
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	
         
 </head>
 
