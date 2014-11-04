@@ -36,7 +36,7 @@ class BomberoController extends Controller
 				'users'=>array('@'),
 			),
                         array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','view'),
+				'actions'=>array('create','update','view','PrintDocument'),
 				'users'=>array('admin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -195,4 +195,35 @@ class BomberoController extends Controller
             }
             echo CJSON::encode($arr);
     }
+    
+    public function actionPrintDocument(){
+            $this->layout="";
+            $criteria = $_SESSION['datos_filtrados'];
+            $model = new Bombero();
+            
+            $data = Bombero::model()->findAll($criteria);
+           
+            $mPDF1 = Yii::app()->ePdf->mpdf(
+                    'utf-8',
+                    'LETTER',
+                    0,
+                    '12',
+                    15,
+                    15,
+                    50,
+                    25,
+                    9,
+                    9,
+                    'P'
+                    );
+            $mPDF1->useOnlyCoreFonts = false;
+            $mPDF1->SetTitle("Cuerpos de Bomberos");
+            $mPDF1->SetAuthor("EmergenciAPPS");
+            $mPDF1->SetDisplayMode("fullpage");
+            //$this->renderPartial('reporte',array('models'=>$data));
+            $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria),true));
+            $this->layout='//layouts/column2';
+            $mPDF1->Output('Bomberos','I');
+            
+        }
 }
