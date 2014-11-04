@@ -9,9 +9,9 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Login</h1>
+<h1>Inicio Sesión</h1>
 
-<p>Please fill out the following form with your login credentials:</p>
+
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -35,7 +35,7 @@ $this->breadcrumbs=array(
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
+			Hint: Debes logearte como <kbd>Usuario</kbd> or <kbd>Administrador</kbd>.
 		</p>
 	</div>
 
@@ -45,9 +45,12 @@ $this->breadcrumbs=array(
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
-	</div>
+	<div class="form-actions">
+        <?php echo TbHtml::submitButton('Iniciar',array(
+		    'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
+		    
+		)); ?>
+    </div>
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
