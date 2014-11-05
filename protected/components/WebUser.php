@@ -146,7 +146,7 @@ class WebUser extends CWebUser {
         $alertas = Yii::app()->db->createCommand()
             ->select('COUNT(*) as cantidad')
             ->from('Notificacion')  //Your Table name
-            ->where('numero_contacto='.Yii::app()->user->id) // Write your where condition here
+            ->where('numero_contacto='.Yii::app()->user->id.' and estado=1') // Write your where condition here
             ->queryAll(); 
         if($alertas[0]['cantidad'] > 0){
             return TbHtml::badge($alertas[0]['cantidad'], array('color' => TbHtml::BADGE_COLOR_IMPORTANT));

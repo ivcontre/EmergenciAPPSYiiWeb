@@ -33,9 +33,11 @@
 $this->widget('bootstrap.widgets.TbNavbar', array(
                 'brandLabel' => 'EmergenciAPPS',
                 'collapse' => true,
+                //'encodeLabel'=>false,
                 'items' => array(
                                 array(
                                     'class' => 'bootstrap.widgets.TbNav',
+                                    'encodeLabel'=>false,
                                     'items' => array(
                                         array('label'=>'Inicio', 'url'=>array('/site/index')),                                        
                                         array('label'=>'Registrarse', 'url'=>array('/site/register'),'visible'=>Yii::app()->user->isGuest),
@@ -50,7 +52,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                         array('label'=>'Bomberos', 'url'=>array('/bombero/index'), 'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>Yii::app()->user->isUser()),
-                                        array('label'=>"Seguimiento",'url'=>array('/contacto/seguimiento'), 'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>"Seguimiento ".Yii::app()->user->countAlertas(),'url'=>array('/contacto/seguimiento'), 'visible'=>Yii::app()->user->isUser()),
                                         //array("<li><a>".Yii::app()->user->countAlertas()."</a></li>",'visible'=>Yii::app()->user->isUser()),
                                         array('label'=>'Perfil','items'=>array(
                                                         array('label'=>'Ver Perfil','url'=>array('usuario/view', 'id'=>Yii::app()->user->id), 'visible'=>Yii::app()->user->isUser()),
