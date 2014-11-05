@@ -25,8 +25,11 @@ Yii::app()->clientScript->registerScript('helpers', '
           };                                                                                                          
       ');  
 $alertas = $this->alertas();
+echo "<div class='contenedor_dropdown'>";
 echo TbHtml::buttonDropdown($alertas['title'],$alertas['labels'],$alertas['htmlOptions'] 
+        
 );
+echo "</div>";
 ?>
 
  <div id="map" style="width:100%; height:600px"></div>

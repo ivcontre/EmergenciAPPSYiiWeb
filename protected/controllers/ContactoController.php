@@ -28,7 +28,7 @@ class ContactoController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','alertas'),
 				'users'=>array('user'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -39,7 +39,7 @@ class ContactoController extends Controller
 				'actions'=>array('admin','delete','seguimiento'),
 				'users'=>array('user'),
 			),
-                        
+                    
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -221,6 +221,48 @@ class ContactoController extends Controller
                     
                 }
                 return $response;
+            }
+        }
+        
+        public function actionAlertas(){
+            $usuario = Usuario::model()->findByPk(Yii::app()->user->id);
+            $id_usuario = $_REQUEST['id_usuario'];
+            $lat;
+            $lng;
+            if($usuario != null){
+                $response = array();
+                $response['title'] = 'No tienes alertas';
+                $notificaciones = Notificacion::model()->findAllByAttributes(array('numero_contacto'=>$usuario->numero_telefono, 'estado'=>'1'));
+                if($notificaciones != null){
+                    $response['title'] = 'Amigos en Peligro!';
+                    $response['htmlOptions'] = array('color'=>TbHtml::BUTTON_COLOR_WARNING);
+                    $listUser = array();
+                    foreach($notificaciones as $notificacion){
+                        
+                        $user = $notificacion->usuario;
+                        $configuracion = $user->configuracion;
+                         if($user->numero_telefono == $id_usuario){
+                             $lat = $user->latitud;
+                             $lng = $user->longitud;
+                         }
+                        $listUser[] = array(
+                            'label'=>$user->nombre.' - '.$user->numero_telefono, 
+                            'url'=>'javascript:actionSeguimiento.cargaPunto('.$user->latitud.','.$user->longitud.',"'.$user->nombre.'","'.$user->numero_telefono.'","'.$configuracion->mensaje_alerta.'")'
+                            );
+                        
+                    }
+                    $response['labels'] = $listUser;
+                }else{
+                    
+                    $response['labels'] = array();
+                    $response['htmlOptions'] = array('color'=>TbHtml::BUTTON_COLOR_SUCCESS);
+                    
+                }
+                $dropdown =  TbHtml::buttonDropdown($response['title'],$response['labels'],$response['htmlOptions']); 
+                $response['dropdown'] = $dropdown;
+                $response['lat'] = $lat;
+                $response['lng'] = $lng;
+                echo json_encode($response);
             }
         }
 }
