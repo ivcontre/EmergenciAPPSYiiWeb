@@ -227,8 +227,8 @@ class ContactoController extends Controller
         public function actionAlertas(){
             $usuario = Usuario::model()->findByPk(Yii::app()->user->id);
             $id_usuario = $_REQUEST['id_usuario'];
-            $lat;
-            $lng;
+            $lat = 0;
+            $lng = 0;
             if($usuario != null){
                 $response = array();
                 $response['title'] = 'No tienes alertas';

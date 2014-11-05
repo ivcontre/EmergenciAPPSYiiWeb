@@ -70,7 +70,7 @@ console.log('iniciando eventos para Seguimiento, usuario');
                 infowindow.open(map,markerAlerta);
             });
              console.log("Se inicia Evento de tiempo");
-            accionTiempo = setInterval("actionSeguimiento.actualizaPosicion()", 30000);
+            accionTiempo = setInterval("actionSeguimiento.actualizaPosicion()", 1000);
             // clearInterval(time);
         },
                 
@@ -87,9 +87,9 @@ console.log('iniciando eventos para Seguimiento, usuario');
                    $("div.contenedor_dropdown").append(response['dropdown']);
                    if(response['lat'] == 0 && response['lng'] == 0){
                        clearInterval(accionTiempo);
-                       alert('El usuario ya no está en peligro, si quieres llamalo al teléfono '
-                               +numeroTelefono+ 'para saber más de él');
-                       markerAlerta = null;
+                       alert('El usuario ya no está en peligro, si deseas puedes llamarlo al siguiente número '
+                               +numeroTelefono+ ' para saber más de él');
+                       markerAlerta.setMap(null);
                    }else{
                        locationAlerta = new google.maps.LatLng(response['lat'],response['lng']);
                        map.setCenter(locationAlerta);
