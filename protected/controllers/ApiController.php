@@ -74,21 +74,21 @@ class ApiController extends Controller {
            $usuario = Usuario::model()->findByPk($numero_telefono);
            if($usuario != null){
                if($lat != 0 && $lng != 0){
-               $usuario->latitud = $lat;
-               $usuario->longitud = $lng;
-               if($usuario->save()){
-                   echo "actualizacion correcta";
-               }else{
-                   echo "no fue posible actualizar ";
-               }
+                    $usuario->latitud = $lat;
+                    $usuario->longitud = $lng;
+                    if($usuario->save()){
+                        echo "ubicacion actualizada correctamente";
+                    }else{
+                        echo "ubicacion no pudo ser actualizada";
+                    }
                }else{
                    $usuario->latitud = $lat;
                    $usuario->longitud = $lng;
                    $usuario->estado_alerta = 0;                  
                     if($usuario->save()){
-                        echo "actualizacion correcta";
+                        echo "true";
                     }else{
-                        echo "no fue posible actualizar ";
+                        echo "false";
                     }
                     $notificaciones = Notificacion::model()->findAllByAttributes(array('numero_telefono'=>$usuario->numero_telefono,'estado'=>1));
                     if($notificaciones != null){
@@ -119,7 +119,10 @@ class ApiController extends Controller {
             $usuario->estado_alerta = 1;
             $usuario->latitud = $lat;
             $usuario->longitud = $lng;
-            $usuario->save();
+            if($usuario->save()){
+                echo 'true';
+            }
+            
             $regids = array();
             $correos = array();
             $contactos = $usuario->contactos;
@@ -211,7 +214,7 @@ class ApiController extends Controller {
         foreach ($correos as $correo){
             
             $mail->addAddress($correo, $correo);
-            echo $mail->send();
+            $mail->send();
         }
         
         
@@ -235,7 +238,7 @@ class ApiController extends Controller {
             $gcpm = new GCMPushMessage($this->API_KEY_GCM);
             $gcpm->setDevices($regids);
             $response = $gcpm->send($message, array('opcion' => 3, 'nombre' => $usuario->nombre,'msg'=>$message));
-            echo $response;
+            
         }
     }
     /**
