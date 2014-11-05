@@ -27,7 +27,11 @@ console.log('iniciando eventos para Seguimiento, usuario');
                  navigator.geolocation.getCurrentPosition(function(position) { 
                  initialLocationuser = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
                  map.setCenter(initialLocationuser);
-                 markerMyPosition = new google.maps.Marker({position: initialLocationuser,map:map});
+                 markerMyPosition = new google.maps.Marker({
+                     position: initialLocationuser,
+                     map:map,
+                     animation: google.maps.Animation.DROP
+                 });
                  markerMyPosition.setMap(map);
                  });
             }
@@ -64,6 +68,7 @@ console.log('iniciando eventos para Seguimiento, usuario');
                 position: locationAlerta,
                 map:map,
                 title: nombre + " N° telefónico: "+ numero,
+                animation: google.maps.Animation.DROP,
             });
             //se agrega info window al hacer click en el marcador del usuario en alerta
             google.maps.event.addListener(markerAlerta, 'click', function() {
