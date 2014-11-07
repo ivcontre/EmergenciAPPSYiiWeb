@@ -220,7 +220,7 @@ class CentroMedicoController extends Controller
             $mPDF1->SetTitle("Centros Médicos");
             $mPDF1->SetAuthor("EmergenciAPPS");
             $mPDF1->SetDisplayMode("fullpage");
-            //$this->renderPartial('reporte',array('models'=>$data));
+            //$this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria));
             $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria),true));
             $this->layout='//layouts/column2';
             $mPDF1->Output('CentrosMedicos','I');
