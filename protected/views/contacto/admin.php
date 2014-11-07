@@ -48,9 +48,22 @@ $('.search-form form').submit(function(){
 		'numero',
 		'correo',
 		//'estado',
-		'alerta_sms',
-		'alerta_gps',
-		'alerta_correo',
+		//'alerta_sms',
+                array(
+                    'header'=> 'alerta_sms',
+                    'value' => '(($data->alerta_sms == 0)?"No":"Si")',
+                    'name' => 'alerta_sms'
+                ),
+		array(
+                    'header'=> 'alerta_sms',
+                    'value' => '(($data->alerta_gps == 0)?"No":"Si")',
+                    'name' => 'alerta_gps'
+                ),
+		array(
+                    'header'=> 'alerta_sms',
+                    'value' => '(($data->alerta_correo == 0)?"No":"Si")',
+                    'name' => 'alerta_correo'
+                ),
 		
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
