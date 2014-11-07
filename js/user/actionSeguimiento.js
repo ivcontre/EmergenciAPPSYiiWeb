@@ -7,6 +7,7 @@ console.log('iniciando eventos para Seguimiento, usuario');
       var markerMyPosition;
       var markerAlerta;
       var map;
+      var contador = false;
       var latitud, longitud, nombreAlerta, numeroTelefono, mensaje;
       var accionTiempo;
       return {
@@ -75,7 +76,7 @@ console.log('iniciando eventos para Seguimiento, usuario');
                 infowindow.open(map,markerAlerta);
             });
              console.log("Se inicia Evento de tiempo");
-            accionTiempo = setInterval("actionSeguimiento.actualizaPosicion()", 1000);
+            accionTiempo = setInterval("actionSeguimiento.actualizaPosicion()", 30000);
             // clearInterval(time);
         },
                 
@@ -88,14 +89,20 @@ console.log('iniciando eventos para Seguimiento, usuario');
                 data: datos,
                 dataType: "json",
                 success: function(response) {
-                   $("div.contenedor_dropdown").empty();
-                   $("div.contenedor_dropdown").append(response['dropdown']);
+                   if(contador){
+                        $("div.contenedor_dropdown").empty();
+                        $("div.contenedor_dropdown").append(response['dropdown']);
+                        contador = false;
+                   }else{
+                       contador = true;
+                   }
                    if(response['lat'] == 0 && response['lng'] == 0){
                        clearInterval(accionTiempo);
                        alert('El usuario ya no está en peligro, si deseas puedes llamarlo al siguiente número '
                                +numeroTelefono+ ' para saber más de él');
                        markerAlerta.setMap(null);
                    }else{
+                       
                        locationAlerta = new google.maps.LatLng(response['lat'],response['lng']);
                        map.setCenter(locationAlerta);
                        markerAlerta.setPosition(locationAlerta);
