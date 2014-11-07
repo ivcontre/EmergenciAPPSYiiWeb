@@ -11,7 +11,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-
+        'language' => 'es',
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
@@ -77,6 +77,7 @@ return array(
 //		),
 		// uncomment the following to use a MySQL database
 		// ip publica 146.83.196.166;port=3306
+                // eeOtuy7L icontrer _________  czeSCfCQ  rhormaza
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=rhormaza',
 			'emulatePrepare' => true,
