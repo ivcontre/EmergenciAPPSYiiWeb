@@ -25,6 +25,7 @@
 class Usuario extends CActiveRecord
 {
         public $password_repeat;
+        public $password_old;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -42,7 +43,12 @@ class Usuario extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('numero_telefono, id_tipo_usuario, nombre, apellido, correo, password', 'required', 'message'=>'El campo {attribute} no puede ser vacío'),
-			array('id_tipo_usuario, estado_alerta', 'numerical', 'integerOnly'=>true),
+			array('password_repeat','required','on'=>'register', 'message'=>'El campo {attribute} no puede ser vacío'),
+                        
+                        array('password_old, password','required','on'=>'updatePass', 'message'=>'El campo {attribute} no puede ser vacío'),
+                        array('password_old', 'verificaOldPassword', 'on'=>'updatePass', 'message'=>'password incorrecto'),
+                        
+                        array('id_tipo_usuario, estado_alerta', 'numerical', 'integerOnly'=>true),
 			array('latitud, longitud', 'numerical'),
 			array('numero_telefono', 'length', 'max'=>25),
                         array('correo', 'length', 'max'=>50),
@@ -51,8 +57,9 @@ class Usuario extends CActiveRecord
                         array('regid', 'length', 'max'=>200),
 			array('nombre, apellido', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>20),
+                        array('password', 'verificaPassword', 'on'=>'update', 'message'=>'password incorrecto'),
                         array('password_repeat', 'compare', 'compareAttribute'=>'password', 'on'=>'register', 'message'=>'Verifique contraseña por favor'),
-			// The following rule is used by search().
+                        // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('numero_telefono, regid, id_tipo_usuario, nombre, apellido, correo, password, estado_alerta, latitud, longitud', 'safe', 'on'=>'search'),
 		);
@@ -77,19 +84,62 @@ class Usuario extends CActiveRecord
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
-	{
-		return array(
+	{       
+            switch( $this->getScenario() ){
+                case 'register':
+                    return array(
 			'numero_telefono' => 'Numero Telefono',
 			'regid' => 'Regid',
 			'id_tipo_usuario' => 'Id Tipo Usuario',
 			'nombre' => 'Nombre',
 			'apellido' => 'Apellido',
 			'correo' => 'Correo',
-			'password' => 'Password',
+			'password' => 'Contraseña',
+                        'password_repeat' => 'Confirmar contraseña',
 			'estado_alerta' => 'Estado Alerta',
 			'latitud' => 'Latitud',
 			'longitud' => 'Longitud',
 		);
+                    break;
+                case 'update':
+                    return array(
+			'numero_telefono' => 'N° Teléfono',
+			'regid' => 'Regid',
+			'id_tipo_usuario' => 'Id Tipo Usuario',
+			'nombre' => 'Nombre',
+			'apellido' => 'Apellido',
+			'correo' => 'Correo',
+			'password' => 'Contraseña',
+                        'password_repeat' => 'Confirmar contraseña',
+                        'password_new' => 'Contraseña',
+			'estado_alerta' => 'Estado Alerta',
+			'latitud' => 'Latitud',
+			'longitud' => 'Longitud',
+		);
+                    break;
+                case 'updatePass':
+                    return array(
+			'password' => 'Contraseña Nueva',
+                        'password_old' => 'Contraseña Actual',
+		);
+                    break;
+                default:
+                    return array(
+			'numero_telefono' => 'Numero Telefono',
+			'regid' => 'Regid',
+			'id_tipo_usuario' => 'Id Tipo Usuario',
+			'nombre' => 'Nombre',
+			'apellido' => 'Apellido',
+			'correo' => 'Correo',
+			'password' => 'Contraseña',
+                        'password_repeat' => 'Confirmar contraseña',
+                        'password_new' => 'Contraseña',
+			'estado_alerta' => 'Estado Alerta',
+			'latitud' => 'Latitud',
+			'longitud' => 'Longitud',
+		);
+            }
+	
 	}
 
 	/**
@@ -144,4 +194,20 @@ class Usuario extends CActiveRecord
                 return;
             }
         } 
+        
+        public function verificaPassword($att, $params){
+            $model = self::model()->findByPk(Yii::app()->user->id);
+            if($model->password != $this->password){
+                $this->addError($att,"El password es incorrecto");
+                return;
+            }
+        }
+        
+        public function verificaOldPassword($att, $params){
+            $model = self::model()->findByPk(Yii::app()->user->id);
+            if($model->password != $this->password_old){
+                $this->addError($att,"El password es incorrecto");
+                return;
+            }
+        }
 }

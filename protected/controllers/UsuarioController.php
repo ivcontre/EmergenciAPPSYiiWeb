@@ -28,11 +28,11 @@ class UsuarioController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','update'),
+				'actions'=>array('index','view','update', 'updatePass'),
 				'users'=>array('user'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create', 'view', 'update'),
+				'actions'=>array('create', 'view', 'update', 'updatePass'),
 				'users'=>array('admin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -148,6 +148,29 @@ class UsuarioController extends Controller
 			'model'=>$model,
 		));
 	}
+        
+        public function actionUpdatePass(){
+		$model=$this->loadModel(Yii::app()->user->id);
+                $model->setScenario('updatePass');
+                $model->password = "";
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+                 if(isset($_POST['ajax']) && $_POST['ajax']==='usuario-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+		if(isset($_POST['Usuario']))
+		{
+			$model->attributes=$_POST['Usuario'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->numero_telefono));
+		}
+
+		$this->render('updatePass',array(
+			'model'=>$model,
+		));
+        }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
