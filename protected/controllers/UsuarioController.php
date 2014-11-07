@@ -32,7 +32,7 @@ class UsuarioController extends Controller
 				'users'=>array('user'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create'),
+				'actions'=>array('create', 'view', 'update'),
 				'users'=>array('admin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -89,10 +89,14 @@ class UsuarioController extends Controller
 	{
                 $this->allowEdit($id);
 		$model=$this->loadModel($id);
-
+                $model->password = "";
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+                 if(isset($_POST['ajax']) && $_POST['ajax']==='usuario-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
 		if(isset($_POST['Usuario']))
 		{
 			$model->attributes=$_POST['Usuario'];
