@@ -39,7 +39,7 @@ class Contacto extends CActiveRecord
 			array('estado, alerta_sms, alerta_gps, alerta_correo', 'numerical', 'integerOnly'=>true),
 			array('numero_telefono, numero', 'length', 'max'=>15),
 			array('nombre', 'length', 'max'=>50),
-			array('correo', 'length', 'max'=>25),
+			array('correo', 'length', 'max'=>35),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_contacto, numero_telefono, nombre, numero, correo, estado, alerta_sms, alerta_gps, alerta_correo', 'safe', 'on'=>'search'),

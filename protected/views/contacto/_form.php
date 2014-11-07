@@ -23,7 +23,7 @@
 
             <?php echo $form->textFieldControlGroup($model,'numero',array('span'=>5,'maxlength'=>15)); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'correo',array('span'=>5,'maxlength'=>25)); ?>
+            <?php echo $form->textFieldControlGroup($model,'correo',array('span'=>5,'maxlength'=>35)); ?>
 
             <?php //echo $form->textFieldControlGroup($model,'estado',array('span'=>5)); ?>
     
@@ -61,7 +61,7 @@
             <?php //echo $form->textFieldControlGroup($model,'alerta_correo',array('span'=>5)); ?>
 
         <div class="form-actions">
-        <?php echo TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array(
+        <?php echo TbHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar',array(
 		    'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
 		    'size'=>TbHtml::BUTTON_SIZE_LARGE,
 		)); ?>

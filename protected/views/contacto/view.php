@@ -25,8 +25,6 @@ $this->menu=array(
     ),
     'data'=>$model,
     'attributes'=>array(
-		'id_contacto',
-		'numero_telefono',
 		'nombre',
 		'numero',
 		'correo',

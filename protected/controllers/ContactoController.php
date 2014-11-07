@@ -70,7 +70,11 @@ class ContactoController extends Controller
 
 		if (isset($_POST['Contacto'])) {
 			$model->attributes=$_POST['Contacto'];
+                        //se setean valores por defecto
+                        $model->estado = 1;
+                        $model->numero_telefono = Yii::app()->user->id;
 			if ($model->save()) {
+                                //Enviar correo
 				$this->redirect(array('view','id'=>$model->id_contacto));
 			}
 		}
