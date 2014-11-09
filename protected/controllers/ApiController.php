@@ -430,6 +430,8 @@ class ApiController extends Controller {
         if($usuario != null){
             $usuario->regid = " ";
             
+        }else{
+            echo "modelo vacio";
         }
         if($usuario->save()){
             echo "true";
