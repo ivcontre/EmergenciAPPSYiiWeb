@@ -57,6 +57,7 @@ class ApiController extends Controller {
 
         $usuario = Usuario::model()->findByPk($numero_telefono);
         if ($usuario != null) {
+            $usuario->setScenario('appmovil');
             $usuario->regid = $regid;
             $usuario->save();
             echo "true";
@@ -72,7 +73,9 @@ class ApiController extends Controller {
            
            $numero_telefono = $_REQUEST['id_usuario'];
            $usuario = Usuario::model()->findByPk($numero_telefono);
+           
            if($usuario != null){
+               $usuario->setScenario('appmovil');
                if($lat != 0 && $lng != 0){
                     $usuario->latitud = $lat;
                     $usuario->longitud = $lng;
@@ -427,8 +430,9 @@ class ApiController extends Controller {
             $id = $_REQUEST['id_usuario'];
         }
         $usuario = Usuario::model()->findByPk($id);
+        $usuario->setScenario('appmovil');
         if($usuario != null){
-            $usuario->regid = " ";
+            $usuario->regid = "";
             
         }else{
             echo "modelo vacio";
