@@ -90,18 +90,43 @@ border-top: 1px solid #dddddd;
 
 
 </style>
+<?php 
+/*
+ * @var $modelFilter CentroMedico
+ */
+date_default_timezone_set("America/Santiago");
+
+?>
 <?php Yii::app()->bootstrap->register(); ?>
         <div class="container">
-            <h1><small>Centros médicos</small></h1>
+            <div class="row"><h1>Fecha Reporte: <small><?PHP echo $fecha = date("Y-m-d G:i:s"); ?></small></h1></div>
+             <HR width="100%">
+             <h1><small>Datos de Filtrado</small></h1>
+            <?php $this->widget('zii.widgets.CDetailView', array(
+                    'data'=>$modelFilter,
+                    'attributes'=>array(
+                            'id',
+                            'nombre',
+                            'direccion',
+                            'id_comuna',
+                            'telefono',
+                    ),
+            ));
+            $dataProvider = new CActiveDataProvider($model, array(
+                                                    'criteria'=>$criteria,
+                                                    'pagination'=>false,));
+?>
+            <HR width="100%">
+            <h1><small>Centros médicos - N° Resultados: <?php echo $dataProvider->getTotalItemCount();?></small></h1>
+            
 <?php
 /* @var $model CentroMedico */
 /* @var $criteria Criteria */
 
+    
     $this->widget('bootstrap.widgets.TbGridView', array(
     'type' => TbHtml::GRID_TYPE_HOVER,
-    'dataProvider'=>new CActiveDataProvider($model, array(
-                                                    'criteria'=>$criteria,
-                                                    'pagination'=>false,)),
+    'dataProvider'=>$dataProvider,
     'template' => "{items}",
     'columns'=>array(
 		array(

@@ -105,6 +105,7 @@ class CentroMedico extends CActiveRecord
 		$criteria->compare('y',$this->y);
 		$criteria->compare('telefono',$this->telefono,true);
                 $_SESSION['datos_filtrados'] = $criteria;
+                $_SESSION['centroMedicoFilter']=$this;
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

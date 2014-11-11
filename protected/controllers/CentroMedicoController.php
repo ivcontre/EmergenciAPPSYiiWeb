@@ -198,10 +198,10 @@ class CentroMedicoController extends Controller
     
         public function actionPrintDocument(){
             $this->layout="";
-            $criteria = $_SESSION['datos_filtrados'];
-            $model = new CentroMedico();
+            $criteria = $_SESSION['datos_filtrados']; // consulta
+            $modelFilter = $_SESSION['centroMedicoFilter']; // Datos utilizados para el filtro
+            $model = new CentroMedico(); // nuevo modelo
             
-            $data = CentroMedico::model()->findAll($criteria);
            
             $mPDF1 = Yii::app()->ePdf->mpdf(
                     'utf-8',
@@ -210,8 +210,8 @@ class CentroMedicoController extends Controller
                     '12',
                     15,
                     15,
-                    50,
-                    25,
+                    16,
+                    16,
                     9,
                     9,
                     'P'
@@ -221,7 +221,7 @@ class CentroMedicoController extends Controller
             $mPDF1->SetAuthor("EmergenciAPPS");
             $mPDF1->SetDisplayMode("fullpage");
             //$this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria));
-            $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria),true));
+            $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria, 'modelFilter'=>$modelFilter),true));
             $this->layout='//layouts/column2';
             $mPDF1->Output('CentrosMedicos','I');
             
