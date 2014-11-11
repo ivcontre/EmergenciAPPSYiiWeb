@@ -1,5 +1,5 @@
 <!-- blueprint CSS framework -->
-<!--link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/bootstrap/assets/css/bootstrap.css" /-->
+<!--link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->request->baseUrl; ?>/protected/extensions/bootstrap/assets/css/bootstrap.css" /-->
 
 <style>
 body {
@@ -104,14 +104,26 @@ border-top: 1px solid #dddddd;
                                                     'pagination'=>false,)),
     'template' => "{items}",
     'columns'=>array(
-		'id',
-		'nombre',
-		'direccion',
+		array(
+                    'value' => '$data->id',
+                    'name' => 'ID'
+                ),
+                array(
+                    'value' => '$data->nombre',
+                    'name' => 'Nombre'
+                ),
+                array(
+                    'value' => '$data->direccion',
+                    'name' => 'Dirección'
+                ),
 		array(
                     'value' => '$data->idComuna->nombre',
                     'name' => 'Comuna'
                 ),
-		'telefono',
+		array(
+                    'value' => '$data->telefono',
+                    'name' => 'Teléfono'
+                ),
 	),
     ));
 ?>

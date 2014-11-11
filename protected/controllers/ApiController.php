@@ -48,10 +48,10 @@ class ApiController extends Controller {
 
     // Actions
     public function actionRegistroGCM() {
-        if (isset($_POST['id_contacto'])) {
-            $numero_telefono = $_POST['id_contacto'];
-            if (isset($_POST['regid'])) {
-                $regid = $_POST['regid'];
+        if (isset($_REQUEST['id_contacto'])) {
+            $numero_telefono = $_REQUEST['id_contacto'];
+            if (isset($_REQUEST['regid'])) {
+                $regid = $_REQUEST['regid'];
             }
         }
 
@@ -119,6 +119,7 @@ class ApiController extends Controller {
         $lng = $_REQUEST['lng'];
         $usuario = Usuario::model()->findByPk($id);
         if ($usuario != null) {
+             $usuario->setScenario('appmovil');
             $usuario->estado_alerta = 1;
             $usuario->latitud = $lat;
             $usuario->longitud = $lng;

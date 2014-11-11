@@ -66,7 +66,14 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                            , 'visible'=>Yii::app()->user->isUser()),
                                         
                                         array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                                        array('label'=>'Cerrar Sesión ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>Yii::app()->user->isAdmin())
+                                        array('label'=>'Perfil','items'=>array(                                                     
+                                                        array('label'=>'Cuenta','url'=>array('usuario/view&id='.Yii::app()->user->id), 'visible'=>Yii::app()->user->isAdmin()),
+                                                        TbHtml::menuDivider(),
+                                                        array('label'=>'Cerrar Sesión ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>Yii::app()->user->isAdmin())
+                                            
+                                            )
+                                           , 'visible'=>Yii::app()->user->isAdmin()),
+                                        
                                     ),
                                 ),
                     )));
