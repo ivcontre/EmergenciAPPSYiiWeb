@@ -87,6 +87,7 @@ class ConfiguracionController extends Controller
 	public function actionUpdate($id)
 	{
                 $this->allowEdit($id);
+                $this->layout='//layouts/column1';
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -105,6 +106,7 @@ class ConfiguracionController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
+                $layout='//layouts/column2';
 	}
 
 	/**

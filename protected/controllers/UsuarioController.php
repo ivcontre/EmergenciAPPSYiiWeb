@@ -87,7 +87,9 @@ class UsuarioController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+                
                 $this->allowEdit($id);
+                $this->layout='//layouts/column1';
 		$model=$this->loadModel($id);
                 $model->password = "";
 		// Uncomment the following line if AJAX validation is needed
@@ -107,6 +109,7 @@ class UsuarioController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**
@@ -150,6 +153,7 @@ class UsuarioController extends Controller
 	}
         
         public function actionUpdatePass(){
+                $this->layout='//layouts/column1';
 		$model=$this->loadModel(Yii::app()->user->id);
                 $model->setScenario('updatePass');
                 $model->password = "";
@@ -170,6 +174,7 @@ class UsuarioController extends Controller
 		$this->render('updatePass',array(
 			'model'=>$model,
 		));
+                $this->layout='//layouts/column2';
         }
 
 	/**
