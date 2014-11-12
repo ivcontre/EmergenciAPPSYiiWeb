@@ -285,7 +285,7 @@ class ApiController extends Controller {
 
        
         
-        $laConsulta = 'SELECT ' . $tabla . '.id AS id, ' . $tabla . '.nombre AS nombre, ' . $tabla . '.x AS x, ' . $tabla . '.y AS y, ' . $tabla . '.direccion AS direccion,' . $tabla . '.telefono AS telefono ,comuna.nombre AS nombre
+        $laConsulta = 'SELECT ' . $tabla . '.id AS id, ' . $tabla . '.nombre AS t_nombre, ' . $tabla . '.x AS x, ' . $tabla . '.y AS y, ' . $tabla . '.direccion AS direccion,' . $tabla . '.telefono AS telefono ,comuna.nombre AS nombre
 
                                             , ( 6371 * ACOS( 
                                                  COS( RADIANS(' . $lat . ') ) 
@@ -314,7 +314,7 @@ class ApiController extends Controller {
            foreach($rows as $row){
                 $columna = array();
                 $columna['id'] = $row['id'];
-                $columna['nombre'] = utf8_encode($row['nombre']);
+                $columna['nombre'] = utf8_encode($row['t_nombre']);
                 $columna['lat'] = $row['x'];
                 $columna['lng'] = $row['y'];
                 $columna['direccion'] = utf8_encode($row['direccion']);

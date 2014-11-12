@@ -6,9 +6,9 @@
 	mysql_select_db("rhormaza",$link);
         
 	
-	$laConsulta = 	"SELECT * 
-					FROM ".$tabla.", comuna 
-					WHERE ".$tabla.".id_comuna = comuna.id_comuna 
+	$laConsulta = 	"SELECT id, t.nombre as t_nombre, x, y, direccion, telefono
+					FROM ".$tabla." as t, comuna 
+					WHERE t.id_comuna = comuna.id_comuna 
 					AND comuna.nombre ='".$comuna."' ;";
 					
 	$resultado = mysql_query($laConsulta,$link);
@@ -18,7 +18,7 @@
         while ($row = mysql_fetch_array($resultado)){
 	   $columna = array();
 	   $columna['id'] = $row['id'];
-	   $columna['nombre'] = utf8_encode($row['nombre']);
+	   $columna['nombre'] = utf8_encode($row['t_nombre']);
 	   $columna['lat'] = $row['x'];
 	   $columna['lng'] = $row['y'];
 	   $columna['direccion'] = utf8_encode( $row['direccion']);
