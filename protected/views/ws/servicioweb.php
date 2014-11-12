@@ -8,7 +8,7 @@
 $link = mysql_connect("localhost","rhormaza","czeSCfCQ");
 mysql_select_db("rhormaza",$link);
 
-$laConsulta = 'SELECT '.$tabla.'.id AS id, '.$tabla.'.nombre AS nombre, '.$tabla.'.x AS x, '.$tabla.'.y AS y, '.$tabla.'.direccion AS direccion,'.$tabla.'.telefono AS telefono ,comuna.nombre AS nombre
+$laConsulta = 'SELECT '.$tabla.'.id AS id, '.$tabla.'.nombre AS t_nombre, '.$tabla.'.x AS x, '.$tabla.'.y AS y, '.$tabla.'.direccion AS direccion,'.$tabla.'.telefono AS telefono ,comuna.nombre AS nombre
         
                                         , ( 6371 * ACOS( 
                                              COS( RADIANS(' . $lat . ') ) 
@@ -30,7 +30,7 @@ $laConsulta = 'SELECT '.$tabla.'.id AS id, '.$tabla.'.nombre AS nombre, '.$tabla
            while ($row = mysql_fetch_array($resultado)){
                            $columna = array();
                            $columna['id'] = $row['id'];
-                           $columna['nombre'] = utf8_encode($row['nombre']);
+                           $columna['nombre'] = utf8_encode($row['t_nombre']);
                            $columna['lat'] = $row['x'];
                            $columna['lng'] = $row['y'];
                            $columna['direccion'] = utf8_encode( $row['direccion']);

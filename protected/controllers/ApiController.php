@@ -285,7 +285,7 @@ class ApiController extends Controller {
 
        
         
-        $laConsulta = 'SELECT ' . $tabla . '.id AS id, ' . $tabla . '.nombre AS nombre, ' . $tabla . '.x AS x, ' . $tabla . '.y AS y, ' . $tabla . '.direccion AS direccion,' . $tabla . '.telefono AS telefono ,comuna.nombre AS nombre
+        $laConsulta = 'SELECT ' . $tabla . '.id AS id, ' . $tabla . '.nombre AS t_nombre, ' . $tabla . '.x AS x, ' . $tabla . '.y AS y, ' . $tabla . '.direccion AS direccion,' . $tabla . '.telefono AS telefono ,comuna.nombre AS nombre
 
                                             , ( 6371 * ACOS( 
                                                  COS( RADIANS(' . $lat . ') ) 
@@ -314,7 +314,7 @@ class ApiController extends Controller {
            foreach($rows as $row){
                 $columna = array();
                 $columna['id'] = $row['id'];
-                $columna['nombre'] = utf8_encode($row['nombre']);
+                $columna['nombre'] = utf8_encode($row['t_nombre']);
                 $columna['lat'] = $row['x'];
                 $columna['lng'] = $row['y'];
                 $columna['direccion'] = utf8_encode($row['direccion']);
@@ -470,6 +470,101 @@ class ApiController extends Controller {
          
          echo json_encode($arrayContactos);
         
+        
+        
+    }
+    public function actionActualizaNumeroCarabinero(){
+        if (isset($_REQUEST['id_usuario']) && isset($_REQUEST['numero_carabinero'])) {
+            $id = $_REQUEST['id_usuario'];
+            $numero_carabinero = $_REQUEST['numero_carabinero'];
+        }
+        $usuario = Usuario::model()->findByPk($id);
+        
+        
+        
+        if($usuario != null){
+            $configuracion = $usuario->configuracion;
+            
+            if($configuracion != null){
+               $configuracion->numero_carabinero = $numero_carabinero; 
+            }else{
+                echo "modelo configuracion vacio";
+            }
+            
+            
+        }else{
+            echo "modelo usuario vacio";
+        }
+        
+        if($configuracion->save()){
+            echo "true";
+        }else{
+            echo "false";
+        }
+        
+        
+    }
+    
+    public function actionActualizaNumeroBombero(){
+        if (isset($_REQUEST['id_usuario']) && isset($_REQUEST['numero_bombero'])) {
+            $id = $_REQUEST['id_usuario'];
+            $numero_bombero = $_REQUEST['numero_bombero'];
+        }
+        $usuario = Usuario::model()->findByPk($id);
+        
+        
+        
+        if($usuario != null){
+            $configuracion = $usuario->configuracion;
+            
+            if($configuracion != null){
+               $configuracion->numero_bombero = $numero_bombero; 
+            }else{
+                echo "modelo configuracion vacio";
+            }
+            
+            
+        }else{
+            echo "modelo usuario vacio";
+        }
+        
+        if($configuracion->save()){
+            echo "true";
+        }else{
+            echo "false";
+        }
+        
+        
+    }
+    
+    public function actionActualizaNumeroCentroMedico(){
+        if (isset($_REQUEST['id_usuario']) && isset($_REQUEST['numero_centro_medico'])) {
+            $id = $_REQUEST['id_usuario'];
+            $numero_centro_medico = $_REQUEST['numero_centro_medico'];
+        }
+        $usuario = Usuario::model()->findByPk($id);
+        
+        
+        
+        if($usuario != null){
+            $configuracion = $usuario->configuracion;
+            
+            if($configuracion != null){
+               $configuracion->numero_centro_medico = $numero_centro_medico; 
+            }else{
+                echo "modelo configuracion vacio";
+            }
+            
+            
+        }else{
+            echo "modelo usuario vacio";
+        }
+        
+        if($configuracion->save()){
+            echo "true";
+        }else{
+            echo "false";
+        }
         
         
     }
