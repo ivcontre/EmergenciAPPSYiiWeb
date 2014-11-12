@@ -24,22 +24,31 @@
             <?php echo $form->textFieldControlGroup($model,'numero_bombero',array('span'=>5,'maxlength'=>15)); ?>
 
             <?php echo $form->textFieldControlGroup($model,'numero_centro_medico',array('span'=>5,'maxlength'=>15)); ?>
-            
+    <div class="control-group">
             <?php echo $form->labelEx($model,'radio_busqueda'); ?>
+        <input type="text" id="valor_slider" readonly style="border:0; color:#f6931f; font-weight:bold;" value="<?php echo $model->radio_busqueda?> (KM)">
+        <div class="controls">
             <?php 
             $form->widget('zii.widgets.jui.CJuiSliderInput', array(
                 'model'=>$model,
                 'name'=>'Configuracion_radio_busqueda',
                 'attribute'=>'radio_busqueda',
+                'event'=>'change',
                 'options'=>array(
                     'range'=>'min',
                     'min'=>0,
                     'max'=>20,
-                    'slide'=>'js:function(event, ui) { $("#Configuracion_radio_busqueda").val(ui.value);}'
+                    'slide'=>'js:function(event, ui) {
+                        console.log(ui.value);
+                        $("#Configuracion_radio_busqueda").val(ui.value);
+                        $("#valor_slider").val(ui.value + " (KM)");
+                        }'
                 ),
             ));
-            
+           
             ?>
+        </div>
+         </div>
             <?php //echo $form->hiddenField($model, 'radio_busqueda');?>
             <?php //echo $form->textFieldControlGroup($model,'radio_busqueda',array('span'=>5)); ?>
 
