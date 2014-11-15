@@ -31,6 +31,7 @@
 <body >
 <?PHP
 $this->widget('bootstrap.widgets.TbNavbar', array(
+                'color' => TbHtml::NAVBAR_COLOR_INVERSE,
                 'brandLabel' => 'EmergenciAPPS',
                 'collapse' => true,
                 //'encodeLabel'=>false,

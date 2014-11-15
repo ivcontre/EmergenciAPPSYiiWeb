@@ -7,14 +7,54 @@ body
 	background: #EFEFEF;
 }
 #map img { max-width:none; }
+.white {
+    color: #FFF;
+}
+.brillo{
+    background-image: url("../images/fondoslider.png");
+    background-repeat: repeat-x;
+    width: 60%;
+    height: 65px;
+    padding-top: 40px;
+    color: #FFF;
+    float: left;
+}
 
+.brillo2{
+    background-image: url("../images/fondoslider.png");
+    background-repeat: repeat-x;
+    width: 40%;
+    height: 65px;
+    padding-top: 10px;
+    color: #FFF;
+    float: left;
+    font-weight: bold;
+}
+.contactos{
+    background: #FFF;
+}
+
+.falso{
+    margin: 0 auto;
+    width: 300px;
+}
+
+.falso h1{
+    color: #FFF;
+}
 #page
 {
 	margin-top: 50px;
 	margin-bottom: 5px;
-	background: white;
+	
+}
+.row .white{
+    background: #FFF;
 }
 
+.note .white{
+    background: #FFF;
+}
 #header
 {
 	margin: 0;
@@ -37,8 +77,8 @@ body
 	padding: 10px;
 	font-size: 0.8em;
 	text-align: center;
-	border-top: 1px solid #C9E0ED;
-        background-color: #f5f5f5;
+	border-top: 1px solid #000000;
+        background-color: #353535;
 }
 
 #logo

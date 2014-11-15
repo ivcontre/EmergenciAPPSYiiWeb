@@ -90,7 +90,7 @@ console.log('iniciando eventos de Centros Medicos, usuario');
                         var marker = new google.maps.Marker({
                         position: latlng,
                         title: item.nombre,
-                        icon: yii.urls.base+"/icons/marcadorbombero.png"});
+                        icon: yii.urls.base+"/icons/marcadorhospital.png"});
                         bounds.extend(latlng);
                         var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p><input type='button' value='Ir' onclick='actionCentroMedico.ruta("+item.lat+","+item.lng+");'></div>";
                         google.maps.event.addListener(marker,"click", function(){

@@ -150,10 +150,11 @@ class ContactoController extends Controller
 		if (isset($_GET['Contacto'])) {
 			$model->attributes=$_GET['Contacto'];
 		}
-
+                $this->layout='';
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+                $this->layout='//layouts/column2';
 	}
         
         public function actionSeguimiento(){

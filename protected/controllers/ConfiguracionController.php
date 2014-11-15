@@ -87,6 +87,7 @@ class ConfiguracionController extends Controller
 	public function actionUpdate($id)
 	{
                 $this->allowEdit($id);
+                
                 $this->layout='//layouts/column1';
 		$model=$this->loadModel($id);
 

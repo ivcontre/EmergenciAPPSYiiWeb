@@ -10,9 +10,16 @@ if(Yii::app()->user->isGuest){
         array('image' => Yii::app()->request->baseUrl.'/images/carabineros_prop.png', 'label' => 'Third Thumbnail label', 'caption' => '...'),
     ));
     $this->widget('bootstrap.widgets.TbHeroUnit', array(
-        'heading' => 'Bienvenido a '.CHtml::encode(Yii::app()->name),
-        'content' => $carousel.'<p>Regístrate en nuestra página, descarga nuestra aplicación y sientete seguro en todo momento.</p>' . TbHtml::button('Descargar', array('color' =>TbHtml::BUTTON_COLOR_PRIMARY, 'size' => TbHtml::BUTTON_SIZE_LARGE)),
-    )); 
+        'heading' => '',
+        'content' => $carousel,
+    ));
+    echo '<div class="brillo">';
+    echo '<p>Regístrate en nuestra página, descarga nuestra aplicación y sientete seguro en todo momento.</p>';
+    echo '</div>';
+    echo '<div class="brillo2">';
+    echo '<a href="#"><img src="'.Yii::app()->request->baseUrl.'/icons/botondescarga.png" > </a>Descargar';
+    //echo TbHtml::button('Descargar', array('color' =>TbHtml::BUTTON_COLOR_PRIMARY, 'size' => TbHtml::BUTTON_SIZE_LARGE));
+    echo '</div>';
 }else{
      if(Yii::app()->user->isAdmin()){
             //se genera index para administrador
