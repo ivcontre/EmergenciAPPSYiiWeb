@@ -10,7 +10,7 @@ console.log('iniciando eventos de PDI, usuario');
       var directionsService = new google.maps.DirectionsService();
       var ventana;
       var miComuna;
-      
+      var radioBusqueda;
       return {
         
         
@@ -104,7 +104,19 @@ console.log('iniciando eventos de PDI, usuario');
                     });
                     map.fitBounds(bounds);
                     }
-                   
+                    
+                    radioBusqueda = new google.maps.Circle({
+                                                strokeColor: "#0B0B61",
+                                                strokeOpacity: 0.8,
+                                                strokeWeight: 1,
+                                                fillColor: "#0B0B61",
+                                                fillOpacity: 0.05,
+                                                map: map,
+                                                center: initialLocationuser,
+                                                clickable: false,
+                                                zIndex: -1,
+                                                radius: (response.radio * 1000)
+                                              });
                     
                 },
                 error: function(e) {

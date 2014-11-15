@@ -11,7 +11,7 @@ console.log('iniciando eventos de carabineros, usuario');
       var ventana;
       var info;
       var miComuna;
-      
+      var radioBusqueda;
       
       return {
         
@@ -104,7 +104,19 @@ console.log('iniciando eventos de carabineros, usuario');
                     });
                     map.fitBounds(bounds); 
                 }
-                   
+                
+                radioBusqueda = new google.maps.Circle({
+                                                strokeColor: "#31B404",
+                                                strokeOpacity: 0.8,
+                                                strokeWeight: 1,
+                                                fillColor: "#31B404",
+                                                fillOpacity: 0.05,
+                                                map: map,
+                                                center: initialLocationuser,
+                                                clickable: false,
+                                                zIndex: -1,
+                                                radius: (response.radio * 1000)
+                                              });
                     
                 },
                 error: function(e) {

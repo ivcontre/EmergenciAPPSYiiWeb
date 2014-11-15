@@ -317,7 +317,7 @@ class ApiController extends Controller {
                 $columna['nombre'] = utf8_encode($row['t_nombre']);
                 $columna['lat'] = $row['x'];
                 $columna['lng'] = $row['y'];
-                $columna['direccion'] = utf8_encode($row['direccion']);
+                $columna['direccion'] =$row['direccion'];
                 $columna['telefono'] = $row['telefono'];
                 $columna['distancia'] = $row['distance'];
                 $columna['comuna'] = utf8_encode($row['nombre']);
@@ -327,7 +327,7 @@ class ApiController extends Controller {
             
             $total[$tabla] = $filas;
             $total['comuna'] = $filas[0]['comuna'];
-
+            $total['radio'] = $distance;
             echo json_encode($total); 
         }else{
             $total[$tabla] = 0;

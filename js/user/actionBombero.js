@@ -13,7 +13,7 @@ console.log('iniciando eventos de bomberos, usuario');
       var info;
       var lat;
       var lng;
-      
+      var radioBusqueda;
       
       
       return {
@@ -115,7 +115,18 @@ console.log('iniciando eventos de bomberos, usuario');
                     });
                     map.fitBounds(bounds);
                    }
-                   
+                   radioBusqueda = new google.maps.Circle({
+                                                strokeColor: "#B40404",
+                                                strokeOpacity: 0.8,
+                                                strokeWeight: 1,
+                                                fillColor: "#B40404",
+                                                fillOpacity: 0.05,
+                                                map: map,
+                                                center: initialLocationuser,
+                                                clickable: false,
+                                                zIndex: -1,
+                                                radius: (response.radio * 1000)
+                                              });
                     
                 },
                 error: function(e) {
