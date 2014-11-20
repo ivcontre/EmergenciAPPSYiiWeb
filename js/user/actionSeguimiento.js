@@ -10,6 +10,8 @@ console.log('iniciando eventos para Seguimiento, usuario');
       var contador = false;
       var latitud, longitud, nombreAlerta, numeroTelefono, mensaje;
       var accionTiempo;
+      var ventana;
+      var initialLocationuser;
       return {
 
         cargarMapa: function(){
@@ -26,15 +28,38 @@ console.log('iniciando eventos para Seguimiento, usuario');
             if(navigator.geolocation){
                 browserSupportFlag = true;
                  navigator.geolocation.getCurrentPosition(function(position) { 
-                 initialLocationuser = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-                 map.setCenter(initialLocationuser);
-                 markerMyPosition = new google.maps.Marker({
-                     position: initialLocationuser,
-                     map:map,
-                     animation: google.maps.Animation.DROP
-                 });
-                 markerMyPosition.setMap(map);
-                 });
+                    initialLocationuser = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                    map.setCenter(initialLocationuser);
+                    markerMyPosition = new google.maps.Marker({
+                        position: initialLocationuser,
+                        map:map,
+                        icon:yii.urls.base+"/icons/iconoposicion_37x37.png",
+                        animation: google.maps.Animation.DROP
+                    });
+                    markerMyPosition.setMap(map);
+                 
+                 /*
+                  * Se busca direccion del usuario
+                  */
+                    geocoder.geocode({'latLng': initialLocationuser}, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                if (results[0]) {
+                                    var direccion = results[0].formatted_address;
+                                    var info = "<div><h2>Estás Aquí</h2><p>"+results[0].formatted_address+"</p></div>";
+                                    markerMyPosition.setMap(map);
+                                    google.maps.event.addListener(markerMyPosition,"click", function(){
+                                       if(ventana){
+                                           ventana.close();
+                                       }
+                                        ventana = new google.maps.InfoWindow({content:info});
+                                         ventana.open(map, markerMyPosition);
+
+                                       
+                                   });
+                                }
+                            }
+                        });
+                     });
             }
         },
         /**
@@ -69,6 +94,7 @@ console.log('iniciando eventos para Seguimiento, usuario');
                 position: locationAlerta,
                 map:map,
                 title: nombre + " N° telefónico: "+ numero,
+                icon:yii.urls.base+"/icons/posicionauxilio_37x29.png",
                 animation: google.maps.Animation.DROP,
             });
             //se agrega info window al hacer click en el marcador del usuario en alerta
@@ -101,6 +127,7 @@ console.log('iniciando eventos para Seguimiento, usuario');
                        alert('El usuario ya no está en peligro, si deseas puedes llamarlo al siguiente número '
                                +numeroTelefono+ ' para saber más de él');
                        markerAlerta.setMap(null);
+                       map.setCenter(initialLocationuser);
                    }else{
                        
                        locationAlerta = new google.maps.LatLng(response['lat'],response['lng']);

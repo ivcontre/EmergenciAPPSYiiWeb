@@ -54,7 +54,7 @@ console.log('iniciando eventos de bomberos, usuario');
                                  
                                  document.getElementById("comuna").value = miComuna;
                                  info = "<div><h2>Estás Aquí</h2><p>"+results[0].formatted_address+"</p></div>";
-                                 marker = new google.maps.Marker({position: initialLocationuser,map:map});
+                                 marker = new google.maps.Marker({position: initialLocationuser,map:map,icon:yii.urls.base+"/icons/iconoposicion_37x37.png"});
                                  markersArray.push(marker);
                                  google.maps.event.addListener(marker,"click", function(){
                                     if(ventana){
