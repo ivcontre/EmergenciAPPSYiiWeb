@@ -139,6 +139,7 @@ class BomberoController extends Controller
 	 */
 	public function actionAdmin()
 	{
+            $this->layout='';
 		$model=new Bombero('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Bombero']))
@@ -147,6 +148,7 @@ class BomberoController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+            $this->layout='//layouts/column2';
 	}
 
 	/**

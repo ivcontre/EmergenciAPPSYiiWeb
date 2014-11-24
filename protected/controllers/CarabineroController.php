@@ -139,6 +139,7 @@ class CarabineroController extends Controller
 	 */
 	public function actionAdmin()
 	{
+            $this->layout='';
 		$model=new Carabinero('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Carabinero']))
@@ -147,6 +148,7 @@ class CarabineroController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**

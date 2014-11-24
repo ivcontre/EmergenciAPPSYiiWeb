@@ -139,6 +139,7 @@ class PdiController extends Controller
 	 */
 	public function actionAdmin()
 	{
+            $this->layout='';
 		$model=new PDI('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['PDI']))
@@ -147,6 +148,7 @@ class PdiController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**
