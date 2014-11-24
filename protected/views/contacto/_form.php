@@ -4,7 +4,7 @@
 /* @var $form TbActiveForm */
 ?>
 
-<div class="form">
+<div class="form white">
 
     <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'contacto-form',
@@ -60,7 +60,7 @@
             <?php //echo $form->checkBoxControlGroup($model, 'alerta_correo', array('span' => 5)); ?>
             <?php //echo $form->textFieldControlGroup($model,'alerta_correo',array('span'=>5)); ?>
 
-        <div class="form-actions">
+        <div class="">
         <?php echo TbHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar',array(
 		    'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
 		    'size'=>TbHtml::BUTTON_SIZE_LARGE,

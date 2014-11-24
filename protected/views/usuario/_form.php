@@ -4,7 +4,7 @@
 /* @var $form TbActiveForm */
 ?>
 
-<div class="form">
+<div class="form white">
 
     <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'usuario-form',
@@ -34,7 +34,7 @@
 
             <?php echo $form->passwordFieldControlGroup($model,'password',array('span'=>5,'maxlength'=>20)); ?>
 
-        <div class="form-actions">
+        <div class="">
         <?php echo TbHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar',array(
 		    'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
 		    'size'=>TbHtml::BUTTON_SIZE_LARGE,

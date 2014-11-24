@@ -88,7 +88,7 @@ class Usuario extends CActiveRecord
             switch( $this->getScenario() ){
                 case 'register':
                     return array(
-			'numero_telefono' => 'Numero Telefono',
+			'numero_telefono' => 'Número Telefono',
 			'regid' => 'Regid',
 			'id_tipo_usuario' => 'Id Tipo Usuario',
 			'nombre' => 'Nombre',

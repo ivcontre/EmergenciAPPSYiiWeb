@@ -20,18 +20,19 @@
         ),
 )); ?>
 
-    <p class="help-block">Campos con <span class="required">*</span> son requeridos.</p>
+    <p class="help-block">Los Campos con <span class="required">*</span> son requeridos.</p>
 
     <?php echo $form->errorSummary($model,'Por favor arregla los siguientes errores:'); ?>
 
-    
+    <div class="row white">
             <?php echo $form->passwordFieldControlGroup($model,'password_old',array('span'=>5,'maxlength'=>20)); ?>
-    
+    </div>
+    <div class="row white">
             <?php echo $form->passwordFieldControlGroup($model,'password',array('span'=>5,'maxlength'=>20)); ?>
-    
+    </div>
             
 
-        <div class="form-actions">
+        <div class="">
         <?php echo TbHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar',array(
 		    'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
 		    'size'=>TbHtml::BUTTON_SIZE_LARGE,

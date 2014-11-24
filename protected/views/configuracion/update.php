@@ -14,6 +14,6 @@ $this->menu=array(
 );
 ?>
 
-    <h1>Actualiza tu Configuración</h1>
+    <h1 class="white">Actualiza tu Configuración</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

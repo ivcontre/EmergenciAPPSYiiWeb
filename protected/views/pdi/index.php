@@ -20,10 +20,9 @@ Yii::app()->clientScript->registerScript('helpers', '
 
 ?>
 
-<h1>Buscar por Comuna</h1>
 <div id="container">
     
-
+<h1><small>Busca por Comuna</small></h1>   
                 <?php
                     
                    
@@ -50,7 +49,12 @@ Yii::app()->clientScript->registerScript('helpers', '
 
        <div id="map" style="width:100%; height:600px"></div>
 
-    
+    echo '<div class="brillo">';
+    echo '</div>';
+    echo '<div class="brillo2">';
+   //echo TbHtml::button('Descargar', array('color' =>TbHtml::BUTTON_COLOR_PRIMARY, 'size' => TbHtml::BUTTON_SIZE_LARGE));
+    echo '</div>';
+?>
     </div>
 
 <?php echo "<script>actionPDI.cargarMapa();</script>";?>

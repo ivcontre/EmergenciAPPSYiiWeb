@@ -12,7 +12,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Actualizar Contraseña</h1>
+<h1 class="white">Actualizar Contraseña</h1>
 
 <?php $this->renderPartial('_pass', array('model'=>$model)); 
 

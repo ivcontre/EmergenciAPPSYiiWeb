@@ -5,16 +5,12 @@
 
 <?php
 $this->breadcrumbs=array(
-	'Contactos'=>array('index'),
-	'Create',
+	'Contactos'=>array('admin'),
+	'Agregar Contacto',
 );
 
-$this->menu=array(
-	array('label'=>'List Contacto', 'url'=>array('index')),
-	array('label'=>'Manage Contacto', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Create Contacto</h1>
+<h1 class="white">Agregar Contacto</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

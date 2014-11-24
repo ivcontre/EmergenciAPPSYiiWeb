@@ -3,8 +3,9 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle=Yii::app()->name . ' - Login';
+$this->pageTitle=Yii::app()->name . ' - Iniciar Sesión';
 ?>
+<br><br><br><br>
 <div class="falso1">
 <section class="falso">
 <h1 >Inicio Sesión</h1>
@@ -33,7 +34,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 		<p class="hint">
-			Hint: Debes logearte como <kbd>Usuario</kbd> or <kbd>Administrador</kbd>.
+			Consejo: Debes logearte como <kbd>Usuario</kbd> o <kbd>Administrador</kbd>.
 		</p>
 	</div>
 
@@ -54,3 +55,4 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 </div><!-- form -->
 </section>
 </div>
+<br><br><br><br><br><br><br><br>

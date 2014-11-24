@@ -21,6 +21,7 @@ if(Yii::app()->user->isGuest){
     //echo TbHtml::button('Descargar', array('color' =>TbHtml::BUTTON_COLOR_PRIMARY, 'size' => TbHtml::BUTTON_SIZE_LARGE));
     echo '</div>';
 }else{
+    echo "<br><br><br><br>";
      if(Yii::app()->user->isAdmin()){
             //se genera index para administrador
          $response = Yii::app()->user->obtenerNotificacionesGrafico();
@@ -42,6 +43,7 @@ if(Yii::app()->user->isGuest){
         )
     )
 );
+         echo "<br><br><br><br>";
      }else{
          //se genera index para usuario
          $mensajes = Yii::app()->user->verificaAvisos();

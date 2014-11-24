@@ -27,7 +27,14 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar Centros Médicos</h1>
+<h1><small>Administrar Centros Médicos </small>
+    <a href="<?PHP echo $this->createUrl('create');?>" title="Agrega un nuevo Centro Médico">  
+        <img src="<?PHP echo Yii::app()->request->baseUrl."/icons/mas.png";?>">  
+    </a>
+    <a href="<?PHP echo $this->createUrl('PrintDocument');?>" target="_blank" title="Generar PDF">  
+        <img src="<?PHP echo Yii::app()->request->baseUrl."/icons/pdf.png";?>">
+    </a>
+</h1> 
 
 
 <?php 
@@ -45,8 +52,10 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                 ),
 		'telefono',
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
+                
+                //'headerHtmlOptions' => array('class'=>'centro_medico_header'),
 	),
 ));
 

@@ -262,6 +262,7 @@ class ApiController extends Controller {
                         $response[] = array('nombre'=>$user->nombre, 'lat'=>$user->latitud, 'lng'=>$user->longitud, 'numero_telefono'=> $user->numero_telefono);
                     }
                     echo json_encode($response);
+                    return;
                 }
             }
             
