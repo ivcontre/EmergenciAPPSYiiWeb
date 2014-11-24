@@ -202,8 +202,8 @@ class CarabineroController extends Controller
     public function actionPrintDocument(){
             $this->layout="";
             $criteria = $_SESSION['datos_filtrados']; // consulta
-            $modelFilter = $_SESSION['centroMedicoFilter']; // Datos utilizados para el filtro
-            $model = new CentroMedico(); // nuevo modelo
+            $modelFilter = $_SESSION['carabinero_Filter']; // Datos utilizados para el filtro
+            $model = new Carabinero(); // nuevo modelo
             
            
             $mPDF1 = Yii::app()->ePdf->mpdf(

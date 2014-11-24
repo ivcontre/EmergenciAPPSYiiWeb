@@ -99,7 +99,8 @@ class Carabinero extends CActiveRecord
 		$criteria->compare('telefono',$this->telefono,true);
 		$criteria->compare('x',$this->x);
 		$criteria->compare('y',$this->y);
-
+                $_SESSION['datos_filtrados'] = $criteria;
+                $_SESSION['carabinero_Filter']=$this;
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
