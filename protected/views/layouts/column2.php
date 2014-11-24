@@ -4,7 +4,7 @@
 <div class="span3 last">
 	<div id="sidebar">
 	<?php
-        array_unshift($this->menu, array('label'=>'Operaciones'));
+        //array_unshift($this->menu, array('label'=>'Operaciones'));
 		$this->widget('bootstrap.widgets.TbNav', array(
                         'type' => TbHtml::NAV_TYPE_LIST,
 			'items'=>$this->menu,
