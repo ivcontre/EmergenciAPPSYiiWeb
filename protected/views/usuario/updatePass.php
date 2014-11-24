@@ -29,3 +29,5 @@ $this->menu=array(
     $this->renderPartial('_pass', array('model'=>$model)); 
 }
 ?>
+
+<br><br><br><br><br><br><br><br>

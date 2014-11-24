@@ -12,7 +12,9 @@ $this->menu=array(
 	array('label'=>'Administrar', 'url'=>array('admin')),
 );
 ?>
-
-<h1>Crear Comuna</h1>
-
+<br>
+<h2 class="white">Agregar Comuna</h2>
+<br><br><br><br>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>

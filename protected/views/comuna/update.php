@@ -9,13 +9,13 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar', 'url'=>array('index')),
 	array('label'=>'Ingresar nuevo', 'url'=>array('create')),
 	array('label'=>'Detalle', 'url'=>array('view', 'id'=>$model->id_comuna)),
 	array('label'=>'Administrar', 'url'=>array('admin')),
+    array('label'=>'Eliminar', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro que deseas eliminar esta comuna?')),
 );
 ?>
 
-<?php echo TbHtml::pageHeader('Editar ', $model->nombre); ?>
+<h2 class="white">Editar <small><?php echo $model->nombre;?></small></h2>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
