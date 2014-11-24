@@ -29,3 +29,4 @@ $this->menu=array(
     $this->renderPartial('_form', array('model'=>$model)); 
 }
 ?>
+<br><br><br><br><br><br><br>
