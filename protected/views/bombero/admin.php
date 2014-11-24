@@ -51,7 +51,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                 ),
 		'telefono',
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
 	),
 ));

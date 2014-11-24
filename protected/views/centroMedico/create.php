@@ -17,7 +17,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Crear Centro Médico</h1>
+<h2 class="white">Agregar Centro Médico</h2>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); 
 echo "<script>actionCentroMedico.cargarMapaIngreso('CentroMedico');</script>";?>

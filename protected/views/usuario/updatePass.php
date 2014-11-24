@@ -25,8 +25,7 @@ $this->menu=array(
     $this->menu=array(
             array('label'=>'Cuenta', 'url'=>array('view', 'id'=>$model->numero_telefono)),
     );
-    
-    echo TbHtml::pageHeader('Actualizar Contraseña', $model->nombre);
+    echo "<h1 class='white'>Actualizar Contraseña <small>".$model->nombre."</small></h1>";
     $this->renderPartial('_pass', array('model'=>$model)); 
 }
 ?>

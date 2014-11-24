@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<div class="form white">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'pdi-form',

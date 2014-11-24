@@ -18,7 +18,7 @@ $this->menu=array(
 	array('label'=>'Ver Todos', 'url'=>array('admin')),
 );
 ?>
-<h1>Crear Carabinero</h1>
+<h2 class="white">Agregar Retén de Carabineros</h2>
 
 <?php 
 $this->renderPartial('_form', array('model'=>$model)); 

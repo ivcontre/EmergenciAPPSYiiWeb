@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Crear PDI</h1>
+<h2 class="white">Agregar Oficina de PDI</h2>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); 
 echo "<script>actionPDI.cargarMapaIngreso('PDI');</script>";?>

@@ -59,7 +59,7 @@ if(Yii::app()->user->isUser()){
             array('label'=>'Editar Cuenta', 'url'=>array('update', 'id'=>$model->numero_telefono)),
             array('label'=>'Actualizar contraseña', 'url'=>array('updatePass')),
     );
-    echo TbHtml::pageHeader('Mi Configuración', $model->nombre);
+    echo "<h1 class='white'>Mi Configuración <small>".$model->nombre."</small></h1>";
     $this->widget('zii.widgets.CDetailView', array(
             'data'=>$model,
             'htmlOptions' => array(

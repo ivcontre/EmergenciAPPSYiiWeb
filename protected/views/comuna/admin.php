@@ -26,8 +26,11 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar Comunas</h1>
-
+<h1><small>Administrar Comunas </small>
+    <a href="<?PHP echo $this->createUrl('create');?>" title="Agrega un nuevo Centro Médico">  
+        <img src="<?PHP echo Yii::app()->request->baseUrl."/icons/mas.png";?>">  
+    </a>
+</h1> 
 
 <?php 
 $this->widget('bootstrap.widgets.TbGridView', array(
@@ -39,7 +42,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 		'id_comuna',
 		'nombre',
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
 	),
 ));

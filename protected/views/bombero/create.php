@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Crear Bombero</h1>
+<h2 class="white">Agregar Cuerpo de Bomberos</h2>
 
 <?php $this->renderPartial('_form', array('model'=>$model));
 echo "<script>actionBombero.cargarMapaIngreso('Bombero');</script>";?>
