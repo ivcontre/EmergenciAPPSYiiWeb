@@ -60,6 +60,7 @@ if(Yii::app()->user->isUser()){
             array('label'=>'Actualizar contraseña', 'url'=>array('updatePass')),
     );
     echo "<h1 class='white'>Mi Configuración <small>".$model->nombre."</small></h1>";
+    echo "<br><br>";
     $this->widget('zii.widgets.CDetailView', array(
             'data'=>$model,
             'htmlOptions' => array(
@@ -74,3 +75,6 @@ if(Yii::app()->user->isUser()){
     )); 
 }
 ?>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br>
+

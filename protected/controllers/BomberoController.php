@@ -203,8 +203,8 @@ class BomberoController extends Controller
     public function actionPrintDocument(){
             $this->layout="";
             $criteria = $_SESSION['datos_filtrados']; // consulta
-            $modelFilter = $_SESSION['centroMedicoFilter']; // Datos utilizados para el filtro
-            $model = new CentroMedico(); // nuevo modelo
+            $modelFilter = $_SESSION['bomberoFilter']; // Datos utilizados para el filtro
+            $model = new Bombero(); // nuevo modelo
             
            
             $mPDF1 = Yii::app()->ePdf->mpdf(
