@@ -21,13 +21,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'nombre'); ?>
-		<?php echo $form->textField($model,'nombre',array('size'=>60,'maxlength'=>200)); ?>
+		<?php echo $form->textField($model,'nombre',array('size'=>60,'maxlength'=>200, 'class'=>'span5')); ?>
 		<?php echo $form->error($model,'nombre'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'direccion'); ?>
-		<?php echo $form->textField($model,'direccion',array('size'=>60,'maxlength'=>500)); ?>
+		<?php echo $form->textField($model,'direccion',array('size'=>60,'maxlength'=>500, 'class'=>'span5')); ?>
 		<?php echo $form->error($model,'direccion'); ?>
 	</div>
 
@@ -61,24 +61,24 @@
 		<?php echo $form->error($model,'id_comuna'); ?>
 	</div>
         <div class="row">
-            <div id="map" style="width:450px; height:300px"></div>
+            <div id="map" style="width:470px; height:300px"></div>
         </div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'x'); ?>
-		<?php echo $form->textField($model,'x'); ?>
+		<?php echo $form->textField($model,'x', array('class'=>'span5')); ?>
 		<?php echo $form->error($model,'x'); ?>
                 
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'y'); ?>
-		<?php echo $form->textField($model,'y'); ?>
+		<?php echo $form->textField($model,'y', array('class'=>'span5')); ?>
 		<?php echo $form->error($model,'y'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'telefono'); ?>
-		<?php echo $form->textField($model,'telefono',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->textField($model,'telefono',array('size'=>15,'maxlength'=>15,'class'=>'span5')); ?>
 		<?php echo $form->error($model,'telefono'); ?>
 	</div>
 

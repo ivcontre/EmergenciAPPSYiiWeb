@@ -19,7 +19,9 @@ body
     color: #FFF;
     float: left;
 }
-
+#map{
+    border-radius: 7px;
+}
 .brillo2{
     background-image: url("../images/fondoslider.png");
     background-repeat: repeat-x;
