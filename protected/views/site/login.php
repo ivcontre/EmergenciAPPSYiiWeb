@@ -55,4 +55,3 @@ $this->pageTitle=Yii::app()->name . ' - Iniciar Sesión';
 </div><!-- form -->
 </section>
 </div>
-<br><br><br><br><br><br><br><br>

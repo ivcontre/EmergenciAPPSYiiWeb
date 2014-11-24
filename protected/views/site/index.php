@@ -51,7 +51,7 @@ if(Yii::app()->user->isGuest){
              Yii::app()->user->setFlash($msg['color'],$msg['msg']);
             $this->widget('bootstrap.widgets.TbAlert', array('block'=>true, ));
          }
-         echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+         
      }
 }
 ?>

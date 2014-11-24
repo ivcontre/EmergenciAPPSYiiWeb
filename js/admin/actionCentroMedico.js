@@ -16,7 +16,7 @@ console.log('iniciando eventos de centros medicos');
             myOptions = {
               zoom: 12,
               center: latlng,
-              mapTypeId: google.maps.MapTypeId.ROADMAP  
+              mapTypeId: google.maps.MapTypeId.HYBRID  
             };
             map = new google.maps.Map(document.getElementById("map_detalle"),myOptions);
             var marker = new google.maps.Marker({
@@ -41,7 +41,7 @@ console.log('iniciando eventos de centros medicos');
             var markersArray = [];
             mapOptions = {
                       zoom: 13,
-                      mapTypeId: google.maps.MapTypeId.ROADMAP  
+                      mapTypeId: google.maps.MapTypeId.HYBRID  
             };
             geocoder = new google.maps.Geocoder();
 
@@ -140,7 +140,7 @@ console.log('iniciando eventos de centros medicos');
                 var mapOptions = {
                           center: new google.maps.LatLng(x, y),
                           zoom: 13,
-                          mapTypeId: google.maps.MapTypeId.ROADMAP  
+                          mapTypeId: google.maps.MapTypeId.HYBRID  
                 };
                 var elementMap = document.getElementById('map');
                 map = new google.maps.Map(elementMap,mapOptions);

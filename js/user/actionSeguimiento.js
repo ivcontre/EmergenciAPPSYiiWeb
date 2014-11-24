@@ -2,7 +2,7 @@ console.log('iniciando eventos para Seguimiento, usuario');
     var actionSeguimiento = (function() {
       var mapOptions = {
                       zoom: 13,
-                      mapTypeId: google.maps.MapTypeId.ROADMAP  
+                      mapTypeId: google.maps.MapTypeId.HYBRID  
             };
       var markerMyPosition;
       var markerAlerta = null;

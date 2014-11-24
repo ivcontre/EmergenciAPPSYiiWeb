@@ -23,7 +23,7 @@ console.log('iniciando eventos de Centros Medicos, usuario');
            directionsDisplay = new google.maps.DirectionsRenderer();
             mapOptions = {
                       zoom: 13,
-                      mapTypeId: google.maps.MapTypeId.ROADMAP  
+                      mapTypeId: google.maps.MapTypeId.HYBRID  
             };
             geocoder = new google.maps.Geocoder();
 

@@ -75,6 +75,5 @@ if(Yii::app()->user->isUser()){
     )); 
 }
 ?>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br>
+
 

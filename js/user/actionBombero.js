@@ -28,7 +28,7 @@ console.log('iniciando eventos de bomberos, usuario');
             
             mapOptions = {
                       zoom: 13,
-                      mapTypeId: google.maps.MapTypeId.ROADMAP  
+                      mapTypeId: google.maps.MapTypeId.HYBRID   
             };
             geocoder = new google.maps.Geocoder();
 
