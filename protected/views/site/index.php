@@ -43,7 +43,7 @@ if(Yii::app()->user->isGuest){
         )
     )
 );
-         echo "<br><br><br><br>";
+        
      }else{
          //se genera index para usuario
          $mensajes = Yii::app()->user->verificaAvisos();
