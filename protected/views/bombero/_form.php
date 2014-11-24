@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<div class="form white">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'bombero-form',
@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Campos con <span class="required">*</span> son requeridos.</p>
+	<p class="note white">Campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -82,9 +82,7 @@
 	</div>
 
 	<div class="row buttons">
-                <?php echo TbHtml::formActions(array(
-                        TbHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
-                    )); ?>
+                <?php echo TbHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
