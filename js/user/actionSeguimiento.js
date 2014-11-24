@@ -5,7 +5,7 @@ console.log('iniciando eventos para Seguimiento, usuario');
                       mapTypeId: google.maps.MapTypeId.ROADMAP  
             };
       var markerMyPosition;
-      var markerAlerta;
+      var markerAlerta = null;
       var map;
       var contador = false;
       var latitud, longitud, nombreAlerta, numeroTelefono, mensaje;
@@ -90,6 +90,8 @@ console.log('iniciando eventos para Seguimiento, usuario');
             
             locationAlerta = new google.maps.LatLng(lat,lng);
             map.setCenter(locationAlerta);
+            if(markerAlerta!=null)
+                markerAlerta.setMap(null);
             markerAlerta = new google.maps.Marker({
                 position: locationAlerta,
                 map:map,

@@ -6,8 +6,8 @@ if(Yii::app()->user->isGuest){
     // imagenes 830/477
     $carousel =  TbHtml::carousel(array(
         array('image' => Yii::app()->request->baseUrl.'/images/carabineros_prop.png', 'label' => 'Podrás Encontrar los Retenes de Carabineros cerca a tu ubicación', 'caption' => '...'),
-        array('image' => Yii::app()->request->baseUrl.'/images/carabineros_prop.png', 'label' => 'Second Thumbnail label', 'caption' => '...'),
-        array('image' => Yii::app()->request->baseUrl.'/images/carabineros_prop.png', 'label' => 'Third Thumbnail label', 'caption' => '...'),
+        array('image' => Yii::app()->request->baseUrl.'/images/busqueda_prop.png', 'label' => 'Busca todos los servicios de ayuda por su comuna', 'caption' => '...'),
+        array('image' => Yii::app()->request->baseUrl.'/images/ruta_prop.png', 'label' => 'Genera la ruta más cercana, y averigua como llegar de manera rápida', 'caption' => '...'),
     ));
     $this->widget('bootstrap.widgets.TbHeroUnit', array(
         'heading' => '',
