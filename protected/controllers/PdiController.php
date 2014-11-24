@@ -66,6 +66,7 @@ class PdiController extends Controller
 	 */
 	public function actionCreate()
 	{
+            $this->layout='';
 		$model=new PDI;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -81,6 +82,7 @@ class PdiController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**

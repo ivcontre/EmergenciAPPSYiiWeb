@@ -66,6 +66,7 @@ class CentroMedicoController extends Controller
 	 */
 	public function actionCreate()
 	{
+            $this->layout='';
 		$model=new CentroMedico;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -81,6 +82,7 @@ class CentroMedicoController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**
@@ -222,8 +224,8 @@ class CentroMedicoController extends Controller
             $mPDF1->SetTitle("Centros Médicos");
             $mPDF1->SetAuthor("EmergenciAPPS");
             $mPDF1->SetDisplayMode("fullpage");
-            //$this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria));
-            $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria, 'modelFilter'=>$modelFilter),true));
+            //$this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria, 'modelFilter'=>$modelFilter));
+           $mPDF1->WriteHTML($this->renderPartial('reporte',array('model'=>$model, 'criteria'=>$criteria, 'modelFilter'=>$modelFilter),true));
             $this->layout='//layouts/column2';
             $mPDF1->Output('CentrosMedicos','I');
             

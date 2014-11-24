@@ -66,6 +66,7 @@ class BomberoController extends Controller
 	 */
 	public function actionCreate()
 	{
+            $this->layout='';
 		$model=new Bombero;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -81,6 +82,7 @@ class BomberoController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
+                $this->layout='//layouts/column2';
 	}
 
 	/**
