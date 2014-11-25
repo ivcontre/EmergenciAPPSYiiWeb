@@ -17,6 +17,6 @@ $this->menu=array(
 );
 ?>
 
-    <h1>Editar Contacto <?php echo $model->nombre; ?></h1>
+<h1 class="white">Editar Contacto <small><?php echo $model->nombre; ?></small></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

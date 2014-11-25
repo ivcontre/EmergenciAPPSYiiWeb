@@ -17,7 +17,7 @@ $this->menu=array(
 );
 ?>
 
-<h1># <?php echo $model->nombre; ?></h1>
+<h2 class="white">Contacto <small><?php echo $model->nombre; ?></small></h2>
 
 <?php $this->widget('zii.widgets.CDetailView',array(
     'htmlOptions' => array(
