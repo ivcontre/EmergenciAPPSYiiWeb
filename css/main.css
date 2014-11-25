@@ -46,9 +46,23 @@ body
 }
 #page
 {
-	margin-top: 50px;
-	margin-bottom: 5px;
-	
+    background: #666666;
+background: -moz-linear-gradient(top, #000000 36%, #db0606 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(36%,#000000), color-stop(100%,#db0606));
+background: -webkit-linear-gradient(top, #000000 36%,#db0606 100%);
+background: -o-linear-gradient(top, #000000 36%,#db0606 100%);
+background: -ms-linear-gradient(top, #000000 36%,#db0606 100%);
+background: linear-gradient(to bottom, #000000 36%,#db0606 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#db0606',GradientType=0 );
+background-repeat: no-repeat;
+    padding-top: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+        
+	min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto auto;
 }
 .row .white{
     background: #FFF;
@@ -66,7 +80,7 @@ body
 
 #content
 {
-    padding: 20px;
+    padding-top: 20px;
 }
 
 #sidebar
@@ -76,7 +90,8 @@ body
 
 #footer
 {
-	padding: 10px;
+        height: 19px;
+	padding: 20px;
 	font-size: 0.8em;
 	text-align: center;
 	border-top: 1px solid #000000;
