@@ -5,6 +5,7 @@
 ?>
 <div class="falso1">
 <section class="falso">
+    <h1 >Registro</h1>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
