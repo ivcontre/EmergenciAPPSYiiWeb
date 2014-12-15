@@ -32,7 +32,7 @@
 <?PHP
 $this->widget('bootstrap.widgets.TbNavbar', array(
                 'color' => TbHtml::NAVBAR_COLOR_INVERSE,
-                'brandLabel' => 'EmergenciAPPS',
+                'brandLabel' => '<img class="perfil" src="'.Yii::app()->request->baseUrl.'/icons/logo_nombre_37x74.png"> ',
                 'collapse' => true,
                 //'encodeLabel'=>false,
                 'items' => array(
@@ -40,22 +40,22 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                     'class' => 'bootstrap.widgets.TbNav',
                                     'encodeLabel'=>false,
                                     'items' => array(
-                                        array('label'=>'Inicio', 'url'=>array('/site/index')),                                        
-                                        array('label'=>'Registrarse', 'url'=>array('/site/register'),'visible'=>Yii::app()->user->isGuest),
+                                        array('label'=>'<img class="home" src="'.Yii::app()->request->baseUrl.'/icons/home_37x37.png"> Inicio', 'url'=>array('/site/index')),                                        
+                                        array('label'=>'<img class="registrarse" src="'.Yii::app()->request->baseUrl.'/icons/registrarse_37x37.png"> Registrarse', 'url'=>array('/site/register'),'visible'=>Yii::app()->user->isGuest),
                                         //Menu administrador
-                                        array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/admin'), 'visible'=>Yii::app()->user->isAdmin()),
-                                        array('label'=>'Bomberos', 'url'=>array('/bombero/admin'), 'visible'=>Yii::app()->user->isAdmin()),
-                                        array('label'=>'Carabineros', 'url'=>array('/carabinero/admin'),'visible'=>Yii::app()->user->isAdmin()),
-                                        array('label'=>'PDI', 'url'=>array('/pdi/admin'), 'visible'=>Yii::app()->user->isAdmin()),
-                                        array('label'=>'Comunas', 'url'=>array('/comuna/admin'),'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'<img class="centro_medico" src="'.Yii::app()->request->baseUrl.'/icons/centro_medico_37x37.png"> Centros Médicos', 'url'=>array('/centroMedico/admin'), 'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'<img class="bombero" src="'.Yii::app()->request->baseUrl.'/icons/bombero_37x37.png"> Bomberos', 'url'=>array('/bombero/admin'), 'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'<img class="carabinero" src="'.Yii::app()->request->baseUrl.'/icons/carabinero_37x37.png"> Carabineros', 'url'=>array('/carabinero/admin'),'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'<img class="pdi" src="'.Yii::app()->request->baseUrl.'/icons/pdi_37x37.png"> PDI', 'url'=>array('/pdi/admin'), 'visible'=>Yii::app()->user->isAdmin()),
+                                        array('label'=>'<img class="comuna" src="'.Yii::app()->request->baseUrl.'/icons/comuna_37x37.png"> Comunas', 'url'=>array('/comuna/admin'),'visible'=>Yii::app()->user->isAdmin()),
                                         // Menu usuario
-                                        array('label'=>'Centros Médicos', 'url'=>array('/centroMedico/index'), 'visible'=>Yii::app()->user->isUser()),
-                                        array('label'=>'Bomberos', 'url'=>array('/bombero/index'), 'visible'=>Yii::app()->user->isUser()),
-                                        array('label'=>'Carabineros', 'url'=>array('/carabinero/index'),'visible'=>Yii::app()->user->isUser()),
-                                        array('label'=>'PDI', 'url'=>array('/pdi/index'), 'visible'=>Yii::app()->user->isUser()),
-                                        array('label'=>"Seguimiento ".Yii::app()->user->countAlertas(),'url'=>array('/contacto/seguimiento'), 'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>'<img class="centro_medico" src="'.Yii::app()->request->baseUrl.'/icons/centro_medico_37x37.png"> Centros Médicos', 'url'=>array('/centroMedico/index'), 'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>'<img class="bombero" src="'.Yii::app()->request->baseUrl.'/icons/bombero_37x37.png"> Bomberos', 'url'=>array('/bombero/index'), 'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>'<img class="carabinero" src="'.Yii::app()->request->baseUrl.'/icons/carabinero_37x37.png"> Carabineros', 'url'=>array('/carabinero/index'),'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>'<img class="pdi" src="'.Yii::app()->request->baseUrl.'/icons/pdi_37x37.png"> PDI', 'url'=>array('/pdi/index'), 'visible'=>Yii::app()->user->isUser()),
+                                        array('label'=>'<img class="seguimiento" src="'.Yii::app()->request->baseUrl.'/icons/seguimiento_37x37.png"> Seguimiento '.Yii::app()->user->countAlertas(),'url'=>array('/contacto/seguimiento'), 'visible'=>Yii::app()->user->isUser()),
                                         //array("<li><a>".Yii::app()->user->countAlertas()."</a></li>",'visible'=>Yii::app()->user->isUser()),
-                                        array('label'=>'Perfil','items'=>array(
+                                        array('label'=>'<img class="perfil" src="'.Yii::app()->request->baseUrl.'/icons/perfil_37x37.png"> Perfil','items'=>array(
                                                         array('label'=>'Ver Perfil','url'=>array('usuario/view', 'id'=>Yii::app()->user->id), 'visible'=>Yii::app()->user->isUser()),
                                                         array('label'=>'Mis Contactos','url'=>array('contacto/admin'), 'visible'=>Yii::app()->user->isUser()),
                                                         array('label'=>'Configuracion','url'=>array('configuracion/update&id='.Yii::app()->user->idConfiguracion), 'visible'=>Yii::app()->user->isUser()),
@@ -66,8 +66,8 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
                                             )
                                            , 'visible'=>Yii::app()->user->isUser()),
                                         
-                                        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                                        array('label'=>'Perfil','items'=>array(                                                     
+                                        array('label'=>'<img class="perfil" src="'.Yii::app()->request->baseUrl.'/icons/perfil_37x37.png"> Iniciar Sesión', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                                        array('label'=>'<img class="perfil" src="'.Yii::app()->request->baseUrl.'/icons/perfil_37x37.png"> Perfil','items'=>array(                                                     
                                                         array('label'=>'Cuenta','url'=>array('usuario/view&id='.Yii::app()->user->id), 'visible'=>Yii::app()->user->isAdmin()),
                                                         TbHtml::menuDivider(),
                                                         array('label'=>'Cerrar Sesión ('.Yii::app()->user->nombre.')', 'url'=>array('/site/logout'), 'visible'=>Yii::app()->user->isAdmin())

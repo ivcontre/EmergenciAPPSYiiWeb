@@ -10,6 +10,9 @@ body
 .white {
     color: #FFF;
 }
+.highcharts-container{
+    border-radius: 5px;
+}
 .brillo{
     background-image: url("../images/fondoslider.png");
     background-repeat: repeat-x;
@@ -287,3 +290,81 @@ div.search-form
 
 .ui-autocomplete-loading{
 background:white url('../images/ajax.gif') right center no-repeat; }
+
+li.active a .pdi{
+     padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/pdi_active_37x37.png) left no-repeat; 
+}
+
+li.active a .carabinero{
+     padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/carabinero_active_37x37.png) left no-repeat; 
+}
+li.active a .centro_medico{
+    padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/centro_medico_active_37x37.png) left no-repeat; 
+}
+li.active a .bombero{
+     padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/bombero_active_37x37.png) left no-repeat; 
+}
+li.active a .seguimiento{
+     padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/seguimiento_active_37x37.png) left no-repeat; 
+}
+
+li.active a .home{
+     padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/home_active_37x37.png) left no-repeat; 
+}
+li.active a .perfil{
+     padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/perfil_active_37x37.png) left no-repeat; 
+}
+
+li.active a .comuna{
+     padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/comuna_active_37x37.png) left no-repeat; 
+}
+
+li.active a .registrarse{
+     padding-left: 37px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 37px; 
+    height: 37px;
+    background: url(../icons/registrarse_active_37x37.png) left no-repeat; 
+}
+
