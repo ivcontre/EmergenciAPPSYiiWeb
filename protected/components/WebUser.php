@@ -99,6 +99,40 @@ class WebUser extends CWebUser {
         $response['dataRegistrados'] = $dataRegistrados;
         return $response;
     }
+    
+    function obtenerNotificacionesGraficoUsuario(){
+        $notificaciones = Yii::app()->db->createCommand()
+            ->select('COUNT(*) as cantidad, DATE(fecha) as fecha')
+            ->from('Notificacion')  //Your Table name
+            ->group('DATE(fecha)') 
+            ->where('numero_telefono = "'.Yii::app()->user->id.'" and fecha BETWEEN date_sub(NOW(), INTERVAL 7 DAY)  AND sysdate()') // Write your where condition here
+            ->queryAll(); 
+
+        date_default_timezone_set("America/Santiago");
+        $fechaActual = date("Y-m-d");
+        $categories = array(
+            date("Y-m-d",strtotime('-6 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-5 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-4 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-3 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-2 day',strtotime($fechaActual))),
+            date("Y-m-d",strtotime('-1 day',strtotime($fechaActual))),
+            $fechaActual);
+        $dataNotificacion = array(0,0,0,0,0,0,0);
+
+        
+        for($i=0; $i<count($notificaciones); $i++){
+            for($j=0; $j<count($categories); $j++){
+                if($notificaciones[$i]['fecha'] == $categories[$j])
+                    $dataNotificacion[$j] = intval($notificaciones[$i]['cantidad']);
+            }
+        }
+
+        $response['categories'] = $categories;
+        $response['dataNotificaciones'] = $dataNotificacion;
+
+        return $response;
+    }
     /**
      * Metodo encargado de verificar avisos para usuario
      * @return Array
@@ -156,5 +190,11 @@ class WebUser extends CWebUser {
             }
         }
     }
+    
+    public function getUsuario(){
+       return $this->loadUser(Yii::app()->user->id);
+    }
+    
+    
 }
 ?>

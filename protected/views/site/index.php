@@ -21,7 +21,7 @@ if(Yii::app()->user->isGuest){
     //echo TbHtml::button('Descargar', array('color' =>TbHtml::BUTTON_COLOR_PRIMARY, 'size' => TbHtml::BUTTON_SIZE_LARGE));
     echo '</div>';
 }else{
-    echo "<br><br><br><br>";
+    
      if(Yii::app()->user->isAdmin()){
             //se genera index para administrador
          $response = Yii::app()->user->obtenerNotificacionesGrafico();
@@ -46,11 +46,101 @@ if(Yii::app()->user->isGuest){
         
      }else{
          //se genera index para usuario
+         $modelUser =  Yii::app()->user->getUsuario();
          $mensajes = Yii::app()->user->verificaAvisos();
          foreach($mensajes as $msg){
              Yii::app()->user->setFlash($msg['color'],$msg['msg']);
             $this->widget('bootstrap.widgets.TbAlert', array('block'=>true, ));
          }
+         ?>
+        <div class="row">
+            <div class="span8">
+                <?php
+                    $response = Yii::app()->user->obtenerNotificacionesGraficoUsuario();
+                    $this->widget(
+                       'yiiwheels.widgets.highcharts.WhHighCharts',
+                       array(
+                           'pluginOptions' => array(
+                               'title'  => array('text' => 'Notificaciones realizadas en los últimos 7 días'),
+                               'xAxis'  => array(
+                                   'categories' => $response['categories']
+                               ),
+                               'yAxis'  => array(
+                                   'title' => array('text' => 'Cantidad')
+                               ),
+                               'series' => array(
+                                   array('name' => 'Notificaciones Generadas', 'data' => $response['dataNotificaciones']),
+                                   
+                               )
+                           )
+                       )
+                   );
+                ?>
+            </div>
+            <div class="span4">
+                <h1 ><small>Mis contactos</small></h1>
+                <?php
+
+                    $this->widget('bootstrap.widgets.TbGridView',array(
+                        'type'=> TbHtml::GRID_TYPE_BORDERED,
+                         'dataProvider' => new CActiveDataProvider('Contacto', array(
+                             'data'=>$modelUser->contactos
+                            
+                         )),
+                        'columns'=>array('numero','nombre', 'correo')
+                            ));
+                
+                ?>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="span6">
+                <h1 ><small>Configuración</small></h1>
+                <?php 
+                
+                $this->widget('zii.widgets.CDetailView',array(
+                    'htmlOptions' => array(
+                        'class' => 'table table-striped table-condensed table-hover',
+                    ),
+                    'data'=>$modelUser->configuracion,
+                    'nullDisplay'=>'sin valor aún',
+                    'attributes'=>array(
+                                'numero_usuario',
+                                'numero_pdi',
+                                'numero_carabinero',
+                                'numero_bombero',
+                                'numero_centro_medico',
+                                'radio_busqueda',
+                                'mensaje_alerta',
+                                'fecha_modificacion',
+                        ),
+                )); ?>
+            </div>
+            <div class="span6">
+                <h1 ><small>Cuenta</small></h1>
+                <?php 
+                
+                $this->widget('zii.widgets.CDetailView',array(
+                    'htmlOptions' => array(
+                        'class' => 'table table-striped table-condensed table-hover',
+                    ),
+                    'data'=>$modelUser,
+                    'nullDisplay'=>'sin valor aún',
+                    'attributes'=>array(
+                                'numero_telefono',
+                                'nombre',
+                                'apellido',
+                                'correo',
+                                
+                        ),
+                )); ?>
+            </div>
+        </div>
+        
+         <?php
          
      }
 }
