@@ -17,7 +17,7 @@
 
     <?php echo $form->errorSummary($model); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'numero_pdi',array('span'=>5,'maxlength'=>15)); ?>
+            
 
             <?php echo $form->textFieldControlGroup($model,'numero_carabinero',array('span'=>5,'maxlength'=>15)); ?>
 

@@ -40,7 +40,7 @@ if(Yii::app()->user->isUser()){
         'nullDisplay'=>'sin valor aún',
         'attributes'=>array(
                     'numero_usuario',
-                    'numero_pdi',
+                    
                     'numero_carabinero',
                     'numero_bombero',
                     'numero_centro_medico',

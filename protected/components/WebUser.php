@@ -160,9 +160,7 @@ class WebUser extends CWebUser {
                 if($conf->numero_carabinero == null){
                     $msg = $msg."<li>Agrega un número favorito de una comisaría</li>";
                 }
-                if($conf->numero_pdi == null){
-                    $msg = $msg."<li>Agrega un número favorito de un departamento de Policia de Investigaciones</li>";
-                }
+               
 
             }
             if($user->regid == null){

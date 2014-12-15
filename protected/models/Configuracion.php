@@ -69,7 +69,7 @@ class Configuracion extends CActiveRecord
 			'numero_carabinero' => 'Número Carabinero',
 			'numero_bombero' => 'Número Bombero',
 			'numero_centro_medico' => 'Número Centro Médico',
-			'radio_busqueda' => 'Radio Búsqueda',
+			'radio_busqueda' => 'Radio Búsqueda (KM)',
 			'mensaje_alerta' => 'Mensaje Alerta',
 			'fecha_modificacion' => 'Fecha Modificación',
 		);
