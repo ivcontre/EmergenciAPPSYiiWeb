@@ -106,10 +106,10 @@ console.log('iniciando eventos de PDI, usuario');
                     }
                     
                     radioBusqueda = new google.maps.Circle({
-                                                strokeColor: "#0B0B61",
+                                                strokeColor: "#FFFF01",
                                                 strokeOpacity: 0.8,
                                                 strokeWeight: 1,
-                                                fillColor: "#0B0B61",
+                                                fillColor: "#FFFF01",
                                                 fillOpacity: 0.05,
                                                 map: map,
                                                 center: initialLocationuser,
@@ -130,6 +130,7 @@ console.log('iniciando eventos de PDI, usuario');
         },
         
         initializeMapPDIPorComuna: function(id_comuna){
+               radioBusqueda.setMap(null);
                bounds = new google.maps.LatLngBounds();
                directionsDisplay.setMap(null);
                for (var i = 0; i < markersArray.length; i++ ) {

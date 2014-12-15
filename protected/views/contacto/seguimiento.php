@@ -31,7 +31,7 @@ echo TbHtml::buttonDropdown($alertas['title'],$alertas['labels'],$alertas['htmlO
 );
 echo "</div>";
 ?>
-
+<br></br>
  <div id="map" style="width:100%; height:600px"></div>
  
  <?php echo "<script>actionSeguimiento.cargarMapa();</script>";?>

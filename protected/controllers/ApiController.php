@@ -315,13 +315,13 @@ class ApiController extends Controller {
            foreach($rows as $row){
                 $columna = array();
                 $columna['id'] = $row['id'];
-                $columna['nombre'] = utf8_encode($row['t_nombre']);
+                $columna['nombre'] = $row['t_nombre'];
                 $columna['lat'] = $row['x'];
                 $columna['lng'] = $row['y'];
                 $columna['direccion'] =$row['direccion'];
                 $columna['telefono'] = $row['telefono'];
                 $columna['distancia'] = $row['distance'];
-                $columna['comuna'] = utf8_encode($row['nombre']);
+                $columna['comuna'] = $row['nombre'];
                 $filas[] = $columna;
             }
 
@@ -375,7 +375,7 @@ class ApiController extends Controller {
         $tabla = $_GET['tabla'];
         $id_comuna = $_GET['id_comuna'];
         
-        $laConsulta = 'SELECT ' . $tabla . '.id AS id, ' . $tabla . '.nombre AS nombre, ' . $tabla . '.x AS x, ' . $tabla . '.y AS y, ' . $tabla . '.direccion AS direccion,' . $tabla . '.telefono AS telefono ,comuna.nombre AS nombre
+        $laConsulta = 'SELECT ' . $tabla . '.id AS id, ' . $tabla . '.nombre AS t_nombre, ' . $tabla . '.x AS x, ' . $tabla . '.y AS y, ' . $tabla . '.direccion AS direccion,' . $tabla . '.telefono AS telefono ,comuna.nombre AS nombre
                          FROM ' . $tabla . ', comuna
                          WHERE ' . $tabla . '.id_comuna = ' . $id_comuna . ' '
                 . '      AND ' . $tabla . '.id_comuna = comuna.id_comuna';
@@ -390,10 +390,10 @@ class ApiController extends Controller {
             foreach($rows as $row){
                 $columna = array();
                 $columna['id'] = $row['id'];
-                $columna['nombre'] = utf8_encode($row['nombre']);
+                $columna['nombre'] = $row['t_nombre'];
                 $columna['lat'] = $row['x'];
                 $columna['lng'] = $row['y'];
-                $columna['direccion'] = utf8_encode($row['direccion']);
+                $columna['direccion'] = $row['direccion'];
                 $columna['telefono'] = $row['telefono'];
 
                 $columna['comuna'] = $row['nombre'];

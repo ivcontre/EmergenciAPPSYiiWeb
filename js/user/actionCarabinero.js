@@ -106,10 +106,10 @@ console.log('iniciando eventos de carabineros, usuario');
                 }
                 
                 radioBusqueda = new google.maps.Circle({
-                                                strokeColor: "#31B404",
+                                                strokeColor: "#FFFF01",
                                                 strokeOpacity: 0.8,
                                                 strokeWeight: 1,
-                                                fillColor: "#31B404",
+                                                fillColor: "#FFFF01",
                                                 fillOpacity: 0.05,
                                                 map: map,
                                                 center: initialLocationuser,
@@ -131,6 +131,7 @@ console.log('iniciando eventos de carabineros, usuario');
         
         initializeMapCarabinerosPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
+               radioBusqueda.setMap(null);
                directionsDisplay.setMap(null);
                
                 

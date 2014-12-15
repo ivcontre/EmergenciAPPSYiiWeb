@@ -101,6 +101,7 @@ console.log('iniciando eventos de bomberos, usuario');
                         title: item.nombre,
                         icon: yii.urls.base+"/icons/marcadorbombero.png"});
                         bounds.extend(latlng);
+                        
                         var cadena ="<div><h2>"+item.nombre+"</h2><p>"+item.direccion+"</p><p>"+item.telefono+"</p><input type='button' value='Ir' onclick='actionBombero.ruta("+item.lat+","+item.lng+");'></div>";
                         google.maps.event.addListener(marker,"click", function(){
                            if(ventana){
@@ -116,10 +117,10 @@ console.log('iniciando eventos de bomberos, usuario');
                     map.fitBounds(bounds);
                    }
                    radioBusqueda = new google.maps.Circle({
-                                                strokeColor: "#B40404",
+                                                strokeColor: "#FFFF01",
                                                 strokeOpacity: 0.8,
                                                 strokeWeight: 1,
-                                                fillColor: "#B40404",
+                                                fillColor: "#FFFF01",
                                                 fillOpacity: 0.05,
                                                 map: map,
                                                 center: initialLocationuser,
@@ -141,6 +142,7 @@ console.log('iniciando eventos de bomberos, usuario');
         
         initializeMapBomberosPorComuna: function(id_comuna){
                bounds = new google.maps.LatLngBounds();
+               radioBusqueda.setMap(null);
                for (var i = 0; i < markersArray.length; i++ ) {
                         markersArray[i].setMap(null);
                     }  
@@ -225,6 +227,7 @@ console.log('iniciando eventos de bomberos, usuario');
              document.getElementById("comuna").placeholder ="Ingrese Comuna";
              console.log("mapa de chile2");
         },
+         
        
-        };
+        }
     })();

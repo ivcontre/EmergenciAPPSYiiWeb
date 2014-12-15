@@ -16,7 +16,7 @@ console.log('iniciando eventos de bomberos');
             myOptions = {
               zoom: 12,
               center: latlng,
-              mapTypeId: google.maps.MapTypeId.SATELLITE  
+              mapTypeId: google.maps.MapTypeId.HYBRID  
             };
             map = new google.maps.Map(document.getElementById("map_detalle"),myOptions);
             var marker = new google.maps.Marker({
