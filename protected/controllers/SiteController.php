@@ -117,6 +117,7 @@ class SiteController extends Controller
 			$usuario->attributes=$_POST['Usuario'];
                         $usuario->id_tipo_usuario = 1;
                         $conf->numero_usuario = $usuario->numero_telefono;
+                        $conf->radio_busqueda = 1;
 			if($usuario->save()){
                             $conf->save();
                             $login->username = $usuario->numero_telefono;
